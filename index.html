@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7大因子症狀問卷｜超全能整合門診</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #e07b00;
+  --primary-light: #fff3e0;
+  --primary-dark: #b35900;
+  --bg: #fdf6ee;
+  --card: #ffffff;
+  --border: #e0c8a0;
+  --text: #3a2800;
+  --text-muted: #7a6040;
+  --factor1: #FF6B6B;
+  --factor2: #4ECDC4;
+  --factor3: #45B7D1;
+  --factor4: #96CEB4;
+  --factor5: #FFEAA7;
+  --factor6: #DDA0DD;
+  --factor7: #98D8C8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* HEADER */
+.site-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 24px 20px 20px; text-align: center; }
+.site-header h1 { font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 700; margin-bottom: 6px; }
+.site-header p { font-size: 0.9rem; opacity: 0.9; }
+.lang-toggle { position: absolute; top: 16px; right: 16px; display: flex; gap: 6px; }
+.lang-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 5px 14px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.lang-btn.active { background: white; color: var(--primary); font-weight: 600; }
+.header-wrap { position: relative; }
+
+/* MAIN */
+.container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+/* PATIENT INFO */
+.patient-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.patient-card h2 { font-size: 1rem; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-field { display: flex; flex-direction: column; gap: 4px; }
+.form-field label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+.form-field input, .form-field select { border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 0.9rem; color: var(--text); background: #fafafa; outline: none; transition: border 0.2s; }
+.form-field input:focus, .form-field select:focus { border-color: var(--primary); background: white; }
+@media (max-width: 540px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* FACTOR SECTIONS */
+.factor-section { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.factor-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none; transition: background 0.2s; }
+.factor-header:hover { background: var(--primary-light); }
+.factor-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; margin-right: 12px; }
+.factor-title-group { flex: 1; }
+.factor-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+.factor-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+.factor-count { background: var(--primary-light); color: var(--primary); border-radius: 20px; padding: 3px 10px; font-size: 0.8rem; font-weight: 600; flex-shrink: 0; }
+.factor-arrow { font-size: 1rem; color: var(--text-muted); transition: transform 0.3s; }
+.factor-section.open .factor-arrow { transform: rotate(180deg); }
+.factor-body { display: none; padding: 0 20px 20px; }
+.factor-section.open .factor-body { display: block; }
+.factor-description { font-size: 0.82rem; color: var(--text-muted); background: var(--primary-light); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; border-left: 3px solid var(--primary); }
+
+/* SUBSECTION */
+.subsection { margin-bottom: 16px; }
+.subsection-title { font-size: 0.85rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
+
+/* CHECKBOXES */
+.symptom-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.symptom-item { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; padding: 6px 8px; border-radius: 8px; transition: background 0.15s; border: 1px solid transparent; }
+.symptom-item:hover { background: var(--primary-light); border-color: var(--border); }
+.symptom-item input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
+.symptom-item.checked { background: var(--primary-light); border-color: var(--primary); }
+.symptom-label { font-size: 0.85rem; color: var(--text); line-height: 1.4; }
+.symptom-label .en { font-size: 0.75rem; color: var(--text-muted); display: block; }
+
+/* GENDER SECTION */
+.gender-select-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.gender-btn { flex: 1; padding: 10px; border: 2px solid var(--border); background: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: all 0.2s; }
+.gender-btn.active { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+.gender-specific { display: none; }
+.gender-specific.visible { display: block; }
+
+/* RESULTS SECTION */
+.results-section { background: var(--card); border-radius: var(--radius); border: 2px solid var(--primary); padding: 24px; margin-top: 24px; display: none; box-shadow: 0 4px 20px rgba(224,123,0,0.15); }
+.results-section.visible { display: block; }
+.results-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }.results-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+
+.chart-container { width: 100%; max-width: 360px; margin: 0 auto 24px; }
+.chart-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+.legend-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.legend-text { font-size: 0.8rem; flex: 1; }
+.legend-count { font-weight: 700; font-size: 0.9rem; }
+
+/* TOP FACTOR */
+.top-factor-badge { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; text-align: center; }
+.top-factor-badge .label { font-size: 0.85rem; opacity: 0.85; }
+.top-factor-badge .name { font-size: 1.3rem; font-weight: 700; margin: 4px 0; }
+.top-factor-badge .pct { font-size: 1rem; opacity: 0.9; }
+
+/* CHECKED LIST */
+.checked-list-section { margin-top: 16px; }
+.checked-list-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.factor-group { margin-bottom: 16px; }
+.factor-group-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.factor-group-dot { width: 12px; height: 12px; border-radius: 50%; }
+.factor-group-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+.factor-group-n { font-size: 0.8rem; color: var(--text-muted); }
+.symptom-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.symptom-tag { background: var(--primary-light); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 0.8rem; color: var(--text); }
+
+/* ACTIONS */
+.action-bar { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.btn { padding: 11px 22px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary-light); }
+.btn-green { background: #27ae60; color: white; }
+.btn-green:hover { background: #219a52; }
+
+/* MODALITY BUTTONS */
+.modality-section { margin-top: 28px; }
+.modality-title { font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.modality-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-modality { padding: 10px 18px; border-radius: 24px; border: 2px solid var(--primary); background: white; color: var(--primary-dark); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.btn-modality:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(224,123,0,0.25); }
+.btn-modality.active { background: var(--primary); color: white; }
+
+/* EMAIL FORM */
+.email-row { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
+.email-row input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; outline: none; }
+.email-row input:focus { border-color: var(--primary); }
+
+/* SUBMIT BTN */
+.submit-wrap { text-align: center; margin-top: 24px; }
+.btn-submit { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 14px 40px; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 14px rgba(224,123,0,0.35); transition: all 0.2s; }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(224,123,0,0.45); }
+
+/* FOOTER */
+footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 20px; }
+
+/* PRINT */
+@media print {
+  .site-header, .patient-card, .factor-section, .submit-wrap, .action-bar, .lang-toggle, footer { display: none !important; }
+  .results-section { display: block !important; border: none; box-shadow: none; }
+  .print-header { display: block !important; }
+  body { background: white; }
+}
+.print-header { display: none; }
+@media print {
+  .print-header { display: block; text-align: center; margin-bottom: 20px; }
+  .print-header h2 { font-size: 1.4rem; color: #000; }
+  .print-header p { font-size: 0.85rem; color: #555; }
+  .print-patient-info { margin-bottom: 16px; font-size: 0.9rem; }
+}
+
+/* DISCLAIMER */
+.disclaimer { font-size: 0.78rem; color: var(--text-muted); background: #f8f4ed; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header-wrap">
+  <div class="site-header">
+    <h1 id="h-title">7大因子症狀問卷｜超全能整合門診</h1>
+    <p id="h-subtitle">功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="disclaimer" id="disclaimer-text">
+    ⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。
+  </div>
+
+  <!-- PATIENT INFO -->
+  <div class="patient-card">
+    <h2>👤 <span id="lbl-patientinfo">基本資料</span></h2>
+    <div class="form-grid">
+      <div class="form-field">
+        <label id="lbl-name">姓名 Name</label>
+        <input type="text" id="inp-name" placeholder="王小明">
+      </div>
+      <div class="form-field">
+        <label id="lbl-dob">出生年月日 Date of Birth</label>
+        <input type="date" id="inp-dob">
+      </div>
+      <div class="form-field">
+        <label id="lbl-phone">手機 / LINE</label>
+        <input type="text" id="inp-phone" placeholder="0912-345-678">
+      </div>
+      <div class="form-field">
+        <label id="lbl-email">電子信箱 Email</label>
+        <input type="email" id="inp-email" placeholder="example@mail.com">
+      </div>
+      <div class="form-field" style="grid-column: 1/-1;">
+        <label id="lbl-complaint">最困擾的問題 Main Complaint</label>
+        <input type="text" id="inp-complaint" placeholder="請描述您最想改善的症狀">
+      </div>
+    </div>
+  </div>
+
+  <!-- FACTOR 1 -->
+  <div class="factor-section" id="f1">
+    <div class="factor-header" onclick="toggleSection('f1')">
+      <div class="factor-badge" style="background:var(--factor1)">1</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="能量紊亂" data-en="Energy Disturbance">能量紊亂</div>
+        <div class="factor-subtitle" data-zh="粒線體失能、腎上腺疲勞、疤痕、自律神經異常" data-en="Mitochondrial dysfunction, adrenal fatigue, scars, autonomic nerve disorders">粒線體失能、腎上腺疲勞、疤痕、自律神經異常</div>
+      </div>
+      <span class="factor-count" id="cnt1">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據《營養的力量》、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等，粒線體失能、腎上腺疲勞、疤痕、經絡或自律神經異常相關症狀。" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', Dr. Klinghardt's ART course — symptoms related to mitochondrial dysfunction, adrenal fatigue, scars, meridians or autonomic nervous system.">根據《營養的力量》、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="symptom-grid" id="symp-f1"></div>
+    </div>
+  </div>
+
+  <!-- FACTOR 2 -->
+  <div class="factor-section" id="f2">
+    <div class="factor-header" onclick="toggleSection('f2')">
+      <div class="factor-badge" style="background:var(--factor2)">2</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="地場壓力" data-en="Geopathic Stress">地場壓力</div>
+        <div class="factor-subtitle" data-zh="電磁波、地磁、睡眠環境干擾" data-en="EMF, geomagnetism, sleep environment disturbance">電磁波、地磁、睡眠環境干擾</div>
+      </div>
+      <span class="factor-count" id="cnt2">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress & Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="symptom-grid" id="symp-f2"></div>
+    </div>
+  </div>
+
+  <!-- FACTOR 3 -->
+  <div class="factor-section" id="f3">
+    <div class="factor-header" onclick="toggleSection('f3')">
+      <div class="factor-badge" style="background:var(--factor3)">3</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="食物不耐" data-en="Food Intolerance">食物不耐</div>
+        <div class="factor-subtitle" data-zh="胃酸不足、SIBO、組織胺不耐、慢性過敏" data-en="Low stomach acid, SIBO, histamine intolerance, chronic allergy">胃酸不足、SIBO、組織胺不耐、慢性過敏</div>
+      </div>
+      <span class="factor-count" id="cnt3">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據《營養的力量》、《功能醫學聖經》、《28天打造不生病的基因》、《失眠診所》等書。" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', 'Dirty Genes', 'The Sleep Doctor's Diet Plan', etc.">根據《營養的力量》、《功能醫學聖經》、《28天打造不生病的基因》等書。</div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="胃酸不足／SIBO 小腸菌叢過度增生" data-en="Low Stomach Acid / SIBO">胃酸不足／SIBO 小腸菌叢過度增生</div>
+        <div class="symptom-grid" id="symp-f3a"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="組織胺不耐症／慢性過敏" data-en="Histamine Intolerance / Chronic Allergy">組織胺不耐症／慢性過敏</div>
+        <div class="symptom-grid" id="symp-f3b"></div>
+      </div>
+    </div>
+  </div>
+  <!-- FACTOR 4 -->
+  <div class="factor-section" id="f4">
+    <div class="factor-header" onclick="toggleSection('f4')">
+      <div class="factor-badge" style="background:var(--factor4)">4</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="情緒靈性（神經荷爾蒙功能）" data-en="Emotional / Spiritual (Neuro-Hormonal)">情緒靈性（神經荷爾蒙功能）</div>
+        <div class="factor-subtitle" data-zh="吡咯、多巴胺、腎上腺素、童年創傷" data-en="Pyrroles, dopamine, adrenaline, childhood trauma">吡咯、多巴胺、腎上腺素、童年創傷</div>
+      </div>
+      <span class="factor-count" id="cnt4">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據Dr. William Walsh《營養的力量》情緒生化分型、Dr. Ben Lynch《28天打造不生病的基因》、ACE童年創傷指數等。" data-en="Based on Dr. William Walsh's 'Nutrient Power' biotype system, Dr. Ben Lynch's 'Dirty Genes', and the ACE childhood trauma index.">根據Dr. William Walsh《營養的力量》情緒生化分型、Dr. Ben Lynch《28天打造不生病的基因》、ACE童年創傷指數等。</div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="神經毒素「吡咯」過高" data-en="Elevated Pyrroles (Neurotoxin)">神經毒素「吡咯」過高</div>
+        <div class="symptom-grid" id="symp-f4a"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="高多巴胺或腎上腺素" data-en="High Dopamine / Adrenaline">高多巴胺或腎上腺素</div>
+        <div class="symptom-grid" id="symp-f4b"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="低多巴胺或腎上腺素" data-en="Low Dopamine / Adrenaline">低多巴胺或腎上腺素</div>
+        <div class="symptom-grid" id="symp-f4c"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="ACE 童年創傷" data-en="ACE Childhood Trauma">ACE 童年創傷</div>
+        <div class="symptom-grid" id="symp-f4d"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACTOR 5 -->
+  <div class="factor-section" id="f5">
+    <div class="factor-header" onclick="toggleSection('f5')">
+      <div class="factor-badge" style="background:#d4a017;color:#fff">5</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="結構異常（肌肉骨骼功能）" data-en="Structural Abnormality (Musculoskeletal)">結構異常（肌肉骨骼功能）</div>
+        <div class="factor-subtitle" data-zh="活動度失能、穩定度失能、自律神經、泄殖腔同步" data-en="Mobility dysfunction, stability dysfunction, autonomic nervous system, cloaca synchronization">活動度失能、穩定度失能、自律神經、泄殖腔同步</div>
+      </div>
+      <span class="factor-count" id="cnt5">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據SFMA精選功能性動作評估、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on SFMA Selective Functional Movement Assessment, Textbook of Functional Medicine, and Dr. Klinghardt's ART course.">根據SFMA精選功能性動作評估、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="JED/TED 活動度失能" data-en="JED/TED Mobility Dysfunction">JED/TED 活動度失能</div>
+        <div class="symptom-grid" id="symp-f5a"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="SMCD 穩定度失能" data-en="SMCD Stability Dysfunction">SMCD 穩定度失能</div>
+        <div class="symptom-grid" id="symp-f5b"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="自律神經、泄殖腔同步（請選擇性別）" data-en="Autonomic / Cloaca Synchronization (Select Gender)">自律神經、泄殖腔同步（請選擇性別）</div>
+        <div class="gender-select-row">
+          <button class="gender-btn" onclick="setGender('male')" id="gbtn-male" data-zh="男性" data-en="Male">男性</button>
+          <button class="gender-btn" onclick="setGender('female')" id="gbtn-female" data-zh="女性" data-en="Female">女性</button>
+        </div>
+        <div class="gender-specific" id="gender-male">
+          <div class="subsection-title" data-zh="男性症狀" data-en="Male Symptoms" style="font-size:0.8rem">男性症狀</div>
+          <div class="symptom-grid" id="symp-f5m"></div>
+        </div>
+        <div class="gender-specific" id="gender-female">
+          <div class="subsection-title" data-zh="女性症狀" data-en="Female Symptoms" style="font-size:0.8rem">女性症狀</div>
+          <div class="symptom-grid" id="symp-f5f"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACTOR 6 -->
+  <div class="factor-section" id="f6">
+    <div class="factor-header" onclick="toggleSection('f6')">
+      <div class="factor-badge" style="background:var(--factor6);color:#555">6</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="生化失衡" data-en="Biochemical Imbalance">生化失衡</div>
+        <div class="factor-subtitle" data-zh="甲基化、基因多型性、維生素礦物質代謝" data-en="Methylation, genetic polymorphism, vitamin & mineral metabolism">甲基化、基因多型性、維生素礦物質代謝</div>
+      </div>
+      <span class="factor-count" id="cnt6">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。" data-en="Based on Dr. Ben Lynch's 'Dirty Genes' and Dr. William Walsh's 'Nutrient Power' biotype system.">根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。</div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="低甲基化" data-en="Under-Methylation">低甲基化</div>
+        <div class="symptom-grid" id="symp-f6a"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="高甲基化" data-en="Over-Methylation">高甲基化</div>        <div class="symptom-grid" id="symp-f6b"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACTOR 7 -->
+  <div class="factor-section" id="f7">
+    <div class="factor-header" onclick="toggleSection('f7')">
+      <div class="factor-badge" style="background:var(--factor7);color:#2a6050">7</div>
+      <div class="factor-title-group">
+        <div class="factor-title" data-zh="毒素（重金屬、微生物）" data-en="Toxins (Heavy Metals, Microbes)">毒素（重金屬、微生物）</div>
+        <div class="factor-subtitle" data-zh="化學物質、重金屬、細菌、黴菌、病毒、寄生蟲" data-en="Chemicals, heavy metals, bacteria, mold, viruses, parasites">化學物質、重金屬、細菌、黴菌、病毒、寄生蟲</div>
+      </div>
+      <span class="factor-count" id="cnt7">0</span>
+      <span class="factor-arrow">▾</span>
+    </div>
+    <div class="factor-body">
+      <div class="factor-description" data-zh="根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程、《Toxic》、《Clinical Environmental Medicine》等。" data-en="Based on 'Textbook of Functional Medicine', 'Nutrient Power', Dr. Klinghardt's ART course, 'Toxic', 'Clinical Environmental Medicine', etc.">根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="MCS 多重化學物質過敏、環境荷爾蒙、農藥" data-en="MCS / Environmental Hormones / Pesticides">MCS 多重化學物質過敏、環境荷爾蒙、農藥</div>
+        <div class="symptom-grid" id="symp-f7a"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="重金屬" data-en="Heavy Metals">重金屬</div>
+        <div class="symptom-grid" id="symp-f7b"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="細菌、生物膜" data-en="Bacteria / Biofilm">細菌、生物膜</div>
+        <div class="symptom-grid" id="symp-f7c"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="黴菌、病毒" data-en="Mold / Virus">黴菌、病毒</div>
+        <div class="symptom-grid" id="symp-f7d"></div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title" data-zh="寄生蟲、生物毒素" data-en="Parasites / Biotoxins">寄生蟲、生物毒素</div>
+        <div class="symptom-grid" id="symp-f7e"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="showResults()" id="btn-show-results">📊 查看七大因子分析結果</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="results-section">
+    <div class="print-header">
+      <h2>7大因子症狀問卷｜超全能整合門診</h2>
+      <p>功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
+      <div class="print-patient-info" id="print-patient-info"></div>
+    </div>
+
+    <div class="results-title" id="results-title">📊 七大因子分析結果</div>
+    <div class="results-subtitle" id="results-subtitle">根據您勾選的症狀，以下是各因子的分佈毒例：</div>
+
+    <div id="top-factor-badge" class="top-factor-badge"></div>
+
+    <div class="chart-container">
+      <canvas id="pieChart"></canvas>
+    </div>
+    <div class="chart-legend" id="chart-legend"></div>
+
+    <div class="checked-list-section">
+      <div class="checked-list-title" id="lbl-checklist">✅ 您勾選的症狀清單</div>
+      <div id="checked-list-output"></div>
+    </div>
+
+    <div class="modality-section">
+      <div class="modality-title">💡 <span id="lbl-modality-title">推薦療法選項</span></div>
+      <div class="modality-bar">
+        <button class="btn-modality" onclick="this.classList.toggle('active')">🌿 <span data-zh="精油" data-en="Essential Oils">精油</span></button>
+        <button class="btn-modality" onclick="this.classList.toggle('active')">🌱 <span data-zh="草藥" data-en="Herbs">草藥</span></button>
+        <button class="btn-modality" onclick="this.classList.toggle('active')">💊 <span data-zh="營養素" data-en="Nutrients">營養素</span></button>
+        <button class="btn-modality" onclick="this.classList.toggle('active')">💧 <span data-zh="順勢製劑" data-en="Homeopathics">順勢製劑</span></button>
+        <button class="btn-modality" onclick="this.classList.toggle('active')">✨ <span data-zh="療癒肯定句" data-en="Healing Affirmations">療癒肯定句</span></button>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ <span id="lbl-print">列印清單</span></button>
+      <button class="btn btn-green" onclick="sendEmail()">📧 <span id="lbl-email-btn">寄送至 Email</span></button>
+      <button class="btn btn-outline" onclick="scrollToTop()">↑ <span id="lbl-back">重新填寫</span></button>
+    </div>
+    <div class="email-row">
+      <input type="email" id="send-email-addr" placeholder="輸入 Email 地址 / Enter email address">
+      <button class="btn btn-green" onclick="sendEmail()">送出</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>功能醫學 超全能整合門診 ｜ 王偉全醫師 ｜ Tel: 02-23222575 ｜ LINE@: @138pepta</p>
+  <p style="margin-top:4px">本問卷僅供參考，聲明：本問卷沒有得分，僅供參考。</p>
+</footer>
+
+<script>
+// ============================================================
+// LANGUAGE DATA
+// ============================================================
+const LANG = {
+  zh: {
+    title: '7大因子症狀問卷｜超全能整合門診',
+    subtitle: '功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系',
+    disclaimer: '⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。',
+    patientInfo: '基本資料',
+    resultsTitle: '📊 七大因子分析結果',
+    resultsSubtitle: '根據您勾選的症狀，以下是各因子的分佈比例：',
+    checklist: '✅ 您勾選的症狀清單',
+    print: '列印清單',
+    emailBtn: '寄送至 Email',
+    back: '重新填寫',
+    submitBtn: '📊 查看七大因子分析結果',
+    topFactor: '最高比例因子',
+    noSymptoms: '尚未勾選任何症狀',
+    items: '項',
+    pct: '佔比',
+    modalityTitle: '💡 推薦療法選項',
+    factorNames: ['能量紊亂','地場壓力','食物不耐','情緒靈性','結構異常','生化失衡','毒素'],
+  },
+  en: {
+    title: '7-Factor Symptom Questionnaire | Ultra Clinic',
+    subtitle: 'Functional Medicine Ultra Integrative Clinic | Dr. Klinghardt 7-Factor System',
+    disclaimer: '⚕️ This questionnaire is for reference only and does not constitute a diagnosis. Please consult your physician. If you are unsure about a symptom, leave it unchecked.',
+    patientInfo: 'Patient Information',
+    resultsTitle: '📊 7-Factor Analysis Results',
+    resultsSubtitle: 'Based on your checked symptoms, here is the distribution across the 7 factors:',
+    checklist: '✅ Your Checked Symptoms',
+    print: 'Print List',
+    emailBtn: 'Send to Email',
+    back: 'Reset Form',
+    submitBtn: '📊 View 7-Factor Analysis',
+    topFactor: 'Highest Factor',
+    noSymptoms: 'No symptoms selected yet',
+    items: 'items',
+    pct: 'proportion',
+    modalityTitle: '💡 Recommended Modalities',
+    factorNames: ['Energy Disturbance','Geopathic Stress','Food Intolerance','Emotional/Spiritual','Structural Abnormality','Biochemical Imbalance','Toxins'],
+  }
+};
+
+let currentLang = 'zh';
+
+// ============================================================
+// SYMPTOM DATA
+// ============================================================
+const symptoms = {
+  f1: [
+    {zh:'曾手術',en:'Had surgery'},
+    {zh:'有外傷疤痕',en:'Trauma scars'},
+    {zh:'肌肉無力',en:'Muscle weakness'},
+    {zh:'容易肌肉痠痛',en:'Easily sore muscles'},
+    {zh:'核心無力',en:'Core weakness'},
+    {zh:'容易留疤',en:'Prone to scarring'},
+    {zh:'有蟹足腫',en:'Keloid scars'},
+    {zh:'疤痕癢',en:'Itchy scars'},
+    {zh:'手腳冰冷',en:'Cold hands/feet'},
+    {zh:'天氣敏感',en:'Weather sensitive'},
+    {zh:'容易嗆到',en:'Easily chokes'},
+    {zh:'健忘或記憶力衰退',en:'Forgetfulness / memory decline'},
+    {zh:'注意力不集中',en:'Poor concentration'},
+    {zh:'曾根管治療',en:'Root canal treatment history'},
+    {zh:'心臟疾病',en:'Heart disease'},
+    {zh:'睡眠障礙',en:'Sleep disorder'},
+    {zh:'容易喘',en:'Easily short of breath'},
+    {zh:'腦霧',en:'Brain fog'},
+    {zh:'味覺嗅覺不如從前',en:'Reduced taste/smell'},
+    {zh:'肥胖',en:'Obesity'},
+    {zh:'服用降血脂藥物',en:'Taking cholesterol medication'},
+    {zh:'無故疲倦',en:'Unexplained fatigue'},
+    {zh:'覺得變老',en:'Feeling older/aging faster'},
+    {zh:'上班無精打采',en:'Listless at work'},
+    {zh:'坐到站時容易低血壓或暈眩',en:'Dizziness/low BP when standing'},
+    {zh:'嗜鹹',en:'Craving salty food'},
+  ],
+  f2: [
+    {zh:'總是睡不夠',en:'Never enough sleep'},
+    {zh:'睡很久卻醒來很累',en:'Long sleep but wake up tired'},    {zh:'失眠',en:'Insomnia'},
+    {zh:'多夢或惡夢',en:'Many dreams or nightmares'},
+    {zh:'夜尿',en:'Nocturia (night urination)'},
+    {zh:'床上無法入睡',en:"Can't fall asleep in bed"},
+    {zh:'搬家後症狀惡化',en:'Symptoms worsened after moving'},
+    {zh:'換地方（外出、旅遊）症狀改善',en:'Symptoms improve away from home'},
+    {zh:'常靜電觸電',en:'Frequent static electricity shocks'},
+    {zh:'傷口癒合差',en:'Poor wound healing'},
+    {zh:'運動後酸痛很久（遲發性肌肉痛）',en:'Prolonged post-exercise soreness (DOMS)'},
+    {zh:'血液循環差',en:'Poor circulation'},
+    {zh:'ESR高，找不到原因',en:'Elevated ESR without known cause'},
+    {zh:'自律神經失調',en:'Autonomic nervous system disorder'},
+    {zh:'荷爾蒙失調',en:'Hormone imbalance'},
+    {zh:'焦燥易怒',en:'Anxious and irritable'},
+    {zh:'過敏',en:'Allergies'},
+    {zh:'自體免疫疾病',en:'Autoimmune disease'},
+    {zh:'反覆流產',en:'Recurrent miscarriage'},
+    {zh:'不孕',en:'Infertility'},
+    {zh:'寶寶有先天性疾病',en:'Baby with congenital disease'},
+    {zh:'慢性疾病難以控制或治療反應不佳',en:'Chronic disease hard to control / poor treatment response'},
+    {zh:'常搭飛機或曾旅居國外',en:'Frequent flying / living abroad'},
+    {zh:'手機訊號、電磁波敏感',en:'Sensitive to phone signals / EMF'},
+  ],
+  f3a: [
+    {zh:'飯後易脹氣或打嗝',en:'Bloating/belching after meals'},
+    {zh:'糞便中有食物殘渣',en:'Undigested food in stool'},
+    {zh:'指甲易裂',en:'Brittle nails'},
+    {zh:'吃藥容易不適',en:'Medication sensitivity'},
+    {zh:'胃食道逆流',en:'GERD / acid reflux'},
+    {zh:'打嗝或放屁有腐臭味',en:'Foul-smelling burps/gas'},
+    {zh:'玫瑰痤瘡（酒槽鼻）',en:'Rosacea'},
+    {zh:'吃高纖食物反而便祕更嚴重',en:'High-fiber foods worsen constipation'},
+    {zh:'慢性缺鐵，找不出原因',en:'Chronic iron deficiency, no cause found'},
+    {zh:'低碳或生酮飲食時自覺狀況變好',en:'Feel better on low-carb/keto diet'},
+    {zh:'吃到壞油或油炸食物身體有反應',en:'Sensitive to bad oils / fried foods'},
+  ],
+  f3b: [
+    {zh:'癢疹',en:'Itchy rash'},
+    {zh:'紅疹',en:'Red rash'},
+    {zh:'尋麺疹',en:'Hives (urticaria)'},
+    {zh:'過敏性鼻炎',en:'Allergic rhinitis'},
+    {zh:'氣喘',en:'Asthma'},
+    {zh:'偏頭痛',en:'Migraines'},
+    {zh:'失眠',en:'Insomnia'},
+    {zh:'腦霧',en:'Brain fog'},
+    {zh:'自體免疫疾病',en:'Autoimmune disease'},
+    {zh:'腸躁症',en:'IBS (Irritable Bowel Syndrome)'},
+    {zh:'關節炎',en:'Arthritis'},
+    {zh:'飯後肌肉骨骼疼痛',en:'Musculoskeletal pain after meals'},
+    {zh:'糖尿病',en:'Diabetes'},
+    {zh:'高血壓',en:'Hypertension'},
+    {zh:'腎結石',en:'Kidney stones'},
+    {zh:'自閉症',en:'Autism spectrum'},
+    {zh:'甲狀腺異常',en:'Thyroid disorder'},
+    {zh:'慢性貧血',en:'Chronic anemia'},
+    {zh:'便秘',en:'Constipation'},
+    {zh:'腹瀉',en:'Diarrhea'},
+    {zh:'消化不良',en:'Indigestion'},
+    {zh:'痔瘡',en:'Hemorrhoids'},
+    {zh:'有養寵物',en:'Keeping pets'},
+    {zh:'家或公司有花花草草',en:'Plants at home/work'},
+  ],
+  f4a: [
+    {zh:'傾向晚吃或不吃早餐',en:'Skip breakfast or eat late'},
+    {zh:'嗜吃辣',en:'Crave spicy food'},
+    {zh:'嗜吃鹹',en:'Crave salty food'},
+    {zh:'遺忘夢境',en:'Forget dreams upon waking'},
+    {zh:'無法曬黑',en:"Can't get a tan"},
+    {zh:'傷口癒合不良',en:'Poor wound healing'},
+    {zh:'肌肉發育不良',en:'Poor muscle development'},
+    {zh:'脾臟部位疼痛',en:'Pain in spleen area'},
+    {zh:'少年白（白髮）',en:'Premature gray hair'},
+    {zh:'家族均皮膚白皙',en:'Family has very fair skin'},
+  ],
+  f4b: [
+    {zh:'焦躁',en:'Anxiety / agitation'},
+    {zh:'經前症候群',en:'PMS (premenstrual syndrome)'},
+    {zh:'熱愛工作（工作狂）',en:'Workaholic'},
+    {zh:'熱愛旅行',en:'Love traveling'},
+    {zh:'咖啡因敏感',en:'Caffeine sensitive'},
+    {zh:'恐慌症',en:'Panic disorder'},
+    {zh:'纖維肌痛症',en:'Fibromyalgia'},
+    {zh:'不愛看恐怖片/新聞',en:'Avoid horror films/news'},
+    {zh:'易受他人情緒影響',en:'Easily influenced by others'},
+    {zh:'過度同理（共感人體質）',en:'Over-empathy (empath)'},
+  ],
+  f4c: [
+    {zh:'健忘',en:'Forgetfulness'},
+    {zh:'缺乏自信',en:'Lack of confidence'},
+    {zh:'難以專注',en:'Difficulty focusing'},    {zh:'嗜喝咖啡',en:'Coffee dependent'},
+    {zh:'興趣廣泛',en:'Wide range of interests'},
+    {zh:'嗜睡、無精打采',en:'Drowsy / lethargic'},
+    {zh:'過動／無法專注／學習障礙',en:'ADHD / learning disability'},
+    {zh:'上癮症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
+    {zh:'生酮飲食讓我覺得好極了',en:'Feel great on keto diet'},
+    {zh:'憂鬱傾向',en:'Depression tendency'},
+  ],
+  f4d: [
+    {zh:'有童年創傷',en:'Childhood trauma history'},
+    {zh:'曾被霸凌',en:'Bullying history'},
+    {zh:'有家族創傷',en:'Family trauma history'},
+    {zh:'自己是剖腹產兒',en:'Born via C-section'},
+    {zh:'曾經歷身心受創事件',en:'Experienced traumatic events (physical/emotional)'},
+  ],
+  f5a: [
+    {zh:'變矮',en:'Height loss'},
+    {zh:'變胖',en:'Weight gain'},
+    {zh:'某軟度差',en:'Poor flexibility'},
+    {zh:'無運動習慣',en:'No regular exercise'},
+    {zh:'長短腳',en:'Leg length discrepancy'},
+    {zh:'高足弓',en:'High arches'},
+    {zh:'扁平足',en:'Flat feet'},
+    {zh:'腰痛',en:'Lower back pain'},
+    {zh:'肩頸痠痛',en:'Shoulder / neck pain'},
+    {zh:'低頭族（長時間低頭看手機）',en:'Phone neck posture (forward head)'},
+    {zh:'久坐族',en:'Sedentary lifestyle'},
+    {zh:'水喝得少',en:'Low water intake'},
+    {zh:'休息後症狀減輕',en:'Symptoms improve with rest'},
+  ],
+  f5b: [
+    {zh:'某些特定姿勢或動作會引發疼痛',en:'Certain postures/movements trigger pain'},
+    {zh:'關節角度受限',en:'Limited joint range of motion'},
+    {zh:'磨牙',en:'Bruxism (teeth grinding)'},
+    {zh:'顳顎關節痛',en:'TMJ pain'},
+    {zh:'假牙',en:'Dental prosthetics / dentures'},
+    {zh:'根管治療',en:'Root canal treatment'},
+    {zh:'扁桃腺手術',en:'Tonsillectomy'},
+    {zh:'任何手術史',en:'Any surgery history'},
+    {zh:'任何創傷（車禍、跌倒）',en:'Any trauma (accident, fall)'},
+    {zh:'曾有骨折',en:'Bone fracture history'},
+  ],
+  f5m: [
+    {zh:'勃起障礙、晨勃減少',en:'Erectile dysfunction / reduced morning erections'},
+    {zh:'早洩',en:'Premature ejaculation'},
+    {zh:'曾有攝護腺或睪丸疾病',en:'Prostate or testicular disease history'},
+    {zh:'精蟲稀少',en:'Low sperm count'},
+    {zh:'不孕症',en:'Infertility'},
+    {zh:'曾有性病',en:'STD history'},
+    {zh:'曾補充過雄性荷爾蒙',en:'Testosterone supplementation history'},
+    {zh:'曾接受類固醇治療',en:'Steroid treatment history'},
+    {zh:'曾過度疲勞（Burned out）',en:'History of burnout / extreme fatigue'},
+  ],
+  f5f: [
+    {zh:'曾有子宮或卵巢疾病',en:'Uterine or ovarian disease history'},
+    {zh:'口服荷爾蒙或曾接受荷爾蒙療法',en:'Oral hormones or hormone therapy history'},
+    {zh:'曾剖腹產',en:'C-section delivery history'},
+    {zh:'曾自然生產',en:'Vaginal delivery history'},
+    {zh:'曾小產或墮胎',en:'Miscarriage or abortion history'},
+    {zh:'不孕症',en:'Infertility'},
+    {zh:'曾有性病',en:'STD history'},
+    {zh:'曾接受類固醇治療',en:'Steroid treatment history'},
+    {zh:'曾過度疲勞（Burned out）',en:'History of burnout / extreme fatigue'},
+    {zh:'陰道萎縮',en:'Vaginal atrophy'},
+    {zh:'性交困難或疼痛',en:'Dyspareunia (painful intercourse)'},
+    {zh:'性慾低落',en:'Low libido'},
+    {zh:'尿失禁',en:'Urinary incontinence'},
+    {zh:'骨盆腔臟器脫垂',en:'Pelvic organ prolapse'},
+  ],
+  f6a: [
+    {zh:'強迫傾向',en:'OCD tendency'},
+    {zh:'完美主義',en:'Perfectionism'},
+    {zh:'個人或家人有高成就',en:'High achievers in family'},
+    {zh:'喜歡按表操課',en:'Likes structured schedules'},
+    {zh:'怕痛',en:'Pain sensitive'},
+    {zh:'好勝心強',en:'Highly competitive'},
+    {zh:'體型偏瘦',en:'Lean body type'},
+    {zh:'恐慌傾向',en:'Panic tendency'},
+    {zh:'意志堅強',en:'Strong willpower / determination'},
+    {zh:'毛髮稀疏',en:'Sparse hair'},
+    {zh:'不愛社交',en:'Antisocial tendency'},
+    {zh:'沈洸在過去（反芻思考）',en:'Dwelling on the past (rumination)'},
+    {zh:'分泌多（唾液、汗水）',en:'Excessive secretions (saliva, sweat)'},
+    {zh:'對BZD安眠藥反應不佳',en:'Poor response to BZD sleeping pills'},
+    {zh:'常做惡夢',en:'Frequent nightmares'},
+    {zh:'曾補充葉酸反應不佳',en:'Poor response to folate supplementation'},
+  ],
+  f6b: [
+    {zh:'偏執傾向',en:'Paranoia tendency'},
+    {zh:'有藝術或音樂天份',en:'Artistic or musical talent'},    {zh:'頭頸疼痛',en:'Head / neck pain'},
+    {zh:'頭腦轉不停（喜歡沉思）',en:'Racing mind / overthinking'},
+    {zh:'對精神科藥物反應不佳',en:'Poor response to psychiatric medications'},
+    {zh:'耐痛',en:'High pain tolerance'},
+    {zh:'有胸毛（男性）',en:'Chest hair (males)'},
+    {zh:'性慾低下',en:'Low libido'},
+    {zh:'喜歡來回踱步',en:'Pacing back and forth'},
+    {zh:'沒動力',en:'Lack of motivation'},
+    {zh:'不寧腿',en:'Restless leg syndrome'},
+    {zh:'講話快',en:'Fast talker'},
+    {zh:'過重傾向',en:'Tendency to be overweight'},
+    {zh:'對SSRI類抗憂鬱劑反應不佳',en:'Poor response to SSRI antidepressants'},
+  ],
+  f7a: [
+    {zh:'抽菸',en:'Smoking'},
+    {zh:'喝酒',en:'Alcohol consumption'},
+    {zh:'曾有食物或藥物過敏',en:'Food or drug allergies'},
+    {zh:'味精敏感',en:'MSG sensitive'},
+    {zh:'曾有肝臟或腎臟疾病',en:'Liver / kidney disease history'},
+    {zh:'家中有人抽煙',en:'Smoker in household'},
+    {zh:'接觸化學物質或霾害',en:'Chemical / air pollution exposure'},
+    {zh:'住家或工作附近有化學廠',en:'Chemical plant near home/work'},
+    {zh:'有染髮習慣',en:'Regular hair dyeing'},
+    {zh:'有使用香水習慣',en:'Regular perfume / fragrance use'},
+    {zh:'自體免疫疾病',en:'Autoimmune disease'},
+    {zh:'愛吃蔬菜、水果',en:'Eats lots of vegetables / fruits (potential pesticide exposure)'},
+    {zh:'愛吃米飯、麵食',en:'Eats lots of rice / noodles (potential pesticide exposure)'},
+  ],
+  f7b: [
+    {zh:'過動',en:'Hyperactivity'},
+    {zh:'焦慮',en:'Anxiety'},
+    {zh:'經常生氣',en:'Frequent anger'},
+    {zh:'皮膚不耐受廉價金屬（飾品過敏）',en:'Skin reacts to cheap metals / jewelry'},
+    {zh:'貝類敏感',en:'Shellfish sensitive'},
+    {zh:'關節痛',en:'Joint pain'},
+    {zh:'帕金森',en:"Parkinson's disease"},
+    {zh:'便秘',en:'Constipation'},
+    {zh:'少流汗',en:'Low sweating'},
+    {zh:'愛吃米飯',en:'Loves rice'},
+    {zh:'愛吃豆腐',en:'Loves tofu'},
+    {zh:'愛吃魚、壽司',en:'Loves fish / sushi'},
+    {zh:'電子產業、常接觸金屬',en:'Electronics industry / frequent metal contact'},
+    {zh:'牙齒有裝過汞齊（銀粉）',en:'Mercury amalgam dental fillings'},
+    {zh:'長期服用中藥',en:'Long-term Chinese herbal medicine use'},
+    {zh:'未使用濾水設備',en:'No water filtration device'},
+    {zh:'痛風',en:'Gout'},
+  ],
+  f7c: [
+    {zh:'曾有嚴重腸胃道感染',en:'Severe GI infection history'},
+    {zh:'曾有泌尿道感染或發炎',en:'UTI / urinary tract inflammation history'},
+    {zh:'曾有呼吸道感染',en:'Respiratory tract infection history'},
+    {zh:'水痘',en:'Chicken pox history'},
+    {zh:'性病',en:'STD history'},
+    {zh:'鼻竇炎',en:'Sinusitis'},
+    {zh:'中耳炎',en:'Otitis media (ear infection)'},
+    {zh:'扁桃腺炎',en:'Tonsillitis'},
+  ],
+  f7d: [
+    {zh:'嗜甜',en:'Sugar cravings'},
+    {zh:'口舌有白絲（鵝口瘡）',en:'White coating on tongue (oral thrush)'},
+    {zh:'疲勞',en:'Chronic fatigue'},
+    {zh:'免疫低下',en:'Weak immunity'},
+    {zh:'注意力不集中',en:'Poor concentration'},
+    {zh:'記憶模糊',en:'Memory fog/blur'},
+    {zh:'慢性咳嗽',en:'Chronic cough'},
+    {zh:'鼻涕／鼻竇炎',en:'Runny nose / sinusitis'},
+    {zh:'曾有帶狀皰疹',en:'Shingles (herpes zoster) history'},
+    {zh:'結膜炎',en:'Conjunctivitis'},
+    {zh:'脊椎有震動或電擊感',en:'Spine vibration / electric sensation'},
+    {zh:'假性癲癇',en:'Pseudoseizures'},
+    {zh:'不典型帕金森／失智／多發性硬化症',en:"Atypical Parkinson's / dementia / multiple sclerosis"},
+    {zh:'對光敏感',en:'Light sensitive (photophobia)'},
+    {zh:'關節痛',en:'Joint pain'},
+    {zh:'口乾',en:'Dry mouth'},
+    {zh:'易暈或不穩',en:'Easily dizzy or unsteady'},
+    {zh:'常腹痛',en:'Frequent abdominal pain'},
+    {zh:'常頭痛',en:'Frequent headaches'},
+    {zh:'易怒',en:'Irritability'},
+    {zh:'平和期突然出現憂鬱症狀',en:'Sudden depression during remission periods'},
+    {zh:'無體力',en:'No energy / exhaustion'},
+    {zh:'口腔有金屬味',en:'Metallic taste in mouth'},
+    {zh:'呼吸困難',en:'Breathing difficulty'},
+    {zh:'常打疫苗（如每年流感疫苗）',en:'Frequent vaccinations (e.g. annual flu shots)'},
+    {zh:'家中易生黴菌（壁癌、食物易發黴）',en:'Mold-prone home (wall mold, food molds quickly)'},
+  ],
+  f7e: [
+    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛只咬',en:'Insect / tick / spider / snake bites history'},
+    {zh:'愛吃生魚片',en:'Raw fish / sashimi lover'},
+    {zh:'曾出國腹瀉（旅遊者腹瀉）',en:"Traveler's diarrhea history"},
+    {zh:'總吃不飽',en:'Always hungry / insatiable appetite'},    {zh:'症狀週期性出現',en:'Cyclical/periodic symptom patterns'},
+    {zh:'缺血性貧血',en:'Iron deficiency anemia'},
+    {zh:'常從事戶外活動',en:'Frequent outdoor activities'},
+  ],
+};
+
+// Factor to symptom groups mapping
+const factorGroups = {
+  1: ['f1'],
+  2: ['f2'],
+  3: ['f3a','f3b'],
+  4: ['f4a','f4b','f4c','f4d'],
+  5: ['f5a','f5b','f5m','f5f'],
+  6: ['f6a','f6b'],
+  7: ['f7a','f7b','f7c','f7d','f7e'],
+};
+
+const factorColors = ['#FF6B6B','#4ECDC4','#45B7D1','#96CEB4','#d4a017','#DDA0DD','#3cb899'];
+
+// ============================================================
+// STATE
+// ============================================================
+let checks = {}; // { "f1_0": true, ... }
+let gender = null;
+let pieChart = null;
+
+// ============================================================
+// RENDER SYMPTOMS
+// ============================================================
+function renderSymptoms() {
+  for (const [key, arr] of Object.entries(symptoms)) {
+    const container = document.getElementById('symp-' + key);
+    if (!container) continue;
+    container.innerHTML = '';
+    arr.forEach((sym, idx) => {
+      const id = key + '_' + idx;
+      const checked = checks[id] || false;
+      const item = document.createElement('label');
+      item.className = 'symptom-item' + (checked ? ' checked' : '');
+      item.innerHTML = `
+        <input type="checkbox" id="${id}" ${checked ? 'checked' : ''}>
+        <span class="symptom-label">
+          ${sym[currentLang === 'zh' ? 'zh' : 'zh']}
+          ${currentLang === 'en' ? `<span class="en">${sym.en}<\/span>` : ''}
+        <\/span>`;
+      item.querySelector('input').addEventListener('change', (e) => {
+        checks[id] = e.target.checked;
+        item.classList.toggle('checked', e.target.checked);
+        updateCounts();
+      });
+      container.appendChild(item);
+    });
+  }
+}
+
+function renderSymptomsLang() {
+  for (const [key, arr] of Object.entries(symptoms)) {
+    const container = document.getElementById('symp-' + key);
+    if (!container) continue;
+    const items = container.querySelectorAll('.symptom-label');
+    items.forEach((el, idx) => {
+      const sym = arr[idx];
+      if (!sym) return;
+      el.innerHTML = sym.zh + (currentLang === 'en' ? `<span class="en">${sym.en}<\/span>` : '');
+    });
+  }
+}
+
+// ============================================================
+// COUNT & PIE CHART
+// ============================================================
+function getFactorCounts() {
+  const counts = [0,0,0,0,0,0,0];
+  for (const [id, checked] of Object.entries(checks)) {
+    if (!checked) continue;
+    const grp = id.replace(/_\d+$/, '');
+    for (let f = 1; f <= 7; f++) {
+      if (factorGroups[f].includes(grp)) {
+        counts[f-1]++;
+        break;
+      }
+    }
+  }
+  return counts;
+}
+
+function updateCounts() {
+  const counts = getFactorCounts();
+  for (let f = 1; f <= 7; f++) {
+    const el = document.getElementById('cnt' + f);    if (el) el.textContent = counts[f-1];
+  }
+  if (pieChart) {
+    pieChart.data.datasets[0].data = counts;
+    pieChart.update();
+  }
+}
+
+// ============================================================
+// TOGGLE SECTIONS
+// ============================================================
+function toggleSection(id) {
+  const sec = document.getElementById(id);
+  sec.classList.toggle('open');
+}
+
+function setGender(g) {
+  gender = g;
+  document.getElementById('gbtn-male').classList.toggle('active', g === 'male');
+  document.getElementById('gbtn-female').classList.toggle('active', g === 'female');
+  document.getElementById('gender-male').classList.toggle('visible', g === 'male');
+  document.getElementById('gender-female').classList.toggle('visible', g === 'female');
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function showResults() {
+  const counts = getFactorCounts();
+  const total = counts.reduce((a,b) => a+b, 0);
+  const L = LANG[currentLang];
+
+  // Scroll to results
+  const sec = document.getElementById('results-section');
+  sec.classList.add('visible');
+  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Top factor
+  const maxIdx = counts.indexOf(Math.max(...counts));
+  const badge = document.getElementById('top-factor-badge');
+  if (total === 0) {
+    badge.innerHTML = `<div class="label">${L.noSymptoms}</div>`;
+  } else {
+    const pct = total > 0 ? Math.round(counts[maxIdx]/total*100) : 0;
+    badge.innerHTML = `
+      <div class="label">${L.topFactor}</div>
+      <div class="name">Factor ${maxIdx+1}：${L.factorNames[maxIdx]}</div>
+      <div class="pct">${counts[maxIdx]} ${L.items}　${pct}%</div>
+    `;
+  }
+
+  // Pie chart
+  if (pieChart) pieChart.destroy();
+  const ctx = document.getElementById('pieChart').getContext('2d');
+  pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: L.factorNames.map((n,i) => `F${i+1} ${n}`),
+      datasets: [{
+        data: counts,
+        backgroundColor: factorColors,
+        borderWidth: 2,
+        borderColor: '#fff',
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const v = ctx.raw;
+              const pct = total > 0 ? Math.round(v/total*100) : 0;
+              return ` ${v} ${L.items} (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Legend
+  const legend = document.getElementById('chart-legend');
+  legend.innerHTML = '';
+  L.factorNames.forEach((name, i) => {
+    const pct = total > 0 ? Math.round(counts[i]/total*100) : 0;
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `
+      <div class="legend-dot" style="background:${factorColors[i]}"></div>      <div class="legend-text">F${i+1} ${name}</div>
+      <div class="legend-count" style="color:${factorColors[i]}">${counts[i]} (${pct}%)</div>
+    `;
+    legend.appendChild(item);
+  });
+
+  // Checked list by factor
+  const output = document.getElementById('checked-list-output');
+  output.innerHTML = '';
+  for (let f = 1; f <= 7; f++) {
+    const grps = factorGroups[f];
+    const checkedSymptoms = [];
+    grps.forEach(grp => {
+      const arr = symptoms[grp] || [];
+      arr.forEach((sym, idx) => {
+        const id = grp + '_' + idx;
+        if (checks[id]) checkedSymptoms.push(currentLang === 'zh' ? sym.zh : sym.en + ' (' + sym.zh + ')');
+      });
+    });
+    if (checkedSymptoms.length === 0) continue;
+    const group = document.createElement('div');
+    group.className = 'factor-group';
+    group.innerHTML = `
+      <div class="factor-group-header">
+        <div class="factor-group-dot" style="background:${factorColors[f-1]}"></div>
+        <div class="factor-group-name">Factor ${f}：${L.factorNames[f-1]}</div>
+        <div class="factor-group-n">（${checkedSymptoms.length} ${L.items}）</div>
+      </div>
+      <div class="symptom-tags">
+        ${checkedSymptoms.map(s => `<span class="symptom-tag">${s}</span>`).join('')}
+      </div>
+    `;
+    output.appendChild(group);
+  }
+  if (output.innerHTML === '') {
+    output.innerHTML = `<p style="color:var(--text-muted);font-size:0.9rem">${L.noSymptoms}</p>`;
+  }
+
+  // Print patient info
+  const name = document.getElementById('inp-name').value;
+  const dob = document.getElementById('inp-dob').value;
+  const phone = document.getElementById('inp-phone').value;
+  const email = document.getElementById('inp-email').value;
+  const complaint = document.getElementById('inp-complaint').value;
+  document.getElementById('print-patient-info').innerHTML = `
+    <strong>姓名：</strong>${name || '—'} ｜
+    <strong>出生：</strong>${dob || '—'} ｜
+    <strong>電話：</strong>${phone || '—'} ｜
+    <strong>Email：</strong>${email || '—'}<br>
+    <strong>主訴：</strong>${complaint || '—'}
+  `;
+}
+
+// ============================================================
+// EMAIL
+// ============================================================
+function sendEmail() {
+  const counts = getFactorCounts();
+  const total = counts.reduce((a,b)=>a+b,0);
+  const L = LANG[currentLang];
+  const name = document.getElementById('inp-name').value || '未填';
+  const complaint = document.getElementById('inp-complaint').value || '未填';
+  const emailAddr = document.getElementById('send-email-addr').value
+    || document.getElementById('inp-email').value;
+
+  let body = `7大因子症狀問卷結果\n`;
+  body += `患者姓名：${name}\n`;
+  body += `主要困擾：${complaint}\n\n`;
+  body += `=== 七大因子計數 ===\n`;
+  L.factorNames.forEach((n, i) => {
+    const pct = total > 0 ? Math.round(counts[i]/total*100) : 0;
+    body += `Factor ${i+1} ${n}：${counts[i]} 項（${pct}%）\n`;
+  });
+  body += `\n=== 勾選症狀清單 ===\n`;
+  for (let f = 1; f <= 7; f++) {
+    const grps = factorGroups[f];
+    const checked = [];
+    grps.forEach(grp => {
+      (symptoms[grp]||[]).forEach((sym,idx) => {
+        if (checks[grp+'_'+idx]) checked.push(sym.zh);
+      });
+    });
+    if (checked.length) {
+      body += `\nFactor ${f} ${L.factorNames[f-1]}：\n`;
+      body += checked.map(s=>'• '+s).join('\n') + '\n';
+    }
+  }
+
+  const subject = encodeURIComponent(`7大因子症狀問卷 - ${name}`);
+  const bodyEnc = encodeURIComponent(body);  const to = encodeURIComponent(emailAddr || '');
+  window.location.href = `mailto:${to}?subject=${subject}&body=${bodyEnc}`;
+}
+
+// ============================================================
+// LANGUAGE SWITCH
+// ============================================================
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  const L = LANG[lang];
+  document.getElementById('h-title').textContent = L.title;
+  document.getElementById('h-subtitle').textContent = L.subtitle;
+  document.getElementById('disclaimer-text').textContent = L.disclaimer;
+  document.getElementById('lbl-patientinfo').textContent = L.patientInfo;
+  document.getElementById('results-title').textContent = L.resultsTitle;
+  document.getElementById('results-subtitle').textContent = L.resultsSubtitle;
+  document.getElementById('lbl-checklist').textContent = L.checklist;
+  document.getElementById('lbl-print').textContent = L.print;
+  document.getElementById('lbl-email-btn').textContent = L.emailBtn;
+  document.getElementById('lbl-back').textContent = L.back;
+  document.getElementById('lbl-modality-title').textContent = L.modalityTitle;
+  document.getElementById('btn-show-results').textContent = L.submitBtn;
+
+  // Update bilingual elements
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.textContent = lang === 'zh' ? el.dataset.zh : el.dataset.en;
+  });
+
+  renderSymptomsLang();
+  document.getElementById('send-email-addr').placeholder =
+    lang === 'zh' ? '輸入 Email 地址 / Enter email address' : 'Enter email address';
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderSymptoms();
+  updateCounts();
+  // Open first factor by default
+  document.getElementById('f1').classList.add('open');
+});
+</script>
+</body>
+</html>
