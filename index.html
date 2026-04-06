@@ -193,6 +193,11 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
 /* DISCLAIMER */
 .disclaimer { font-size: 0.78rem; color: var(--text-muted); background: #f8f4ed; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
+
+/* SUB CHART SECTIONS (圖一/二/三) */
+.sub-chart-title { font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); border-left: 3px solid var(--primary); padding: 6px 12px; border-radius: 0 8px 8px 0; margin: 0 0 10px; }
+.sub-chart-note { font-size: 0.75rem; color: var(--text-muted); margin: -6px 0 10px 4px; }
+.sub-chart-section { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); }
 </style>
 </head>
 <body>
@@ -203,7 +208,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <p id="h-subtitle">功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
   </div>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('zh')"中文</button>
+    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
   </div>
 </div>
@@ -270,7 +275,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
       <span class="factor-arrow">▾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress &amp; Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress & Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
       <div class="symptom-grid" id="symp-f2"></div>
     </div>
   </div>
@@ -509,10 +514,69 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
     <div id="top-factor-badge" class="top-factor-badge"></div>
 
+    <!-- 圖一 -->
+    <div class="sub-chart-title" id="lbl-chart1">圖一：七大因子症狀分佈</div>
     <div class="chart-container">
       <canvas id="pieChart"></canvas>
     </div>
     <div class="chart-legend" id="chart-legend"></div>
+
+    <!-- 圖二 -->
+    <div class="sub-chart-section" id="chart2-section" style="display:none;">
+      <div class="sub-chart-title" id="lbl-chart2">圖二：體內毒素分佈毒例估算</div>
+      <div class="sub-chart-note" id="lbl-chart2-note">（來自因子7毒素評估問卷各分類勾選毒例）</div>
+      <div class="chart-container" style="max-width:380px;">
+        <canvas id="toxinChart"></canvas>
+      </div>
+      <div class="chart-legend" id="toxin-legend"></div>
+    </div>
+
+    <!-- 圖三 -->
+    <div class="sub-chart-section" id="chart3-section">
+      <div class="sub-chart-title" id="lbl-chart3">圖三：生化失衡甲基化翹翹板</div>
+      <div class="seesaw-wrap" id="results-seesaw-wrap">
+        <div class="seesaw-labels">
+          <div class="seesaw-label-left">
+            <div class="seesaw-heading under">低甲基化</div>
+            <div class="seesaw-heading-en">Under-Methylation</div>
+            <div class="seesaw-rx under-rx">▶ SAMe · 甲硫胺酸 · 鈣鎂</div>
+          </div>
+          <div class="seesaw-label-right">
+            <div class="seesaw-heading over">高甲基化</div>
+            <div class="seesaw-heading-en">Over-Methylation</div>
+            <div class="seesaw-rx over-rx">▶ 葉酸 · 菸鹼酸 · B12</div>
+          </div>
+        </div>
+        <svg class="seesaw-svg" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="210,95 196,112 224,112" fill="#888" />
+          <rect x="185" y="111" width="50" height="6" rx="3" fill="#aaa"/>
+          <rect x="30" y="85" width="360" height="10" rx="5" fill="#c8a96e" transform="rotate(-5, 210, 90)"/>
+          <rect x="20" y="63" width="55" height="8" rx="4" fill="#e07b00" opacity="0.85" transform="rotate(-5, 210, 90)"/>
+          <rect x="345" y="99" width="55" height="8" rx="4" fill="#DDA0DD" opacity="0.85" transform="rotate(-5, 210, 90)"/>
+          <circle cx="60" cy="48" r="10" fill="#e07b00" opacity="0.9"/>
+          <line x1="60" y1="58" x2="60" y2="75" stroke="#e07b00" stroke-width="3"/>
+          <line x1="60" y1="63" x2="46" y2="70" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="63" x2="74" y2="70" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="75" x2="50" y2="85" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="75" x2="70" y2="85" stroke="#e07b00" stroke-width="2.5"/>
+          <circle cx="358" cy="30" r="10" fill="#9b59b6" opacity="0.9"/>
+          <line x1="358" y1="40" x2="358" y2="57" stroke="#9b59b6" stroke-width="3"/>
+          <line x1="358" y1="45" x2="344" y2="52" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="45" x2="372" y2="52" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="57" x2="348" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="57" x2="368" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
+          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CH₃</text>
+        </svg>
+        <div class="seesaw-note" id="results-seesaw-note">—</div>
+        <div class="seesaw-meter">
+          <div class="meter-bar"><div class="meter-fill" id="results-seesaw-fill" style="width:50%"></div></div>
+          <div class="meter-labels">
+            <span style="color:#e07b00">低甲基化 <span id="results-cnt-f6a-pct">—</span></span>
+            <span style="color:#9b59b6">高甲基化 <span id="results-cnt-f6b-pct">—</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="checked-list-section">
       <div class="checked-list-title" id="lbl-checklist">✅ 您勾選的症狀清單</div>
@@ -566,10 +630,10 @@ const LANG = {
     emailBtn: '寄送至 Email',
     back: '重新填寫',
     submitBtn: '📊 查看七大因子分析結果',
-    topFactor: '最高比例因子',
+    topFactor: '最高毒例因子',
     noSymptoms: '尚未勾選任何症狀',
     items: '項',
-    pct: '佔比',
+    pct: '佔毒',
     modalityTitle: '💡 推薦療法選項',
     modalityLinkTitle: '自然療法症狀搜尋',
     modalityLinkSub: '精油 · 草藥 · 營養素 · 順勢製劑 · 療癒肯定句 → 點擊開啟搜尋工具',
@@ -674,7 +738,7 @@ const symptoms = {
   f3b: [
     {zh:'癢疹',en:'Itchy rash'},
     {zh:'紅疹',en:'Red rash'},
-    {zh:'尋麺疹',en:'Hives (urticaria)'},
+    {zh:'尋麻疹',en:'Hives (urticaria)'},
     {zh:'過敏性鼻炎',en:'Allergic rhinitis'},
     {zh:'氣喘',en:'Asthma'},
     {zh:'偏頭痛',en:'Migraines'},
@@ -712,7 +776,7 @@ const symptoms = {
   f4b: [
     {zh:'焦躁',en:'Anxiety / agitation'},
     {zh:'經前症候群',en:'PMS (premenstrual syndrome)'},
-    {zh:'熱愛工作（工作狂）',en:'Workaholic'},
+    {zh:'熱愛工作（工作狀）',en:'Workaholic'},
     {zh:'熱愛旅行',en:'Love traveling'},
     {zh:'咖啡因敏感',en:'Caffeine sensitive'},
     {zh:'恐慌症',en:'Panic disorder'},
@@ -726,10 +790,10 @@ const symptoms = {
     {zh:'缺乏自信',en:'Lack of confidence'},
     {zh:'難以專注',en:'Difficulty focusing'},
     {zh:'嗜喝咖啡',en:'Coffee dependent'},
-    {zh:'興趣廣泛',en:'Wide range of interests'},
+    {zh:'興趣廣治',en:'Wide range of interests'},
     {zh:'嗜睡、無精打采',en:'Drowsy / lethargic'},
     {zh:'過動／無法專注／學習障礙',en:'ADHD / learning disability'},
-    {zh:'上癌症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
+    {zh:'上瘾症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
     {zh:'生酮飲食讓我覺得好極了',en:'Feel great on keto diet'},
     {zh:'憂鬱傾向',en:'Depression tendency'},
   ],
@@ -743,7 +807,7 @@ const symptoms = {
   f5a: [
     {zh:'變矮',en:'Height loss'},
     {zh:'變胖',en:'Weight gain'},
-    {zh:'某軟度差',en:'Poor flexibility'},
+    {zh:'柔軟度差',en:'Poor flexibility'},
     {zh:'無運動習慣',en:'No regular exercise'},
     {zh:'長短腳',en:'Leg length discrepancy'},
     {zh:'高足弓',en:'High arches'},
@@ -806,7 +870,7 @@ const symptoms = {
     {zh:'意志堅強',en:'Strong willpower / determination'},
     {zh:'毛髮稀疏',en:'Sparse hair'},
     {zh:'不愛社交',en:'Antisocial tendency'},
-    {zh:'沈洸在過去（反芻思考）',en:'Dwelling on the past (rumination)'},
+    {zh:'沈浸在過去（反芻思考）',en:'Dwelling on the past (rumination)'},
     {zh:'分泌多（唾液、汗水）',en:'Excessive secretions (saliva, sweat)'},
     {zh:'對BZD安眠藥反應不佳',en:'Poor response to BZD sleeping pills'},
     {zh:'常做惡夢',en:'Frequent nightmares'},
@@ -823,7 +887,7 @@ const symptoms = {
     {zh:'性慾低下',en:'Low libido'},
     {zh:'喜歡來回踱步',en:'Pacing back and forth'},
     {zh:'沒動力',en:'Lack of motivation'},
-    {zh:'不寧腿',en:'Restless leg syndrome'},
+    {zh:'不寧腺',en:'Restless leg syndrome'},
     {zh:'講話快',en:'Fast talker'},
     {zh:'過重傾向',en:'Tendency to be overweight'},
     {zh:'對SSRI類抗憂鬱劑反應不佳',en:'Poor response to SSRI antidepressants'},
@@ -835,13 +899,13 @@ const symptoms = {
     {zh:'味精敏感',en:'MSG sensitive'},
     {zh:'曾有肝臟或腎臟疾病',en:'Liver / kidney disease history'},
     {zh:'家中有人抽煙',en:'Smoker in household'},
-    {zh:'接觸化學物質或污漢',en:'Chemical / air pollution exposure'},
+    {zh:'接觸化學物質或霾害',en:'Chemical / air pollution exposure'},
     {zh:'住家或工作附近有化學廠',en:'Chemical plant near home/work'},
     {zh:'有染髮習慣',en:'Regular hair dyeing'},
     {zh:'有使用香水習慣',en:'Regular perfume / fragrance use'},
     {zh:'自體免疫疾病',en:'Autoimmune disease'},
     {zh:'愛吃蔬菜、水果',en:'Eats lots of vegetables / fruits (potential pesticide exposure)'},
-    {zh:'愛吃米飯、麵食',en:'Eats lots of rice / noodles (potential pesticide exposure)'},
+    {zh:'愛吃米食、麵食',en:'Eats lots of rice / noodles (potential pesticide exposure)'},
   ],
   f7b: [
     {zh:'過動',en:'Hyperactivity'},
@@ -853,7 +917,7 @@ const symptoms = {
     {zh:'帕金森',en:"Parkinson's disease"},
     {zh:'便秘',en:'Constipation'},
     {zh:'少流汗',en:'Low sweating'},
-    {zh:'愛吃米飯',en:'Loves rice'},
+    {zh:'愛吃米食',en:'Loves rice'},
     {zh:'愛吃豆腐',en:'Loves tofu'},
     {zh:'愛吃魚、壽司',en:'Loves fish / sushi'},
     {zh:'電子產業、常接觸金屬',en:'Electronics industry / frequent metal contact'},
@@ -884,7 +948,7 @@ const symptoms = {
     {zh:'曾有帶狀皰疹',en:'Shingles (herpes zoster) history'},
     {zh:'結膜炎',en:'Conjunctivitis'},
     {zh:'脊椎有震動或電擊感',en:'Spine vibration / electric sensation'},
-    {zh:'假性癲癇',en:'Pseudoseizures'},
+    {zh:'假性癲瘧',en:'Pseudoseizures'},
     {zh:'不典型帕金森／失智／多發性硬化症',en:"Atypical Parkinson's / dementia / multiple sclerosis"},
     {zh:'對光敏感',en:'Light sensitive (photophobia)'},
     {zh:'關節痛',en:'Joint pain'},
@@ -901,13 +965,13 @@ const symptoms = {
     {zh:'家中易生黴菌（壁癌、食物易發黴）',en:'Mold-prone home (wall mold, food molds quickly)'},
   ],
   f7e: [
-    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛叮咬',en:'Insect / tick / spider / snake bites history'},
+    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛只咬',en:'Insect / tick / spider / snake bites history'},
     {zh:'愛吃生魚片',en:'Raw fish / sashimi lover'},
     {zh:'曾出國腹瀉（旅遊者腹瀉）',en:"Traveler's diarrhea history"},
     {zh:'總吃不飽',en:'Always hungry / insatiable appetite'},
     {zh:'症狀週期性出現',en:'Cyclical/periodic symptom patterns'},
     {zh:'缺血性貧血',en:'Iron deficiency anemia'},
-    {zh:'常從事戶外活動',en:'Frequent outdoor activities'},
+    {zh:'常從事戸外活動',en:'Frequent outdoor activities'},
   ],
 };
 
@@ -930,6 +994,7 @@ const factorColors = ['#FF6B6B','#4ECDC4','#45B7D1','#96CEB4','#d4a017','#DDA0DD
 let checks = {}; // { "f1_0": true, ... }
 let gender = null;
 let pieChart = null;
+let toxinChart = null;
 
 // ============================================================
 // RENDER SYMPTOMS
@@ -974,6 +1039,34 @@ function renderSymptomsLang() {
 }
 
 // ============================================================
+// TOXIN IFRAME HELPERS
+// ============================================================
+function getToxinTotalFromIframe() {
+  try {
+    const iframe = document.querySelector('#f7 iframe');
+    if (!iframe || !iframe.contentDocument) return 0;
+    return iframe.contentDocument.querySelectorAll('input[type="checkbox"]:checked').length;
+  } catch(e) { return 0; }
+}
+
+function getToxinDataFromIframe() {
+  // Returns array of {label, count} for each div.sec section in toxin-assessment
+  const result = [];
+  try {
+    const iframe = document.querySelector('#f7 iframe');
+    if (!iframe || !iframe.contentDocument) return result;
+    const sections = iframe.contentDocument.querySelectorAll('div.sec');
+    sections.forEach(sec => {
+      const h3 = sec.querySelector('h3');
+      const label = h3 ? h3.textContent.trim() : '其他';
+      const count = sec.querySelectorAll('input[type="checkbox"]:checked').length;
+      result.push({ label, count });
+    });
+  } catch(e) {}
+  return result;
+}
+
+// ============================================================
 // COUNT & PIE CHART
 // ============================================================
 function getFactorCounts() {
@@ -988,6 +1081,8 @@ function getFactorCounts() {
       }
     }
   }
+  // Factor 7: override with actual checked count from toxin-assessment iframe
+  counts[6] = getToxinTotalFromIframe();
   return counts;
 }
 
@@ -1132,6 +1227,81 @@ function showResults() {
     `;
     legend.appendChild(item);
   });
+
+  // ── 圖二: Toxin distribution pie ──────────────────────────
+  const toxinData = getToxinDataFromIframe();
+  const toxinTotal = toxinData.reduce((s, d) => s + d.count, 0);
+  const chart2Section = document.getElementById('chart2-section');
+  if (toxinTotal > 0) {
+    chart2Section.style.display = '';
+    const toxinColors = ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#1abc9c','#3498db','#9b59b6','#e91e63','#795548'];
+    if (toxinChart) toxinChart.destroy();
+    const ctx2 = document.getElementById('toxinChart').getContext('2d');
+    toxinChart = new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: toxinData.map(d => d.label),
+        datasets: [{
+          data: toxinData.map(d => d.count),
+          backgroundColor: toxinColors,
+          borderWidth: 2,
+          borderColor: '#fff',
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.raw;
+                const pct = toxinTotal > 0 ? Math.round(v/toxinTotal*100) : 0;
+                return ` ${v} 項 (${pct}%)`;
+              }
+            }
+          }
+        }
+      }
+    });
+    const toxinLegend = document.getElementById('toxin-legend');
+    toxinLegend.innerHTML = '';
+    toxinData.forEach((d, i) => {
+      if (d.count === 0) return;
+      const pct = Math.round(d.count / toxinTotal * 100);
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = `
+        <div class="legend-dot" style="background:${toxinColors[i]}"></div>
+        <div class="legend-text" style="font-size:0.75rem">${d.label}</div>
+        <div class="legend-count" style="color:${toxinColors[i]}">${d.count} (${pct}%)</div>
+      `;
+      toxinLegend.appendChild(item);
+    });
+  } else {
+    chart2Section.style.display = 'none';
+  }
+
+  // ── 圖三: Methylation seesaw in results ───────────────────
+  const gridA = document.getElementById('symp-f6a');
+  const gridB = document.getElementById('symp-f6b');
+  const cntA = gridA ? gridA.querySelectorAll('input[type=checkbox]:checked').length : 0;
+  const cntB = gridB ? gridB.querySelectorAll('input[type=checkbox]:checked').length : 0;
+  const methTotal = cntA + cntB;
+  const methPctA = methTotal > 0 ? Math.round(cntA / methTotal * 100) : 50;
+  const methPctB = methTotal > 0 ? Math.round(cntB / methTotal * 100) : 50;
+  const rFill = document.getElementById('results-seesaw-fill');
+  const rPctA = document.getElementById('results-cnt-f6a-pct');
+  const rPctB = document.getElementById('results-cnt-f6b-pct');
+  const rNote = document.getElementById('results-seesaw-note');
+  if (rFill) rFill.style.width = methPctA + '%';
+  if (rPctA) rPctA.textContent = methTotal > 0 ? methPctA + '%' : '—';
+  if (rPctB) rPctB.textContent = methTotal > 0 ? methPctB + '%' : '—';
+  if (rNote) {
+    if (methTotal === 0) rNote.textContent = '尚未勾選因子6症狀';
+    else if (methPctA > methPctB + 15) rNote.textContent = '⚖️ 傾向：低甲基化';
+    else if (methPctB > methPctA + 15) rNote.textContent = '⚖️ 傾向：高甲基化';
+    else rNote.textContent = '⚖️ 甲基化狀態平衡或混合';
+  }
 
   // Checked list by factor
   const output = document.getElementById('checked-list-output');
