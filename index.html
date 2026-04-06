@@ -87,7 +87,8 @@ body { font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; background: var(--bg
 /* RESULTS SECTION */
 .results-section { background: var(--card); border-radius: var(--radius); border: 2px solid var(--primary); padding: 24px; margin-top: 24px; display: none; box-shadow: 0 4px 20px rgba(224,123,0,0.15); }
 .results-section.visible { display: block; }
-.results-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }.results-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+.results-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+.results-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
 
 .chart-container { width: 100%; max-width: 360px; margin: 0 auto 24px; }
 .chart-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
@@ -131,6 +132,37 @@ body { font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; background: var(--bg
 .btn-modality:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(224,123,0,0.25); }
 .btn-modality.active { background: var(--primary); color: white; }
 
+/* SEESAW */
+.seesaw-wrap { margin: 10px 0 20px; padding: 18px 16px 12px; background: linear-gradient(135deg,#fffaf2,#f5f0ff); border-radius: 14px; border: 1px solid #e8daf5; }
+.seesaw-labels { display: flex; gap: 12px; margin-bottom: 14px; }
+.seesaw-label-left, .seesaw-label-right { flex: 1; padding: 14px 14px 10px; border-radius: 10px; }
+.seesaw-label-left { background: rgba(224,123,0,0.08); border: 1.5px solid rgba(224,123,0,0.3); }
+.seesaw-label-right { background: rgba(155,89,182,0.08); border: 1.5px solid rgba(155,89,182,0.3); }
+.seesaw-heading { font-size: 1rem; font-weight: 800; margin-bottom: 2px; }
+.seesaw-heading.under { color: #c96500; }
+.seesaw-heading.over { color: #7d3c98; }
+.seesaw-heading-en { font-size: 0.72rem; color: #888; margin-bottom: 8px; font-style: italic; }
+.seesaw-symptoms { margin: 0 0 10px 0; padding-left: 16px; font-size: 0.8rem; line-height: 1.65; color: #444; }
+.seesaw-symptoms li { margin-bottom: 1px; }
+.seesaw-rx { font-size: 0.75rem; font-weight: 700; padding: 5px 10px; border-radius: 20px; display: inline-block; }
+.under-rx { background: rgba(224,123,0,0.15); color: #a04f00; }
+.over-rx { background: rgba(155,89,182,0.15); color: #6c3483; }
+.seesaw-svg { width: 100%; max-width: 420px; display: block; margin: 8px auto; }
+.seesaw-note { text-align: center; font-size: 0.78rem; color: #888; margin: 4px 0 8px; }
+.seesaw-meter { margin-top: 4px; }
+.meter-bar { height: 10px; border-radius: 5px; background: linear-gradient(to right, rgba(224,123,0,0.2), rgba(155,89,182,0.2)); overflow: hidden; position: relative; }
+.meter-fill { height: 100%; background: linear-gradient(to right, #e07b00, #9b59b6); border-radius: 5px; transition: width 0.6s ease; }
+.meter-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 600; margin-top: 4px; }
+
+/* MODALITY LINK CARD */
+.modality-link-card { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: linear-gradient(135deg,#fff8ee,#fff3f0); border: 2px solid var(--primary); border-radius: 14px; text-decoration: none; color: inherit; transition: all 0.25s; margin-top: 6px; }
+.modality-link-card:hover { background: linear-gradient(135deg,#ffe9c8,#ffd6c8); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(224,123,0,0.22); }
+.modality-link-icon { font-size: 2rem; flex-shrink: 0; }
+.modality-link-text { flex: 1; }
+.modality-link-title { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 3px; }
+.modality-link-subtitle { font-size: 0.8rem; color: #777; }
+.modality-link-arrow { font-size: 1.3rem; color: var(--primary); font-weight: 700; }
+
 /* EMAIL FORM */
 .email-row { display: flex; gap: 10px; margin-top: 12px; align-items: center; }
 .email-row input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; outline: none; }
@@ -171,12 +203,13 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <p id="h-subtitle">功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
   </div>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn active" onclick="setLang('zh')"中文</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
   </div>
 </div>
 
 <div class="container">
+
   <div class="disclaimer" id="disclaimer-text">
     ⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。
   </div>
@@ -237,7 +270,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
       <span class="factor-arrow">▾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress & Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress &amp; Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
       <div class="symptom-grid" id="symp-f2"></div>
     </div>
   </div>
@@ -265,6 +298,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
       </div>
     </div>
   </div>
+
   <!-- FACTOR 4 -->
   <div class="factor-section" id="f4">
     <div class="factor-header" onclick="toggleSection('f4')">
@@ -349,12 +383,90 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     </div>
     <div class="factor-body">
       <div class="factor-description" data-zh="根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。" data-en="Based on Dr. Ben Lynch's 'Dirty Genes' and Dr. William Walsh's 'Nutrient Power' biotype system.">根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。</div>
+
+      <!-- SEESAW VISUALIZATION -->
+      <div class="seesaw-wrap">
+        <div class="seesaw-labels">
+          <div class="seesaw-label-left">
+            <div class="seesaw-heading under">低甲基化</div>
+            <div class="seesaw-heading-en">Under-Methylation</div>
+            <ul class="seesaw-symptoms">
+              <li>完美主義傾向</li>
+              <li>高競爭心、高成就</li>
+              <li>強迫性思維（OCD）</li>
+              <li>意志力強、結構化</li>
+              <li>疼痛敏感、恐慌傾向</li>
+              <li>稀疏毛髮、反社交</li>
+              <li>反覆思慮、噩夢頻繁</li>
+            </ul>
+            <div class="seesaw-rx under-rx">▶ SAMe · 甲硫胺酸 · 鈣鎂</div>
+          </div>
+          <div class="seesaw-label-right">
+            <div class="seesaw-heading over">高甲基化</div>
+            <div class="seesaw-heading-en">Over-Methylation</div>
+            <ul class="seesaw-symptoms">
+              <li>偏執、藝術才能</li>
+              <li>腦子轉不停、焦躁</li>
+              <li>頭頸痛、胸毛多</li>
+              <li>低性慾、靜不下來</li>
+              <li>說話快、體重易增</li>
+              <li>高痛耐受、無動力</li>
+              <li>SSRI 反應差</li>
+            </ul>
+            <div class="seesaw-rx over-rx">▶ 葉酸 · 菸鹼酸 · B12</div>
+          </div>
+        </div>
+        <!-- SVG teeter-totter -->
+        <svg class="seesaw-svg" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Fulcrum triangle -->
+          <polygon points="210,95 196,112 224,112" fill="#888" />
+          <rect x="185" y="111" width="50" height="6" rx="3" fill="#aaa"/>
+          <!-- Plank (tilted slightly left-down = under-methylation heavy) -->
+          <rect x="30" y="85" width="360" height="10" rx="5" fill="#c8a96e"
+                transform="rotate(-5, 210, 90)"/>
+          <!-- Left seat platform -->
+          <rect x="20" y="63" width="55" height="8" rx="4" fill="#e07b00" opacity="0.85"
+                transform="rotate(-5, 210, 90)"/>
+          <!-- Right seat platform -->
+          <rect x="345" y="99" width="55" height="8" rx="4" fill="#DDA0DD" opacity="0.85"
+                transform="rotate(-5, 210, 90)"/>
+          <!-- Left figure (heavier side down) -->
+          <circle cx="60" cy="48" r="10" fill="#e07b00" opacity="0.9"/>
+          <line x1="60" y1="58" x2="60" y2="75" stroke="#e07b00" stroke-width="3"/>
+          <line x1="60" y1="63" x2="46" y2="70" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="63" x2="74" y2="70" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="75" x2="50" y2="85" stroke="#e07b00" stroke-width="2.5"/>
+          <line x1="60" y1="75" x2="70" y2="85" stroke="#e07b00" stroke-width="2.5"/>
+          <!-- Right figure (lighter side up) -->
+          <circle cx="358" cy="30" r="10" fill="#9b59b6" opacity="0.9"/>
+          <line x1="358" y1="40" x2="358" y2="57" stroke="#9b59b6" stroke-width="3"/>
+          <line x1="358" y1="45" x2="344" y2="52" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="45" x2="372" y2="52" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="57" x2="348" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
+          <line x1="358" y1="57" x2="368" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
+          <!-- CH3 label on plank -->
+          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CH₃</text>
+        </svg>
+        <div class="seesaw-note" id="seesaw-note">勾選下方症狀後，翹翹板會反映您的甲基化傾向。</div>
+        <!-- Dynamic tilt indicator updated by JS -->
+        <div class="seesaw-meter" id="seesaw-meter">
+          <div class="meter-bar">
+            <div class="meter-fill" id="seesaw-fill" style="width:50%"></div>
+          </div>
+          <div class="meter-labels">
+            <span style="color:#e07b00">低甲基化 <span id="cnt-f6a-pct">0%</span></span>
+            <span style="color:#9b59b6">高甲基化 <span id="cnt-f6b-pct">0%</span></span>
+          </div>
+        </div>
+      </div>
+
       <div class="subsection">
         <div class="subsection-title" data-zh="低甲基化" data-en="Under-Methylation">低甲基化</div>
         <div class="symptom-grid" id="symp-f6a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="高甲基化" data-en="Over-Methylation">高甲基化</div>        <div class="symptom-grid" id="symp-f6b"></div>
+        <div class="subsection-title" data-zh="高甲基化" data-en="Over-Methylation">高甲基化</div>
+        <div class="symptom-grid" id="symp-f6b"></div>
       </div>
     </div>
   </div>
@@ -370,28 +482,12 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
       <span class="factor-count" id="cnt7">0</span>
       <span class="factor-arrow">▾</span>
     </div>
-    <div class="factor-body">
-      <div class="factor-description" data-zh="根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程、《Toxic》、《Clinical Environmental Medicine》等。" data-en="Based on 'Textbook of Functional Medicine', 'Nutrient Power', Dr. Klinghardt's ART course, 'Toxic', 'Clinical Environmental Medicine', etc.">根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
-      <div class="subsection">
-        <div class="subsection-title" data-zh="MCS 多重化學物質過敏、環境荷爾蒙、農藥" data-en="MCS / Environmental Hormones / Pesticides">MCS 多重化學物質過敏、環境荷爾蒙、農藥</div>
-        <div class="symptom-grid" id="symp-f7a"></div>
-      </div>
-      <div class="subsection">
-        <div class="subsection-title" data-zh="重金屬" data-en="Heavy Metals">重金屬</div>
-        <div class="symptom-grid" id="symp-f7b"></div>
-      </div>
-      <div class="subsection">
-        <div class="subsection-title" data-zh="細菌、生物膜" data-en="Bacteria / Biofilm">細菌、生物膜</div>
-        <div class="symptom-grid" id="symp-f7c"></div>
-      </div>
-      <div class="subsection">
-        <div class="subsection-title" data-zh="黴菌、病毒" data-en="Mold / Virus">黴菌、病毒</div>
-        <div class="symptom-grid" id="symp-f7d"></div>
-      </div>
-      <div class="subsection">
-        <div class="subsection-title" data-zh="寄生蟲、生物毒素" data-en="Parasites / Biotoxins">寄生蟲、生物毒素</div>
-        <div class="symptom-grid" id="symp-f7e"></div>
-      </div>
+    <div class="factor-body" style="padding:0;">
+      <div class="factor-description" style="padding:16px 20px 12px;" data-zh="根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程、《Toxic》、《Clinical Environmental Medicine》等。" data-en="Based on 'Textbook of Functional Medicine', 'Nutrient Power', Dr. Klinghardt's ART course, 'Toxic', 'Clinical Environmental Medicine', etc.">根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <iframe src="https://myoneme-wang.github.io/toxin-assessment/"
+              style="width:100%;height:650px;border:none;border-radius:0 0 12px 12px;display:block;"
+              title="體內毒素負荷評估問卷"
+              loading="lazy"></iframe>
     </div>
   </div>
 
@@ -425,13 +521,14 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
     <div class="modality-section">
       <div class="modality-title">💡 <span id="lbl-modality-title">推薦療法選項</span></div>
-      <div class="modality-bar">
-        <button class="btn-modality" onclick="this.classList.toggle('active')">🌿 <span data-zh="精油" data-en="Essential Oils">精油</span></button>
-        <button class="btn-modality" onclick="this.classList.toggle('active')">🌱 <span data-zh="草藥" data-en="Herbs">草藥</span></button>
-        <button class="btn-modality" onclick="this.classList.toggle('active')">💊 <span data-zh="營養素" data-en="Nutrients">營養素</span></button>
-        <button class="btn-modality" onclick="this.classList.toggle('active')">💧 <span data-zh="順勢製劑" data-en="Homeopathics">順勢製劑</span></button>
-        <button class="btn-modality" onclick="this.classList.toggle('active')">✨ <span data-zh="療癒肯定句" data-en="Healing Affirmations">療癒肯定句</span></button>
-      </div>
+      <a id="modality-link" href="https://myoneme-wang.github.io/aromatherapy-oil-finder/" target="_blank" rel="noopener" class="modality-link-card">
+        <span class="modality-link-icon">🌿</span>
+        <span class="modality-link-text">
+          <div class="modality-link-title" id="modality-link-title">自然療法症狀搜尋</div>
+          <div class="modality-link-subtitle" id="modality-link-subtitle">精油 · 草藥 · 營養素 · 順勢製劑 · 療癒肯定句 → 點擊開啟搜尋工具</div>
+        </span>
+        <span class="modality-link-arrow">→</span>
+      </a>
     </div>
 
     <div class="action-bar">
@@ -444,6 +541,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
       <button class="btn btn-green" onclick="sendEmail()">送出</button>
     </div>
   </div>
+
 </div>
 
 <footer>
@@ -462,7 +560,7 @@ const LANG = {
     disclaimer: '⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。',
     patientInfo: '基本資料',
     resultsTitle: '📊 七大因子分析結果',
-    resultsSubtitle: '根據您勾選的症狀，以下是各因子的分佈比例：',
+    resultsSubtitle: '根據您勾選的症狀，以下是各因子的分佈毒例：',
     checklist: '✅ 您勾選的症狀清單',
     print: '列印清單',
     emailBtn: '寄送至 Email',
@@ -473,6 +571,8 @@ const LANG = {
     items: '項',
     pct: '佔比',
     modalityTitle: '💡 推薦療法選項',
+    modalityLinkTitle: '自然療法症狀搜尋',
+    modalityLinkSub: '精油 · 草藥 · 營養素 · 順勢製劑 · 療癒肯定句 → 點擊開啟搜尋工具',
     factorNames: ['能量紊亂','地場壓力','食物不耐','情緒靈性','結構異常','生化失衡','毒素'],
   },
   en: {
@@ -492,6 +592,8 @@ const LANG = {
     items: 'items',
     pct: 'proportion',
     modalityTitle: '💡 Recommended Modalities',
+    modalityLinkTitle: 'Natural Therapy Symptom Finder',
+    modalityLinkSub: 'Essential Oils · Herbs · Nutrients · Homeopathics · Affirmations → Click to open',
     factorNames: ['Energy Disturbance','Geopathic Stress','Food Intolerance','Emotional/Spiritual','Structural Abnormality','Biochemical Imbalance','Toxins'],
   }
 };
@@ -532,7 +634,8 @@ const symptoms = {
   ],
   f2: [
     {zh:'總是睡不夠',en:'Never enough sleep'},
-    {zh:'睡很久卻醒來很累',en:'Long sleep but wake up tired'},    {zh:'失眠',en:'Insomnia'},
+    {zh:'睡很久卻醒來很累',en:'Long sleep but wake up tired'},
+    {zh:'失眠',en:'Insomnia'},
     {zh:'多夢或惡夢',en:'Many dreams or nightmares'},
     {zh:'夜尿',en:'Nocturia (night urination)'},
     {zh:'床上無法入睡',en:"Can't fall asleep in bed"},
@@ -621,11 +724,12 @@ const symptoms = {
   f4c: [
     {zh:'健忘',en:'Forgetfulness'},
     {zh:'缺乏自信',en:'Lack of confidence'},
-    {zh:'難以專注',en:'Difficulty focusing'},    {zh:'嗜喝咖啡',en:'Coffee dependent'},
+    {zh:'難以專注',en:'Difficulty focusing'},
+    {zh:'嗜喝咖啡',en:'Coffee dependent'},
     {zh:'興趣廣泛',en:'Wide range of interests'},
     {zh:'嗜睡、無精打采',en:'Drowsy / lethargic'},
     {zh:'過動／無法專注／學習障礙',en:'ADHD / learning disability'},
-    {zh:'上癮症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
+    {zh:'上癌症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
     {zh:'生酮飲食讓我覺得好極了',en:'Feel great on keto diet'},
     {zh:'憂鬱傾向',en:'Depression tendency'},
   ],
@@ -710,7 +814,8 @@ const symptoms = {
   ],
   f6b: [
     {zh:'偏執傾向',en:'Paranoia tendency'},
-    {zh:'有藝術或音樂天份',en:'Artistic or musical talent'},    {zh:'頭頸疼痛',en:'Head / neck pain'},
+    {zh:'有藝術或音樂天份',en:'Artistic or musical talent'},
+    {zh:'頭頸疼痛',en:'Head / neck pain'},
     {zh:'頭腦轉不停（喜歡沉思）',en:'Racing mind / overthinking'},
     {zh:'對精神科藥物反應不佳',en:'Poor response to psychiatric medications'},
     {zh:'耐痛',en:'High pain tolerance'},
@@ -730,7 +835,7 @@ const symptoms = {
     {zh:'味精敏感',en:'MSG sensitive'},
     {zh:'曾有肝臟或腎臟疾病',en:'Liver / kidney disease history'},
     {zh:'家中有人抽煙',en:'Smoker in household'},
-    {zh:'接觸化學物質或霾害',en:'Chemical / air pollution exposure'},
+    {zh:'接觸化學物質或污漢',en:'Chemical / air pollution exposure'},
     {zh:'住家或工作附近有化學廠',en:'Chemical plant near home/work'},
     {zh:'有染髮習慣',en:'Regular hair dyeing'},
     {zh:'有使用香水習慣',en:'Regular perfume / fragrance use'},
@@ -796,10 +901,11 @@ const symptoms = {
     {zh:'家中易生黴菌（壁癌、食物易發黴）',en:'Mold-prone home (wall mold, food molds quickly)'},
   ],
   f7e: [
-    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛只咬',en:'Insect / tick / spider / snake bites history'},
+    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛叮咬',en:'Insect / tick / spider / snake bites history'},
     {zh:'愛吃生魚片',en:'Raw fish / sashimi lover'},
     {zh:'曾出國腹瀉（旅遊者腹瀉）',en:"Traveler's diarrhea history"},
-    {zh:'總吃不飽',en:'Always hungry / insatiable appetite'},    {zh:'症狀週期性出現',en:'Cyclical/periodic symptom patterns'},
+    {zh:'總吃不飽',en:'Always hungry / insatiable appetite'},
+    {zh:'症狀週期性出現',en:'Cyclical/periodic symptom patterns'},
     {zh:'缺血性貧血',en:'Iron deficiency anemia'},
     {zh:'常從事戶外活動',en:'Frequent outdoor activities'},
   ],
@@ -842,8 +948,8 @@ function renderSymptoms() {
         <input type="checkbox" id="${id}" ${checked ? 'checked' : ''}>
         <span class="symptom-label">
           ${sym[currentLang === 'zh' ? 'zh' : 'zh']}
-          ${currentLang === 'en' ? `<span class="en">${sym.en}<\/span>` : ''}
-        <\/span>`;
+          ${currentLang === 'en' ? `<span class="en">${sym.en}</span>` : ''}
+        </span>`;
       item.querySelector('input').addEventListener('change', (e) => {
         checks[id] = e.target.checked;
         item.classList.toggle('checked', e.target.checked);
@@ -862,7 +968,7 @@ function renderSymptomsLang() {
     items.forEach((el, idx) => {
       const sym = arr[idx];
       if (!sym) return;
-      el.innerHTML = sym.zh + (currentLang === 'en' ? `<span class="en">${sym.en}<\/span>` : '');
+      el.innerHTML = sym.zh + (currentLang === 'en' ? `<span class="en">${sym.en}</span>` : '');
     });
   }
 }
@@ -888,11 +994,54 @@ function getFactorCounts() {
 function updateCounts() {
   const counts = getFactorCounts();
   for (let f = 1; f <= 7; f++) {
-    const el = document.getElementById('cnt' + f);    if (el) el.textContent = counts[f-1];
+    const el = document.getElementById('cnt' + f);
+    if (el) el.textContent = counts[f-1];
   }
   if (pieChart) {
     pieChart.data.datasets[0].data = counts;
     pieChart.update();
+  }
+  updateSeesaw();
+}
+
+function updateSeesaw() {
+  const gridA = document.getElementById('symp-f6a');
+  const gridB = document.getElementById('symp-f6b');
+  if (!gridA || !gridB) return;
+  const cntA = gridA.querySelectorAll('input[type=checkbox]:checked').length;
+  const cntB = gridB.querySelectorAll('input[type=checkbox]:checked').length;
+  const total = cntA + cntB;
+  const pctA = total > 0 ? Math.round(cntA / total * 100) : 50;
+  const pctB = total > 0 ? Math.round(cntB / total * 100) : 50;
+  const fill = document.getElementById('seesaw-fill');
+  const pctAEl = document.getElementById('cnt-f6a-pct');
+  const pctBEl = document.getElementById('cnt-f6b-pct');
+  if (fill) fill.style.width = pctA + '%';
+  if (pctAEl) pctAEl.textContent = (total > 0 ? pctA + '%' : '—');
+  if (pctBEl) pctBEl.textContent = (total > 0 ? pctB + '%' : '—');
+  // Tilt the SVG plank via JS
+  const plank = document.querySelector('.seesaw-svg rect.plank');
+  // Update seesaw note
+  const note = document.getElementById('seesaw-note');
+  if (note && total > 0) {
+    if (pctA > pctB + 15) note.textContent = currentLang === 'zh' ? '⚖️ 傾向：低甲基化' : '⚖️ Tendency: Under-Methylation';
+    else if (pctB > pctA + 15) note.textContent = currentLang === 'zh' ? '⚖️ 傾向：高甲基化' : '⚖️ Tendency: Over-Methylation';
+    else note.textContent = currentLang === 'zh' ? '⚖️ 甲基化狀態平衡或混合' : '⚖️ Balanced or Mixed Methylation';
+  } else if (note) {
+    note.textContent = currentLang === 'zh' ? '勾選下方症狀後，翹翹板會反映您的甲基化傾向。' : 'Check symptoms below to see your methylation tendency.';
+  }
+  // Update modality link with top factor
+  updateModalityLink();
+}
+
+function updateModalityLink() {
+  const counts = getFactorCounts();
+  const maxCount = Math.max(...counts);
+  if (maxCount === 0) return;
+  const topIdx = counts.indexOf(maxCount) + 1; // factor number 1-7
+  const link = document.getElementById('modality-link');
+  if (link) {
+    link.href = 'https://myoneme-wang.github.io/aromatherapy-oil-finder/?factor=' + topIdx;
   }
 }
 
@@ -977,7 +1126,8 @@ function showResults() {
     const item = document.createElement('div');
     item.className = 'legend-item';
     item.innerHTML = `
-      <div class="legend-dot" style="background:${factorColors[i]}"></div>      <div class="legend-text">F${i+1} ${name}</div>
+      <div class="legend-dot" style="background:${factorColors[i]}"></div>
+      <div class="legend-text">F${i+1} ${name}</div>
       <div class="legend-count" style="color:${factorColors[i]}">${counts[i]} (${pct}%)</div>
     `;
     legend.appendChild(item);
@@ -1066,7 +1216,8 @@ function sendEmail() {
   }
 
   const subject = encodeURIComponent(`7大因子症狀問卷 - ${name}`);
-  const bodyEnc = encodeURIComponent(body);  const to = encodeURIComponent(emailAddr || '');
+  const bodyEnc = encodeURIComponent(body);
+  const to = encodeURIComponent(emailAddr || '');
   window.location.href = `mailto:${to}?subject=${subject}&body=${bodyEnc}`;
 }
 
@@ -1090,6 +1241,10 @@ function setLang(lang) {
   document.getElementById('lbl-email-btn').textContent = L.emailBtn;
   document.getElementById('lbl-back').textContent = L.back;
   document.getElementById('lbl-modality-title').textContent = L.modalityTitle;
+  const mlt = document.getElementById('modality-link-title');
+  if (mlt) mlt.textContent = L.modalityLinkTitle;
+  const mls = document.getElementById('modality-link-subtitle');
+  if (mls) mls.textContent = L.modalityLinkSub;
   document.getElementById('btn-show-results').textContent = L.submitBtn;
 
   // Update bilingual elements
