@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7大因子症狀問卷｜超全能整合門診</title>
+<title>7å¤§å å­ççåå·ï½è¶å¨è½æ´åéè¨º</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
@@ -112,6 +112,7 @@ body { font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; background: var(--bg
 .factor-group-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
 .factor-group-n { font-size: 0.8rem; color: var(--text-muted); }
 .symptom-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.subgrp-title { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin: 8px 0 4px; }
 .symptom-tag { background: var(--primary-light); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 0.8rem; color: var(--text); }
 
 /* ACTIONS */
@@ -194,7 +195,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 /* DISCLAIMER */
 .disclaimer { font-size: 0.78rem; color: var(--text-muted); background: #f8f4ed; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
 
-/* SUB CHART SECTIONS (圖一/二/三) */
+/* SUB CHART SECTIONS (åä¸/äº/ä¸) */
 .sub-chart-title { font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); border-left: 3px solid var(--primary); padding: 6px 12px; border-radius: 0 8px 8px 0; margin: 0 0 10px; }
 .sub-chart-note { font-size: 0.75rem; color: var(--text-muted); margin: -6px 0 10px 4px; }
 .sub-chart-section { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); }
@@ -204,11 +205,11 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
 <div class="header-wrap">
   <div class="site-header">
-    <h1 id="h-title">7大因子症狀問卷｜超全能整合門診</h1>
-    <p id="h-subtitle">功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
+    <h1 id="h-title">7å¤§å å­ççåå·ï½è¶å¨è½æ´åéè¨º</h1>
+    <p id="h-subtitle">åè½é«å­¸ è¶å¨è½æ´åéè¨º ï½ Dr. Klinghardt ä¸å¤§å å­é«ç³»</p>
   </div>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn active" onclick="setLang('zh')">ä¸­æ</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
   </div>
 </div>
@@ -216,32 +217,32 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 <div class="container">
 
   <div class="disclaimer" id="disclaimer-text">
-    ⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。
+    âï¸ æ¬åå·åä¾åèï¼ä¸å·è¨ºæ·æåãè«æ¼å°±è¨ºæäº¤ç±é«å¸«è§£è®ãä»¥ä¸ççè¥ä¸ç¥éæä¸ç¢ºå®ï¼åè¦çºæ²æã
   </div>
 
   <!-- PATIENT INFO -->
   <div class="patient-card">
-    <h2>👤 <span id="lbl-patientinfo">基本資料</span></h2>
+    <h2>ð¤ <span id="lbl-patientinfo">åºæ¬è³æ</span></h2>
     <div class="form-grid">
       <div class="form-field">
-        <label id="lbl-name">姓名 Name</label>
-        <input type="text" id="inp-name" placeholder="王小明">
+        <label id="lbl-name">å§å Name</label>
+        <input type="text" id="inp-name" placeholder="çå°æ">
       </div>
       <div class="form-field">
-        <label id="lbl-dob">出生年月日 Date of Birth</label>
+        <label id="lbl-dob">åºçå¹´ææ¥ Date of Birth</label>
         <input type="date" id="inp-dob">
       </div>
       <div class="form-field">
-        <label id="lbl-phone">手機 / LINE</label>
+        <label id="lbl-phone">ææ© / LINE</label>
         <input type="text" id="inp-phone" placeholder="0912-345-678">
       </div>
       <div class="form-field">
-        <label id="lbl-email">電子信箱 Email</label>
+        <label id="lbl-email">é»å­ä¿¡ç®± Email</label>
         <input type="email" id="inp-email" placeholder="example@mail.com">
       </div>
       <div class="form-field" style="grid-column: 1/-1;">
-        <label id="lbl-complaint">最困擾的問題 Main Complaint</label>
-        <input type="text" id="inp-complaint" placeholder="請描述您最想改善的症狀">
+        <label id="lbl-complaint">æå°æ¾çåé¡ Main Complaint</label>
+        <input type="text" id="inp-complaint" placeholder="è«æè¿°æ¨ææ³æ¹åççç">
       </div>
     </div>
   </div>
@@ -251,14 +252,14 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f1')">
       <div class="factor-badge" style="background:var(--factor1)">1</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="能量紊亂" data-en="Energy Disturbance">能量紊亂</div>
-        <div class="factor-subtitle" data-zh="粒線體失能、腎上腺疲勞、疤痕、自律神經異常" data-en="Mitochondrial dysfunction, adrenal fatigue, scars, autonomic nerve disorders">粒線體失能、腎上腺疲勞、疤痕、自律神經異常</div>
+        <div class="factor-title" data-zh="è½éç´äº" data-en="Energy Disturbance">è½éç´äº</div>
+        <div class="factor-subtitle" data-zh="ç²ç·é«å¤±è½ãèä¸èºç²åãç¤çãèªå¾ç¥ç¶ç°å¸¸" data-en="Mitochondrial dysfunction, adrenal fatigue, scars, autonomic nerve disorders">ç²ç·é«å¤±è½ãèä¸èºç²åãç¤çãèªå¾ç¥ç¶ç°å¸¸</div>
       </div>
       <span class="factor-count" id="cnt1">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據《營養的力量》、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等，粒線體失能、腎上腺疲勞、疤痕、經絡或自律神經異常相關症狀。" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', Dr. Klinghardt's ART course — symptoms related to mitochondrial dysfunction, adrenal fatigue, scars, meridians or autonomic nervous system.">根據《營養的力量》、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="factor-description" data-zh="æ ¹æãçé¤çåéãããåè½é«å­¸èç¶ããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ï¼ç²ç·é«å¤±è½ãèä¸èºç²åãç¤çãç¶çµ¡æèªå¾ç¥ç¶ç°å¸¸ç¸éççã" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', Dr. Klinghardt's ART course â symptoms related to mitochondrial dysfunction, adrenal fatigue, scars, meridians or autonomic nervous system.">æ ¹æãçé¤çåéãããåè½é«å­¸èç¶ããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ã</div>
       <div class="symptom-grid" id="symp-f1"></div>
     </div>
   </div>
@@ -268,14 +269,14 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f2')">
       <div class="factor-badge" style="background:var(--factor2)">2</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="地場壓力" data-en="Geopathic Stress">地場壓力</div>
-        <div class="factor-subtitle" data-zh="電磁波、地磁、睡眠環境干擾" data-en="EMF, geomagnetism, sleep environment disturbance">電磁波、地磁、睡眠環境干擾</div>
+        <div class="factor-title" data-zh="å°å ´å£å" data-en="Geopathic Stress">å°å ´å£å</div>
+        <div class="factor-subtitle" data-zh="é»ç£æ³¢ãå°ç£ãç¡ç ç°å¢å¹²æ¾" data-en="EMF, geomagnetism, sleep environment disturbance">é»ç£æ³¢ãå°ç£ãç¡ç ç°å¢å¹²æ¾</div>
       </div>
       <span class="factor-count" id="cnt2">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress & Subtle Energy' and Dr. Klinghardt's ART course.">根據Jane Thurnell-Read《地場壓力及微能量》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="factor-description" data-zh="æ ¹æJane Thurnell-Readãå°å ´å£ååå¾®è½éããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ã" data-en="Based on Jane Thurnell-Read's 'Geopathic Stress & Subtle Energy' and Dr. Klinghardt's ART course.">æ ¹æJane Thurnell-Readãå°å ´å£ååå¾®è½éããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ã</div>
       <div class="symptom-grid" id="symp-f2"></div>
     </div>
   </div>
@@ -285,20 +286,20 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f3')">
       <div class="factor-badge" style="background:var(--factor3)">3</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="食物不耐" data-en="Food Intolerance">食物不耐</div>
-        <div class="factor-subtitle" data-zh="胃酸不足、SIBO、組織胺不耐、慢性過敏" data-en="Low stomach acid, SIBO, histamine intolerance, chronic allergy">胃酸不足、SIBO、組織胺不耐、慢性過敏</div>
+        <div class="factor-title" data-zh="é£ç©ä¸è" data-en="Food Intolerance">é£ç©ä¸è</div>
+        <div class="factor-subtitle" data-zh="èé¸ä¸è¶³ãSIBOãçµç¹èºä¸èãæ¢æ§éæ" data-en="Low stomach acid, SIBO, histamine intolerance, chronic allergy">èé¸ä¸è¶³ãSIBOãçµç¹èºä¸èãæ¢æ§éæ</div>
       </div>
       <span class="factor-count" id="cnt3">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據《營養的力量》、《功能醫學聖經》、《28天打造不生病的基因》、《失眠診所》等書。" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', 'Dirty Genes', 'The Sleep Doctor's Diet Plan', etc.">根據《營養的力量》、《功能醫學聖經》、《28天打造不生病的基因》等書。</div>
+      <div class="factor-description" data-zh="æ ¹æãçé¤çåéãããåè½é«å­¸èç¶ããã28å¤©æé ä¸çççåºå ãããå¤±ç è¨ºæãç­æ¸ã" data-en="Based on 'Nutrient Power', 'Textbook of Functional Medicine', 'Dirty Genes', 'The Sleep Doctor's Diet Plan', etc.">æ ¹æãçé¤çåéãããåè½é«å­¸èç¶ããã28å¤©æé ä¸çççåºå ãç­æ¸ã</div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="胃酸不足／SIBO 小腸菌叢過度增生" data-en="Low Stomach Acid / SIBO">胃酸不足／SIBO 小腸菌叢過度增生</div>
+        <div class="subsection-title" data-zh="èé¸ä¸è¶³ï¼SIBO å°è¸èå¢éåº¦å¢ç" data-en="Low Stomach Acid / SIBO">èé¸ä¸è¶³ï¼SIBO å°è¸èå¢éåº¦å¢ç</div>
         <div class="symptom-grid" id="symp-f3a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="組織胺不耐症／慢性過敏" data-en="Histamine Intolerance / Chronic Allergy">組織胺不耐症／慢性過敏</div>
+        <div class="subsection-title" data-zh="çµç¹èºä¸èçï¼æ¢æ§éæ" data-en="Histamine Intolerance / Chronic Allergy">çµç¹èºä¸èçï¼æ¢æ§éæ</div>
         <div class="symptom-grid" id="symp-f3b"></div>
       </div>
     </div>
@@ -309,28 +310,28 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f4')">
       <div class="factor-badge" style="background:var(--factor4)">4</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="情緒靈性（神經荷爾蒙功能）" data-en="Emotional / Spiritual (Neuro-Hormonal)">情緒靈性（神經荷爾蒙功能）</div>
-        <div class="factor-subtitle" data-zh="吡咯、多巴胺、腎上腺素、童年創傷" data-en="Pyrroles, dopamine, adrenaline, childhood trauma">吡咯、多巴胺、腎上腺素、童年創傷</div>
+        <div class="factor-title" data-zh="æç·éæ§ï¼ç¥ç¶è·ç¾èåè½ï¼" data-en="Emotional / Spiritual (Neuro-Hormonal)">æç·éæ§ï¼ç¥ç¶è·ç¾èåè½ï¼</div>
+        <div class="factor-subtitle" data-zh="å¡å¯ãå¤å·´èºãèä¸èºç´ ãç«¥å¹´åµå·" data-en="Pyrroles, dopamine, adrenaline, childhood trauma">å¡å¯ãå¤å·´èºãèä¸èºç´ ãç«¥å¹´åµå·</div>
       </div>
       <span class="factor-count" id="cnt4">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據Dr. William Walsh《營養的力量》情緒生化分型、Dr. Ben Lynch《28天打造不生病的基因》、ACE童年創傷指數等。" data-en="Based on Dr. William Walsh's 'Nutrient Power' biotype system, Dr. Ben Lynch's 'Dirty Genes', and the ACE childhood trauma index.">根據Dr. William Walsh《營養的力量》情緒生化分型、Dr. Ben Lynch《28天打造不生病的基因》、ACE童年創傷指數等。</div>
+      <div class="factor-description" data-zh="æ ¹æDr. William Walshãçé¤çåéãæç·çåååãDr. Ben Lynchã28å¤©æé ä¸çççåºå ããACEç«¥å¹´åµå·ææ¸ç­ã" data-en="Based on Dr. William Walsh's 'Nutrient Power' biotype system, Dr. Ben Lynch's 'Dirty Genes', and the ACE childhood trauma index.">æ ¹æDr. William Walshãçé¤çåéãæç·çåååãDr. Ben Lynchã28å¤©æé ä¸çççåºå ããACEç«¥å¹´åµå·ææ¸ç­ã</div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="神經毒素「吡咯」過高" data-en="Elevated Pyrroles (Neurotoxin)">神經毒素「吡咯」過高</div>
+        <div class="subsection-title" data-zh="ç¥ç¶æ¯ç´ ãå¡å¯ãéé«" data-en="Elevated Pyrroles (Neurotoxin)">ç¥ç¶æ¯ç´ ãå¡å¯ãéé«</div>
         <div class="symptom-grid" id="symp-f4a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="高多巴胺或腎上腺素" data-en="High Dopamine / Adrenaline">高多巴胺或腎上腺素</div>
+        <div class="subsection-title" data-zh="é«å¤å·´èºæèä¸èºç´ " data-en="High Dopamine / Adrenaline">é«å¤å·´èºæèä¸èºç´ </div>
         <div class="symptom-grid" id="symp-f4b"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="低多巴胺或腎上腺素" data-en="Low Dopamine / Adrenaline">低多巴胺或腎上腺素</div>
+        <div class="subsection-title" data-zh="ä½å¤å·´èºæèä¸èºç´ " data-en="Low Dopamine / Adrenaline">ä½å¤å·´èºæèä¸èºç´ </div>
         <div class="symptom-grid" id="symp-f4c"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="ACE 童年創傷" data-en="ACE Childhood Trauma">ACE 童年創傷</div>
+        <div class="subsection-title" data-zh="ACE ç«¥å¹´åµå·" data-en="ACE Childhood Trauma">ACE ç«¥å¹´åµå·</div>
         <div class="symptom-grid" id="symp-f4d"></div>
       </div>
     </div>
@@ -341,34 +342,34 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f5')">
       <div class="factor-badge" style="background:#d4a017;color:#fff">5</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="結構異常（肌肉骨骼功能）" data-en="Structural Abnormality (Musculoskeletal)">結構異常（肌肉骨骼功能）</div>
-        <div class="factor-subtitle" data-zh="活動度失能、穩定度失能、自律神經、泄殖腔同步" data-en="Mobility dysfunction, stability dysfunction, autonomic nervous system, cloaca synchronization">活動度失能、穩定度失能、自律神經、泄殖腔同步</div>
+        <div class="factor-title" data-zh="çµæ§ç°å¸¸ï¼èèéª¨éª¼åè½ï¼" data-en="Structural Abnormality (Musculoskeletal)">çµæ§ç°å¸¸ï¼èèéª¨éª¼åè½ï¼</div>
+        <div class="factor-subtitle" data-zh="æ´»ååº¦å¤±è½ãç©©å®åº¦å¤±è½ãèªå¾ç¥ç¶ãæ³æ®èåæ­¥" data-en="Mobility dysfunction, stability dysfunction, autonomic nervous system, cloaca synchronization">æ´»ååº¦å¤±è½ãç©©å®åº¦å¤±è½ãèªå¾ç¥ç¶ãæ³æ®èåæ­¥</div>
       </div>
       <span class="factor-count" id="cnt5">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據SFMA精選功能性動作評估、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。" data-en="Based on SFMA Selective Functional Movement Assessment, Textbook of Functional Medicine, and Dr. Klinghardt's ART course.">根據SFMA精選功能性動作評估、《功能醫學聖經》、Dr. Klinghardt《ART自律反應測試》課程等。</div>
+      <div class="factor-description" data-zh="æ ¹æSFMAå²¾é¸åè½æ§åä½è©ä¼°ããåè½é«å­¸èç¶ããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ã" data-en="Based on SFMA Selective Functional Movement Assessment, Textbook of Functional Medicine, and Dr. Klinghardt's ART course.">æ ¹æSFMAç²¾é¸åè½æ§åä½è©ä¼°ããåè½é«å­¸èç¶ããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ç­ã</div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="JED/TED 活動度失能" data-en="JED/TED Mobility Dysfunction">JED/TED 活動度失能</div>
+        <div class="subsection-title" data-zh="JED/TED æ´»ååº¦å¤±è½" data-en="JED/TED Mobility Dysfunction">JED/TED æ´»ååº¦å¤±è½</div>
         <div class="symptom-grid" id="symp-f5a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="SMCD 穩定度失能" data-en="SMCD Stability Dysfunction">SMCD 穩定度失能</div>
+        <div class="subsection-title" data-zh="SMCD ç©©å®åº¦å¤±è½" data-en="SMCD Stability Dysfunction">SMCD ç©©å®åº¦å¤±è½</div>
         <div class="symptom-grid" id="symp-f5b"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="自律神經、泄殖腔同步（請選擇性別）" data-en="Autonomic / Cloaca Synchronization (Select Gender)">自律神經、泄殖腔同步（請選擇性別）</div>
+        <div class="subsection-title" data-zh="èªå¾ç¥ç¶ãæ³æ®èåæ­¥ï¼è«é¸ææ§å¥ï¼" data-en="Autonomic / Cloaca Synchronization (Select Gender)">èªå¾ç¥ç¶ãæ³æ®èåæ­¥ï¼è«é¸ææ§å¥ï¼</div>
         <div class="gender-select-row">
-          <button class="gender-btn" onclick="setGender('male')" id="gbtn-male" data-zh="男性" data-en="Male">男性</button>
-          <button class="gender-btn" onclick="setGender('female')" id="gbtn-female" data-zh="女性" data-en="Female">女性</button>
+          <button class="gender-btn" onclick="setGender('male')" id="gbtn-male" data-zh="ç·æ§" data-en="Male">ç·æ§</button>
+          <button class="gender-btn" onclick="setGender('female')" id="gbtn-female" data-zh="å¥³æ§" data-en="Female">å¥³æ§</button>
         </div>
         <div class="gender-specific" id="gender-male">
-          <div class="subsection-title" data-zh="男性症狀" data-en="Male Symptoms" style="font-size:0.8rem">男性症狀</div>
+          <div class="subsection-title" data-zh="ç·æ§çç" data-en="Male Symptoms" style="font-size:0.8rem">ç·æ§çç</div>
           <div class="symptom-grid" id="symp-f5m"></div>
         </div>
         <div class="gender-specific" id="gender-female">
-          <div class="subsection-title" data-zh="女性症狀" data-en="Female Symptoms" style="font-size:0.8rem">女性症狀</div>
+          <div class="subsection-title" data-zh="å¥³æ§çç" data-en="Female Symptoms" style="font-size:0.8rem">å¥³æ§çç</div>
           <div class="symptom-grid" id="symp-f5f"></div>
         </div>
       </div>
@@ -380,45 +381,45 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f6')">
       <div class="factor-badge" style="background:var(--factor6);color:#555">6</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="生化失衡" data-en="Biochemical Imbalance">生化失衡</div>
-        <div class="factor-subtitle" data-zh="甲基化、基因多型性、維生素礦物質代謝" data-en="Methylation, genetic polymorphism, vitamin & mineral metabolism">甲基化、基因多型性、維生素礦物質代謝</div>
+        <div class="factor-title" data-zh="çåå¤±è¡¡" data-en="Biochemical Imbalance">çåå¤±è¡¡</div>
+        <div class="factor-subtitle" data-zh="ç²åºåãåºå å¤åæ§ãç¶­çç´ ç¤¦ç©è³ªä»£è¬" data-en="Methylation, genetic polymorphism, vitamin & mineral metabolism">ç²åºåãåºå å¤åæ§ãç¶­çç´ ç¤¦ç©è³ªä»£è¬</div>
       </div>
       <span class="factor-count" id="cnt6">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。" data-en="Based on Dr. Ben Lynch's 'Dirty Genes' and Dr. William Walsh's 'Nutrient Power' biotype system.">根據Dr. Ben Lynch《28天打造不生病的基因》、Dr. William Walsh《營養的力量》情緒生化分型。</div>
+      <div class="factor-description" data-zh="æ ¹æDr. Ben Lynchã28å¤©æé ä¸çççåºå ããDr. William Walshãçé¤çåéãæç·çåååã" data-en="Based on Dr. Ben Lynch's 'Dirty Genes' and Dr. William Walsh's 'Nutrient Power' biotype system.">æ ¹æDr. Ben Lynchã28å¤©æé ä¸çççåºå ããDr. William Walshãçé¤çåéãæç·çåååã</div>
 
       <!-- SEESAW VISUALIZATION -->
       <div class="seesaw-wrap">
         <div class="seesaw-labels">
           <div class="seesaw-label-left">
-            <div class="seesaw-heading under">低甲基化</div>
+            <div class="seesaw-heading under">ä½ç²åºå</div>
             <div class="seesaw-heading-en">Under-Methylation</div>
             <ul class="seesaw-symptoms">
-              <li>完美主義傾向</li>
-              <li>高競爭心、高成就</li>
-              <li>強迫性思維（OCD）</li>
-              <li>意志力強、結構化</li>
-              <li>疼痛敏感、恐慌傾向</li>
-              <li>稀疏毛髮、反社交</li>
-              <li>反覆思慮、噩夢頻繁</li>
+              <li>å®ç¾ä¸»ç¾©å¾å</li>
+              <li>é«ç«¶ç­å¿ãé«æå°±</li>
+              <li>å¼·è¿«æ§æç¶­ï¼OCDï¼</li>
+              <li>æå¿åå¼·ãçµæ§å</li>
+              <li>ç¼çææãææå¾å</li>
+              <li>ç¨çæ¯é«®ãåç¤¾äº¤</li>
+              <li>åè¦ææ®ãå©å¤¢é »ç¹</li>
             </ul>
-            <div class="seesaw-rx under-rx">▶ SAMe · 甲硫胺酸 · 鈣鎂</div>
+            <div class="seesaw-rx under-rx">â¶ SAMe Â· ç²ç¡«èºé¸ Â· é£é</div>
           </div>
           <div class="seesaw-label-right">
-            <div class="seesaw-heading over">高甲基化</div>
+            <div class="seesaw-heading over">é«ç²åºå</div>
             <div class="seesaw-heading-en">Over-Methylation</div>
             <ul class="seesaw-symptoms">
-              <li>偏執、藝術才能</li>
-              <li>腦子轉不停、焦躁</li>
-              <li>頭頸痛、胸毛多</li>
-              <li>低性慾、靜不下來</li>
-              <li>說話快、體重易增</li>
-              <li>高痛耐受、無動力</li>
-              <li>SSRI 反應差</li>
+              <li>åå·ãèè¡æè½</li>
+              <li>è¦å­è½ä¸åãç¦èº</li>
+              <li>é ­é ¸çãè¸æ¯å¤</li>
+              <li>ä½æ§æ¾ãéä¸ä¸ä¾</li>
+              <li>èªªè©±å¿«ãé«éæå¢</li>
+              <li>é«çèåãç¡åå</li>
+              <li>SSRI åæå·®</li>
             </ul>
-            <div class="seesaw-rx over-rx">▶ 葉酸 · 菸鹼酸 · B12</div>
+            <div class="seesaw-rx over-rx">â¶ èé¸ Â· è¸é¹¼é¸ Â· B12</div>
           </div>
         </div>
         <!-- SVG teeter-totter -->
@@ -450,27 +451,27 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
           <line x1="358" y1="57" x2="348" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
           <line x1="358" y1="57" x2="368" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
           <!-- CH3 label on plank -->
-          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CH₃</text>
+          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CHâ</text>
         </svg>
-        <div class="seesaw-note" id="seesaw-note">勾選下方症狀後，翹翹板會反映您的甲基化傾向。</div>
+        <div class="seesaw-note" id="seesaw-note">å¾é¸ä¸æ¹ççå¾ï¼ç¿¹ç¿¹æ¿æåæ æ¨çç²åºåå¾åã</div>
         <!-- Dynamic tilt indicator updated by JS -->
         <div class="seesaw-meter" id="seesaw-meter">
           <div class="meter-bar">
             <div class="meter-fill" id="seesaw-fill" style="width:50%"></div>
           </div>
           <div class="meter-labels">
-            <span style="color:#e07b00">低甲基化 <span id="cnt-f6a-pct">0%</span></span>
-            <span style="color:#9b59b6">高甲基化 <span id="cnt-f6b-pct">0%</span></span>
+            <span style="color:#e07b00">ä½ç²åºå <span id="cnt-f6a-pct">0%</span></span>
+            <span style="color:#9b59b6">é«ç²åºå <span id="cnt-f6b-pct">0%</span></span>
           </div>
         </div>
       </div>
 
       <div class="subsection">
-        <div class="subsection-title" data-zh="低甲基化" data-en="Under-Methylation">低甲基化</div>
+        <div class="subsection-title" data-zh="ä½ç²åºå" data-en="Under-Methylation">ä½ç²åºå</div>
         <div class="symptom-grid" id="symp-f6a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="高甲基化" data-en="Over-Methylation">高甲基化</div>
+        <div class="subsection-title" data-zh="é«ç²åºå" data-en="Over-Methylation">é«ç²åºå</div>
         <div class="symptom-grid" id="symp-f6b"></div>
       </div>
     </div>
@@ -481,32 +482,32 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="factor-header" onclick="toggleSection('f7')">
       <div class="factor-badge" style="background:var(--factor7);color:#2a6050">7</div>
       <div class="factor-title-group">
-        <div class="factor-title" data-zh="毒素（重金屬、微生物）" data-en="Toxins (Heavy Metals, Microbes)">毒素（重金屬、微生物）</div>
-        <div class="factor-subtitle" data-zh="化學物質、重金屬、細菌、黴菌、病毒、寄生蟲" data-en="Chemicals, heavy metals, bacteria, mold, viruses, parasites">化學物質、重金屬、細菌、黴菌、病毒、寄生蟲</div>
+        <div class="factor-title" data-zh="æ¯ç´ ï¼ééå±¬ãå¾®çç©ï¼" data-en="Toxins (Heavy Metals, Microbes)">æ¯ç´ ï¼ééå±¬ãå¾®çç©ï¼</div>
+        <div class="factor-subtitle" data-zh="åå­¸ç©è³ªãééå±¬ãç´°èãé»´èãçæ¯ãå¯çè²" data-en="Chemicals, heavy metals, bacteria, mold, viruses, parasites">åå­¸ç©è³ªãééå±¬ãç´°èãé»´èãçæ¯ãå¯çè²</div>
       </div>
       <span class="factor-count" id="cnt7">0</span>
-      <span class="factor-arrow">▾</span>
+      <span class="factor-arrow">â¾</span>
     </div>
     <div class="factor-body">
-      <div class="factor-description" data-zh="根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程、《Toxic》、《Clinical Environmental Medicine》等。" data-en="Based on 'Textbook of Functional Medicine', 'Nutrient Power', Dr. Klinghardt's ART course, 'Toxic', 'Clinical Environmental Medicine', etc.">根據《功能醫學聖經》、《營養的力量》、Dr. Klinghardt《ART自律反應測試》課程、《Toxic》、《Clinical Environmental Medicine》等。</div>
+      <div class="factor-description" data-zh="æ ¹æãåè½é«å­¸èç¶ãããçé¤çåéããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ããToxicãããClinical Environmental Medicineãç­ã" data-en="Based on 'Textbook of Functional Medicine', 'Nutrient Power', Dr. Klinghardt's ART course, 'Toxic', 'Clinical Environmental Medicine', etc.">æ ¹æãåè½é«å­¸èç¶ãããçé¤çåéããDr. KlinghardtãARTèªå¾åææ¸¬è©¦ãèª²ç¨ããToxicãããClinical Environmental Medicineãç­ã</div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="化學毒素暴露（生活習慣、環境）" data-en="Chemical Toxin Exposure (Lifestyle, Environment)">化學毒素暴露（生活習慣、環境）</div>
+        <div class="subsection-title" data-zh="åå­¸æ¯ç´ æ´é²ï¼çæ´»ç¿æ£ãç°å¢ï¼" data-en="Chemical Toxin Exposure (Lifestyle, Environment)">åå­¸æ¯ç´ æ´é²ï¼çæ´»ç¿æ£ãç°å¢ï¼</div>
         <div class="symptom-grid" id="symp-f7a"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="重金屬" data-en="Heavy Metals">重金屬</div>
+        <div class="subsection-title" data-zh="ééå±¬" data-en="Heavy Metals">ééå±¬</div>
         <div class="symptom-grid" id="symp-f7b"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="細菌、感染" data-en="Bacteria / Infections">細菌、感染</div>
+        <div class="subsection-title" data-zh="ç´°èãææ" data-en="Bacteria / Infections">ç´°èãææ</div>
         <div class="symptom-grid" id="symp-f7c"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="黴菌、病毒、念珠菌" data-en="Mold / Viruses / Candida">黴菌、病毒、念珠菌</div>
+        <div class="subsection-title" data-zh="é»´èãçæ¯ãå¿µç è" data-en="Mold / Viruses / Candida">é»´èãçæ¯ãå¿µç è</div>
         <div class="symptom-grid" id="symp-f7d"></div>
       </div>
       <div class="subsection">
-        <div class="subsection-title" data-zh="寄生蟲" data-en="Parasites">寄生蟲</div>
+        <div class="subsection-title" data-zh="å¯çè²" data-en="Parasites">å¯çè²</div>
         <div class="symptom-grid" id="symp-f7e"></div>
       </div>
     </div>
@@ -514,43 +515,43 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
   <!-- SUBMIT -->
   <div class="submit-wrap">
-    <button class="btn-submit" onclick="showResults()" id="btn-show-results">📊 查看七大因子分析結果</button>
+    <button class="btn-submit" onclick="showResults()" id="btn-show-results">ð æ¥çä¸å¤§å å­åæçµæ</button>
   </div>
 
   <!-- RESULTS -->
   <div class="results-section" id="results-section">
     <div class="print-header">
-      <h2>7大因子症狀問卷｜超全能整合門診</h2>
-      <p>功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系</p>
+      <h2>7å¤§å å­ççåå·ï½è¶å¨è½æ´åéè¨º</h2>
+      <p>åè½é«å­¸ è¶å¨è½æ´åéè¨º ï½ Dr. Klinghardt ä¸å¤§å å­é«ç³»</p>
       <div class="print-patient-info" id="print-patient-info"></div>
     </div>
 
-    <div class="results-title" id="results-title">📊 七大因子分析結果</div>
-    <div class="results-subtitle" id="results-subtitle">根據您勾選的症狀，以下是各因子的分佈比例：</div>
+    <div class="results-title" id="results-title">ð ä¸å¤§å å­åæçµæ</div>
+    <div class="results-subtitle" id="results-subtitle">æ ¹ææ¨å¾é¸çççï¼ä»¥ä¸æ¯åå å­çåä½æ¯ä¾ï¼</div>
 
     <div id="top-factor-badge" class="top-factor-badge"></div>
 
-    <!-- 圖一 -->
-    <div class="sub-chart-title" id="lbl-chart1">圖一：七大因子症狀分佈</div>
+    <!-- åä¸ -->
+    <div class="sub-chart-title" id="lbl-chart1">åä¸ï¼ä¸å¤§å å­ççåä½</div>
     <div class="chart-container">
       <canvas id="pieChart"></canvas>
     </div>
     <div class="chart-legend" id="chart-legend"></div>
 
-    <!-- 圖三 -->
+    <!-- åäº -->
     <div class="sub-chart-section" id="chart3-section">
-      <div class="sub-chart-title" id="lbl-chart3">圖三：生化失衡甲基化翹翹板</div>
+      <div class="sub-chart-title" id="lbl-chart3">åäºï¼çåå¤±è¡¡ç²åºåç¿¹ç¿¹æ¿</div>
       <div class="seesaw-wrap" id="results-seesaw-wrap">
         <div class="seesaw-labels">
           <div class="seesaw-label-left">
-            <div class="seesaw-heading under">低甲基化</div>
+            <div class="seesaw-heading under">ä½ç²åºå</div>
             <div class="seesaw-heading-en">Under-Methylation</div>
-            <div class="seesaw-rx under-rx">▶ SAMe · 甲硫胺酸 · 鈣鎂</div>
+            <div class="seesaw-rx under-rx">â¶ SAMe Â· ç²ç¡«èºé¸ Â· é£é</div>
           </div>
           <div class="seesaw-label-right">
-            <div class="seesaw-heading over">高甲基化</div>
+            <div class="seesaw-heading over">é«ç²åºå</div>
             <div class="seesaw-heading-en">Over-Methylation</div>
-            <div class="seesaw-rx over-rx">▶ 葉酸 · 菸鹼酸 · B12</div>
+            <div class="seesaw-rx over-rx">â¶ èé¸ Â· è¸é¹¼é¸ Â· B12</div>
           </div>
         </div>
         <svg class="seesaw-svg" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
@@ -571,52 +572,52 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
           <line x1="358" y1="45" x2="372" y2="52" stroke="#9b59b6" stroke-width="2.5"/>
           <line x1="358" y1="57" x2="348" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
           <line x1="358" y1="57" x2="368" y2="67" stroke="#9b59b6" stroke-width="2.5"/>
-          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CH₃</text>
+          <text x="210" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#555">CHâ</text>
         </svg>
-        <div class="seesaw-note" id="results-seesaw-note">—</div>
+        <div class="seesaw-note" id="results-seesaw-note">â</div>
         <div class="seesaw-meter">
           <div class="meter-bar"><div class="meter-fill" id="results-seesaw-fill" style="width:50%"></div></div>
           <div class="meter-labels">
-            <span style="color:#e07b00">低甲基化 <span id="results-cnt-f6a-pct">—</span></span>
-            <span style="color:#9b59b6">高甲基化 <span id="results-cnt-f6b-pct">—</span></span>
+            <span style="color:#e07b00">ä½ç²åºå <span id="results-cnt-f6a-pct">â</span></span>
+            <span style="color:#9b59b6">é«ç²åºå <span id="results-cnt-f6b-pct">â</span></span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="checked-list-section">
-      <div class="checked-list-title" id="lbl-checklist">✅ 您勾選的症狀清單</div>
+      <div class="checked-list-title" id="lbl-checklist">â æ¨å¾é¸çççæ¸å®</div>
       <div id="checked-list-output"></div>
     </div>
 
     <div class="modality-section">
-      <div class="modality-title">💡 <span id="lbl-modality-title">推薦療法選項</span></div>
+      <div class="modality-title">ð¡ <span id="lbl-modality-title">æ¨è¦çæ³é¸é </span></div>
       <a id="modality-link" href="https://myoneme-wang.github.io/aromatherapy-oil-finder/" target="_blank" rel="noopener" class="modality-link-card">
-        <span class="modality-link-icon">🌿</span>
+        <span class="modality-link-icon">ð¿</span>
         <span class="modality-link-text">
-          <div class="modality-link-title" id="modality-link-title">自然療法症狀搜尋</div>
-          <div class="modality-link-subtitle" id="modality-link-subtitle">精油 · 草藥 · 營養素 · 順勢製劑 · 療癒肯定句 → 點擊開啟搜尋工具</div>
+          <div class="modality-link-title" id="modality-link-title">èªç¶çæ³ççæå°</div>
+          <div class="modality-link-subtitle" id="modality-link-subtitle">ç²¾æ²¹ Â· èè¥ Â· çé¤ç´  Â· é å¢è£½å Â· ççè¯å®å¥ â é»æéåæå°å·¥å·</div>
         </span>
-        <span class="modality-link-arrow">→</span>
+        <span class="modality-link-arrow">â</span>
       </a>
     </div>
 
     <div class="action-bar">
-      <button class="btn btn-primary" onclick="window.print()">🖨️ <span id="lbl-print">列印清單</span></button>
-      <button class="btn btn-green" onclick="sendEmail()">📧 <span id="lbl-email-btn">寄送至 Email</span></button>
-      <button class="btn btn-outline" onclick="scrollToTop()">↑ <span id="lbl-back">重新填寫</span></button>
+      <button class="btn btn-primary" onclick="window.print()">ð¨ï¸ <span id="lbl-print">åå°æ¸å®</span></button>
+      <button class="btn btn-green" onclick="sendEmail()">ð§ <span id="lbl-email-btn">å¯éè³ Email</span></button>
+      <button class="btn btn-outline" onclick="scrollToTop()">â <span id="lbl-back">éæ°å¡«å¯«</span></button>
     </div>
     <div class="email-row">
-      <input type="email" id="send-email-addr" placeholder="輸入 Email 地址 / Enter email address">
-      <button class="btn btn-green" onclick="sendEmail()">送出</button>
+      <input type="email" id="send-email-addr" placeholder="è¼¸å¥ Email å°å / Enter email address">
+      <button class="btn btn-green" onclick="sendEmail()">éåº</button>
     </div>
   </div>
 
 </div>
 
 <footer>
-  <p>功能醫學 超全能整合門診 ｜ 王偉全醫師 ｜ Tel: 02-23222575 ｜ LINE@: @138pepta</p>
-  <p style="margin-top:4px">本問卷僅供參考，聲明：本問卷沒有得分，僅供參考。</p>
+  <p>åè½é«å­¸ è¶å¨è½æ´åéè¨º ï½ çåå¨é«å¸« ï½ Tel: 02-23222575 ï½ LINE@: @138pepta</p>
+  <p style="margin-top:4px">æ¬åå·åä¾åèï¼è²æï¼æ¬åå·æ²æå¾åï¼åä¾åèã</p>
 </footer>
 
 <script>
@@ -625,45 +626,45 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 // ============================================================
 const LANG = {
   zh: {
-    title: '7大因子症狀問卷｜超全能整合門診',
-    subtitle: '功能醫學 超全能整合門診 ｜ Dr. Klinghardt 七大因子體系',
-    disclaimer: '⚕️ 本問卷僅供參考，不具診斷效力。請於就診時交由醫師解讀。以下症狀若不知道或不確定，則視為沒有。',
-    patientInfo: '基本資料',
-    resultsTitle: '📊 七大因子分析結果',
-    resultsSubtitle: '根據您勾選的症狀，以下是各因子的分佈比例：',
-    checklist: '✅ 您勾選的症狀清單',
-    print: '列印清單',
-    emailBtn: '寄送至 Email',
-    back: '重新填寫',
-    submitBtn: '📊 查看七大因子分析結果',
-    topFactor: '最高比例因子',
-    noSymptoms: '尚未勾選任何症狀',
-    items: '項',
-    pct: '佔比',
-    modalityTitle: '💡 推薦療法選項',
-    modalityLinkTitle: '自然療法症狀搜尋',
-    modalityLinkSub: '精油 · 草藥 · 營養素 · 順勢製劑 · 療癒肯定句 → 點擊開啟搜尋工具',
-    factorNames: ['能量紊亂','地場壓力','食物不耐','情緒靈性','結構異常','生化失衡','毒素'],
+    title: '7å¤§å å­ççåå·ï½è¶å¨è½æ´åéè¨º',
+    subtitle: 'åè½é«å­¸ è¶å¨è½æ´åéè¨º ï½ Dr. Klinghardt ä¸å¤§å å­é«ç³»',
+    disclaimer: 'âï¸ æ¬åå·åä¾åèï¼ä¸å·è¨ºæ·æåãè«æ¼å°±è¨ºæäº¤ç±é«å¸«è§£è®ãä»¥ä¸ççè¥ä¸ç¥éæä¸ç¢ºå®ï¼åè¦çºæ²æã',
+    patientInfo: 'åºæ¬è³æ',
+    resultsTitle: 'ð ä¸å¤§å å­åæçµæ',
+    resultsSubtitle: 'æ ¹ææ¨å¾é¸çççï¼ä»¥ä¸æ¯åå å­çåä½æ¯ä¾ï¼',
+    checklist: 'â æ¨å¾é¸çççæ¸å®',
+    print: 'åå°æ¸å®',
+    emailBtn: 'å¯éè³ Email',
+    back: 'éæ°å¡«å¯«',
+    submitBtn: 'ð æ¥çä¸å¤§å å­åæçµæ',
+    topFactor: 'æé«æ¯ä¾å å­',
+    noSymptoms: 'å°æªå¾é¸ä»»ä½çç',
+    items: 'é ',
+    pct: 'ä½æ¯',
+    modalityTitle: 'ð¡ æ¨è¦çæ³é¸é ',
+    modalityLinkTitle: 'èªç¶çæ³ççæå°',
+    modalityLinkSub: 'ç²¾æ²¹ Â· èè¥ Â· çé¤ç´  Â· é å¢è£½å Â· ççè¯å®å¥ â é»æéåæå°å·¥å·',
+    factorNames: ['è½éç´äº','å°å ´å£å','é£ç©ä¸è','æç·éæ§','çµæ§ç°å¸¸','çåå¤±è¡¡','æ¯ç´ '],
   },
   en: {
     title: '7-Factor Symptom Questionnaire | Ultra Clinic',
     subtitle: 'Functional Medicine Ultra Integrative Clinic | Dr. Klinghardt 7-Factor System',
-    disclaimer: '⚕️ This questionnaire is for reference only and does not constitute a diagnosis. Please consult your physician. If you are unsure about a symptom, leave it unchecked.',
+    disclaimer: 'âï¸ This questionnaire is for reference only and does not constitute a diagnosis. Please consult your physician. If you are unsure about a symptom, leave it unchecked.',
     patientInfo: 'Patient Information',
-    resultsTitle: '📊 7-Factor Analysis Results',
+    resultsTitle: 'ð 7-Factor Analysis Results',
     resultsSubtitle: 'Based on your checked symptoms, here is the distribution across the 7 factors:',
-    checklist: '✅ Your Checked Symptoms',
+    checklist: 'â Your Checked Symptoms',
     print: 'Print List',
     emailBtn: 'Send to Email',
     back: 'Reset Form',
-    submitBtn: '📊 View 7-Factor Analysis',
+    submitBtn: 'ð View 7-Factor Analysis',
     topFactor: 'Highest Factor',
     noSymptoms: 'No symptoms selected yet',
     items: 'items',
     pct: 'proportion',
-    modalityTitle: '💡 Recommended Modalities',
+    modalityTitle: 'ð¡ Recommended Modalities',
     modalityLinkTitle: 'Natural Therapy Symptom Finder',
-    modalityLinkSub: 'Essential Oils · Herbs · Nutrients · Homeopathics · Affirmations → Click to open',
+    modalityLinkSub: 'Essential Oils Â· Herbs Â· Nutrients Â· Homeopathics Â· Affirmations â Click to open',
     factorNames: ['Energy Disturbance','Geopathic Stress','Food Intolerance','Emotional/Spiritual','Structural Abnormality','Biochemical Imbalance','Toxins'],
   }
 };
@@ -675,309 +676,309 @@ let currentLang = 'zh';
 // ============================================================
 const symptoms = {
   f1: [
-    {zh:'曾手術',en:'Had surgery'},
-    {zh:'有外傷疤痕',en:'Trauma scars'},
-    {zh:'肌肉無力',en:'Muscle weakness'},
-    {zh:'容易肌肉痠痛',en:'Easily sore muscles'},
-    {zh:'核心無力',en:'Core weakness'},
-    {zh:'容易留疤',en:'Prone to scarring'},
-    {zh:'有蟹足腫',en:'Keloid scars'},
-    {zh:'疤痕癢',en:'Itchy scars'},
-    {zh:'手腳冰冷',en:'Cold hands/feet'},
-    {zh:'天氣敏感',en:'Weather sensitive'},
-    {zh:'容易嗆到',en:'Easily chokes'},
-    {zh:'健忘或記憶力衰退',en:'Forgetfulness / memory decline'},
-    {zh:'注意力不集中',en:'Poor concentration'},
-    {zh:'曾根管治療',en:'Root canal treatment history'},
-    {zh:'心臟疾病',en:'Heart disease'},
-    {zh:'睡眠障礙',en:'Sleep disorder'},
-    {zh:'容易喘',en:'Easily short of breath'},
-    {zh:'腦霧',en:'Brain fog'},
-    {zh:'味覺嗅覺不如從前',en:'Reduced taste/smell'},
-    {zh:'肥胖',en:'Obesity'},
-    {zh:'服用降血脂藥物',en:'Taking cholesterol medication'},
-    {zh:'無故疲倦',en:'Unexplained fatigue'},
-    {zh:'覺得變老',en:'Feeling older/aging faster'},
-    {zh:'上班無精打采',en:'Listless at work'},
-    {zh:'坐到站時容易低血壓或暈眩',en:'Dizziness/low BP when standing'},
-    {zh:'嗜鹹',en:'Craving salty food'},
+    {zh:'æ¾æè¡',en:'Had surgery'},
+    {zh:'æå¤å·ç¤ç',en:'Trauma scars'},
+    {zh:'èèç¡å',en:'Muscle weakness'},
+    {zh:'å®¹æèèç ç',en:'Easily sore muscles'},
+    {zh:'æ ¸å¿ç¡å',en:'Core weakness'},
+    {zh:'å®¹æçç¤',en:'Prone to scarring'},
+    {zh:'æè¹è¶³è«',en:'Keloid scars'},
+    {zh:'ç¤çç¢',en:'Itchy scars'},
+    {zh:'æè³å°å·',en:'Cold hands/feet'},
+    {zh:'å¤©æ°£ææ',en:'Weather sensitive'},
+    {zh:'å®¹æåå°',en:'Easily chokes'},
+    {zh:'å¥å¿æè¨æ¶åè¡°é',en:'Forgetfulness / memory decline'},
+    {zh:'æ³¨æåä¸éä¸­',en:'Poor concentration'},
+    {zh:'æ¾æ ¹ç®¡æ²»ç',en:'Root canal treatment history'},
+    {zh:'å¿èç¾ç',en:'Heart disease'},
+    {zh:'ç¡ç éç¤',en:'Sleep disorder'},
+    {zh:'å®¹æå',en:'Easily short of breath'},
+    {zh:'è¦é§',en:'Brain fog'},
+    {zh:'å³è¦ºåè¦ºä¸å¦å¾å',en:'Reduced taste/smell'},
+    {zh:'è¥è',en:'Obesity'},
+    {zh:'æç¨éè¡èè¥ç©',en:'Taking cholesterol medication'},
+    {zh:'ç¡æç²å¦',en:'Unexplained fatigue'},
+    {zh:'è¦ºå¾è®è',en:'Feeling older/aging faster'},
+    {zh:'ä¸ç­ç¡ç²¾æé',en:'Listless at work'},
+    {zh:'åå°ç«æå®¹æä½è¡å£ææç©',en:'Dizziness/low BP when standing'},
+    {zh:'åé¹¹',en:'Craving salty food'},
   ],
   f2: [
-    {zh:'總是睡不夠',en:'Never enough sleep'},
-    {zh:'睡很久卻醒來很累',en:'Long sleep but wake up tired'},
-    {zh:'失眠',en:'Insomnia'},
-    {zh:'多夢或惡夢',en:'Many dreams or nightmares'},
-    {zh:'夜尿',en:'Nocturia (night urination)'},
-    {zh:'床上無法入睡',en:"Can't fall asleep in bed"},
-    {zh:'搬家後症狀惡化',en:'Symptoms worsened after moving'},
-    {zh:'換地方（外出、旅遊）症狀改善',en:'Symptoms improve away from home'},
-    {zh:'常靜電觸電',en:'Frequent static electricity shocks'},
-    {zh:'傷口癒合差',en:'Poor wound healing'},
-    {zh:'運動後酸痛很久（遲發性肌肉痛）',en:'Prolonged post-exercise soreness (DOMS)'},
-    {zh:'血液循環差',en:'Poor circulation'},
-    {zh:'ESR高，找不到原因',en:'Elevated ESR without known cause'},
-    {zh:'自律神經失調',en:'Autonomic nervous system disorder'},
-    {zh:'荷爾蒙失調',en:'Hormone imbalance'},
-    {zh:'焦燥易怒',en:'Anxious and irritable'},
-    {zh:'過敏',en:'Allergies'},
-    {zh:'自體免疫疾病',en:'Autoimmune disease'},
-    {zh:'反覆流產',en:'Recurrent miscarriage'},
-    {zh:'不孕',en:'Infertility'},
-    {zh:'寶寶有先天性疾病',en:'Baby with congenital disease'},
-    {zh:'慢性疾病難以控制或治療反應不佳',en:'Chronic disease hard to control / poor treatment response'},
-    {zh:'常搭飛機或曾旅居國外',en:'Frequent flying / living abroad'},
-    {zh:'手機訊號、電磁波敏感',en:'Sensitive to phone signals / EMF'},
+    {zh:'ç¸½æ¯ç¡ä¸å¤ ',en:'Never enough sleep'},
+    {zh:'ç¡å¾ä¹å»éä¾å¾ç´¯',en:'Long sleep but wake up tired'},
+    {zh:'å¤±ç ',en:'Insomnia'},
+    {zh:'å¤å¤¢ææ¡å¤¢',en:'Many dreams or nightmares'},
+    {zh:'å¤å°¿',en:'Nocturia (night urination)'},
+    {zh:'åºä¸ç¡æ³å¥ç¡',en:"Can't fall asleep in bed"},
+    {zh:'æ¬å®¶å¾ççæ¡å',en:'Symptoms worsened after moving'},
+    {zh:'æå°æ¹ï¼å¤åºãæéï¼ççæ¹å',en:'Symptoms improve away from home'},
+    {zh:'å¸¸éé»è§¸é»',en:'Frequent static electricity shocks'},
+    {zh:'å·å£çåå·®',en:'Poor wound healing'},
+    {zh:'éåå¾é¸çå¾ä¹ï¼é²ç¼æ§èèçï¼',en:'Prolonged post-exercise soreness (DOMS)'},
+    {zh:'è¡æ¶²å¾ªç°å·®',en:'Poor circulation'},
+    {zh:'ESRé«ï¼æ¾ä¸å°åå ',en:'Elevated ESR without known cause'},
+    {zh:'èªå¾ç¥ç¶å¤±èª¿',en:'Autonomic nervous system disorder'},
+    {zh:'è·ç¾èå¤±èª¿',en:'Hormone imbalance'},
+    {zh:'ç¦ç¥ææ',en:'Anxious and irritable'},
+    {zh:'éæ',en:'Allergies'},
+    {zh:'èªé«åç«ç¾ç',en:'Autoimmune disease'},
+    {zh:'åè¦æµç¢',en:'Recurrent miscarriage'},
+    {zh:'ä¸å­',en:'Infertility'},
+    {zh:'å¯¶å¯¶æåå¤©æ§ç¾ç',en:'Baby with congenital disease'},
+    {zh:'æ¢æ§ç¾çé£ä»¥æ§å¶ææ²»çåæä¸ä½³',en:'Chronic disease hard to control / poor treatment response'},
+    {zh:'å¸¸æ­é£æ©ææ¾æå±åå¤',en:'Frequent flying / living abroad'},
+    {zh:'ææ©è¨èãé»ç£æ³¢ææ',en:'Sensitive to phone signals / EMF'},
   ],
   f3a: [
-    {zh:'飯後易脹氣或打嗝',en:'Bloating/belching after meals'},
-    {zh:'糞便中有食物殘渣',en:'Undigested food in stool'},
-    {zh:'指甲易裂',en:'Brittle nails'},
-    {zh:'吃藥容易不適',en:'Medication sensitivity'},
-    {zh:'胃食道逆流',en:'GERD / acid reflux'},
-    {zh:'打嗝或放屁有腐臭味',en:'Foul-smelling burps/gas'},
-    {zh:'玫瑰痤瘡（酒槽鼻）',en:'Rosacea'},
-    {zh:'吃高纖食物反而便祕更嚴重',en:'High-fiber foods worsen constipation'},
-    {zh:'慢性缺鐵，找不出原因',en:'Chronic iron deficiency, no cause found'},
-    {zh:'低碳或生酮飲食時自覺狀況變好',en:'Feel better on low-carb/keto diet'},
-    {zh:'吃到壞油或油炸食物身體有反應',en:'Sensitive to bad oils / fried foods'},
+    {zh:'é£¯å¾æè¹æ°£ææå',en:'Bloating/belching after meals'},
+    {zh:'ç³ä¾¿ä¸­æé£ç©æ®æ¸£',en:'Undigested food in stool'},
+    {zh:'æç²æè£',en:'Brittle nails'},
+    {zh:'åè¥å®¹æä¸é©',en:'Medication sensitivity'},
+    {zh:'èé£ééæµ',en:'GERD / acid reflux'},
+    {zh:'æåææ¾å±æèè­å³',en:'Foul-smelling burps/gas'},
+    {zh:'ç«ç°ç¤ç¡ï¼éæ§½é¼»ï¼',en:'Rosacea'},
+    {zh:'åé«çºé£ç©åèä¾¿ç¥æ´å´é',en:'High-fiber foods worsen constipation'},
+    {zh:'æ¢æ§ç¼ºéµï¼æ¾ä¸åºåå ',en:'Chronic iron deficiency, no cause found'},
+    {zh:'ä½ç¢³æçé®é£²é£æèªè¦ºçæ³è®å¥½',en:'Feel better on low-carb/keto diet'},
+    {zh:'åå°å£æ²¹ææ²¹ç¸é£ç©èº«é«æåæ',en:'Sensitive to bad oils / fried foods'},
   ],
   f3b: [
-    {zh:'癢疹',en:'Itchy rash'},
-    {zh:'紅疹',en:'Red rash'},
-    {zh:'尋麻疹',en:'Hives (urticaria)'},
-    {zh:'過敏性鼻炎',en:'Allergic rhinitis'},
-    {zh:'氣喘',en:'Asthma'},
-    {zh:'偏頭痛',en:'Migraines'},
-    {zh:'失眠',en:'Insomnia'},
-    {zh:'腦霧',en:'Brain fog'},
-    {zh:'自體免疫疾病',en:'Autoimmune disease'},
-    {zh:'腸躁症',en:'IBS (Irritable Bowel Syndrome)'},
-    {zh:'關節炎',en:'Arthritis'},
-    {zh:'飯後肌肉骨骼疼痛',en:'Musculoskeletal pain after meals'},
-    {zh:'糖尿病',en:'Diabetes'},
-    {zh:'高血壓',en:'Hypertension'},
-    {zh:'腎結石',en:'Kidney stones'},
-    {zh:'自閉症',en:'Autism spectrum'},
-    {zh:'甲狀腺異常',en:'Thyroid disorder'},
-    {zh:'慢性貧血',en:'Chronic anemia'},
-    {zh:'便秘',en:'Constipation'},
-    {zh:'腹瀉',en:'Diarrhea'},
-    {zh:'消化不良',en:'Indigestion'},
-    {zh:'痔瘡',en:'Hemorrhoids'},
-    {zh:'有養寵物',en:'Keeping pets'},
-    {zh:'家或公司有花花草草',en:'Plants at home/work'},
+    {zh:'ç¢ç¹',en:'Itchy rash'},
+    {zh:'ç´ç¹',en:'Red rash'},
+    {zh:'å°éº»ç¹',en:'Hives (urticaria)'},
+    {zh:'éææ§é¼»ç',en:'Allergic rhinitis'},
+    {zh:'æ°£å',en:'Asthma'},
+    {zh:'åé ­ç',en:'Migraines'},
+    {zh:'å¤±ç ',en:'Insomnia'},
+    {zh:'è¦é§',en:'Brain fog'},
+    {zh:'èªé«åç«ç¾ç',en:'Autoimmune disease'},
+    {zh:'è¸èºç',en:'IBS (Irritable Bowel Syndrome)'},
+    {zh:'éç¯ç',en:'Arthritis'},
+    {zh:'é£¯å¾èèéª¨éª¼ç¼ç',en:'Musculoskeletal pain after meals'},
+    {zh:'ç³å°¿ç',en:'Diabetes'},
+    {zh:'é«è¡å£',en:'Hypertension'},
+    {zh:'èçµç³',en:'Kidney stones'},
+    {zh:'èªéç',en:'Autism spectrum'},
+    {zh:'ç²çèºç°å¸¸',en:'Thyroid disorder'},
+    {zh:'æ¢æ§è²§è¡',en:'Chronic anemia'},
+    {zh:'ä¾¿ç§',en:'Constipation'},
+    {zh:'è¹ç',en:'Diarrhea'},
+    {zh:'æ¶åä¸è¯',en:'Indigestion'},
+    {zh:'çç¡',en:'Hemorrhoids'},
+    {zh:'æé¤å¯µç©',en:'Keeping pets'},
+    {zh:'å®¶æå¬å¸æè±è±èè',en:'Plants at home/work'},
   ],
   f4a: [
-    {zh:'傾向晚吃或不吃早餐',en:'Skip breakfast or eat late'},
-    {zh:'嗜吃辣',en:'Crave spicy food'},
-    {zh:'嗜吃鹹',en:'Crave salty food'},
-    {zh:'遺忘夢境',en:'Forget dreams upon waking'},
-    {zh:'無法曬黑',en:"Can't get a tan"},
-    {zh:'傷口癒合不良',en:'Poor wound healing'},
-    {zh:'肌肉發育不良',en:'Poor muscle development'},
-    {zh:'脾臟部位疼痛',en:'Pain in spleen area'},
-    {zh:'少年白（白髮）',en:'Premature gray hair'},
-    {zh:'家族均皮膚白皙',en:'Family has very fair skin'},
+    {zh:'å¾åæåæä¸åæ©é¤',en:'Skip breakfast or eat late'},
+    {zh:'ååè¾£',en:'Crave spicy food'},
+    {zh:'ååé¹¹',en:'Crave salty food'},
+    {zh:'éºå¿å¤¢å¢',en:'Forget dreams upon waking'},
+    {zh:'ç¡æ³æ¬é»',en:"Can't get a tan"},
+    {zh:'å·å£çåä¸è¯',en:'Poor wound healing'},
+    {zh:'èèç¼è²ä¸è¯',en:'Poor muscle development'},
+    {zh:'è¾èé¨ä½ç¼ç',en:'Pain in spleen area'},
+    {zh:'å°å¹´ç½ï¼ç½é«®ï¼',en:'Premature gray hair'},
+    {zh:'å®¶æåç®èç½ç',en:'Family has very fair skin'},
   ],
   f4b: [
-    {zh:'焦躁',en:'Anxiety / agitation'},
-    {zh:'經前症候群',en:'PMS (premenstrual syndrome)'},
-    {zh:'熱愛工作（工作狂）',en:'Workaholic'},
-    {zh:'熱愛旅行',en:'Love traveling'},
-    {zh:'咖啡因敏感',en:'Caffeine sensitive'},
-    {zh:'恐慌症',en:'Panic disorder'},
-    {zh:'纖維肌痛症',en:'Fibromyalgia'},
-    {zh:'不愛看恐怖片/新聞',en:'Avoid horror films/news'},
-    {zh:'易受他人情緒影響',en:'Easily influenced by others'},
-    {zh:'過度同理（共感人體質）',en:'Over-empathy (empath)'},
+    {zh:'ç¦èº',en:'Anxiety / agitation'},
+    {zh:'ç¶åçåç¾¤',en:'PMS (premenstrual syndrome)'},
+    {zh:'ç±æå·¥ä½ï¼å·¥ä½çï¼',en:'Workaholic'},
+    {zh:'ç±ææè¡',en:'Love traveling'},
+    {zh:'åå¡å ææ',en:'Caffeine sensitive'},
+    {zh:'ææç',en:'Panic disorder'},
+    {zh:'çºç¶­èçç',en:'Fibromyalgia'},
+    {zh:'ä¸æçææç/æ°è',en:'Avoid horror films/news'},
+    {zh:'æåä»äººæç·å½±é¿',en:'Easily influenced by others'},
+    {zh:'éåº¦åçï¼å±æäººé«è³ªï¼',en:'Over-empathy (empath)'},
   ],
   f4c: [
-    {zh:'健忘',en:'Forgetfulness'},
-    {zh:'缺乏自信',en:'Lack of confidence'},
-    {zh:'難以專注',en:'Difficulty focusing'},
-    {zh:'嗜喝咖啡',en:'Coffee dependent'},
-    {zh:'興趣廣泛',en:'Wide range of interests'},
-    {zh:'嗜睡、無精打采',en:'Drowsy / lethargic'},
-    {zh:'過動／無法專注／學習障礙',en:'ADHD / learning disability'},
-    {zh:'上癮症（電玩、購物、賭博等）',en:'Addiction (gaming, shopping, gambling)'},
-    {zh:'生酮飲食讓我覺得好極了',en:'Feel great on keto diet'},
-    {zh:'憂鬱傾向',en:'Depression tendency'},
+    {zh:'å¥å¿',en:'Forgetfulness'},
+    {zh:'ç¼ºä¹èªä¿¡',en:'Lack of confidence'},
+    {zh:'é£ä»¥å°æ³¨',en:'Difficulty focusing'},
+    {zh:'åååå¡',en:'Coffee dependent'},
+    {zh:'èè¶£å»£æ³',en:'Wide range of interests'},
+    {zh:'åç¡ãç¡ç²¾æé',en:'Drowsy / lethargic'},
+    {zh:'éåï¼ç¡æ³å°æ³¨ï¼å­¸ç¿éç¤',en:'ADHD / learning disability'},
+    {zh:'ä¸ç®çï¼é»ç©ãè³¼ç©ãè³­åç­ï¼',en:'Addiction (gaming, shopping, gambling)'},
+    {zh:'çé®é£²é£è®æè¦ºå¾å¥½æ¥µäº',en:'Feel great on keto diet'},
+    {zh:'æé¬±å¾å',en:'Depression tendency'},
   ],
   f4d: [
-    {zh:'有童年創傷',en:'Childhood trauma history'},
-    {zh:'曾被霸凌',en:'Bullying history'},
-    {zh:'有家族創傷',en:'Family trauma history'},
-    {zh:'自己是剖腹產兒',en:'Born via C-section'},
-    {zh:'曾經歷身心受創事件',en:'Experienced traumatic events (physical/emotional)'},
+    {zh:'æç«¥å¹´åµå·',en:'Childhood trauma history'},
+    {zh:'æ¾è¢«é¸å',en:'Bullying history'},
+    {zh:'æå®¶æåµå·',en:'Family trauma history'},
+    {zh:'èªå·±æ¯åè¹ç¢å',en:'Born via C-section'},
+    {zh:'æ¾ç¶æ­·èº«å¿ååµäºä»¶',en:'Experienced traumatic events (physical/emotional)'},
   ],
   f5a: [
-    {zh:'變矮',en:'Height loss'},
-    {zh:'變胖',en:'Weight gain'},
-    {zh:'柔軟度差',en:'Poor flexibility'},
-    {zh:'無運動習慣',en:'No regular exercise'},
-    {zh:'長短腳',en:'Leg length discrepancy'},
-    {zh:'高足弓',en:'High arches'},
-    {zh:'扁平足',en:'Flat feet'},
-    {zh:'腰痛',en:'Lower back pain'},
-    {zh:'肩頸痠痛',en:'Shoulder / neck pain'},
-    {zh:'低頭族（長時間低頭看手機）',en:'Phone neck posture (forward head)'},
-    {zh:'久坐族',en:'Sedentary lifestyle'},
-    {zh:'水喝得少',en:'Low water intake'},
-    {zh:'休息後症狀減輕',en:'Symptoms improve with rest'},
+    {zh:'è®ç®',en:'Height loss'},
+    {zh:'è®è',en:'Weight gain'},
+    {zh:'æè»åº¦å·®',en:'Poor flexibility'},
+    {zh:'ç¡éåç¿æ£',en:'No regular exercise'},
+    {zh:'é·ç­è³',en:'Leg length discrepancy'},
+    {zh:'é«è¶³å¼',en:'High arches'},
+    {zh:'æå¹³è¶³',en:'Flat feet'},
+    {zh:'è°ç',en:'Lower back pain'},
+    {zh:'è©é ¸ç ç',en:'Shoulder / neck pain'},
+    {zh:'ä½é ­æï¼é·æéä½é ­çææ©ï¼',en:'Phone neck posture (forward head)'},
+    {zh:'ä¹åæ',en:'Sedentary lifestyle'},
+    {zh:'æ°´åå¾å°',en:'Low water intake'},
+    {zh:'ä¼æ¯å¾ççæ¸è¼',en:'Symptoms improve with rest'},
   ],
   f5b: [
-    {zh:'某些特定姿勢或動作會引發疼痛',en:'Certain postures/movements trigger pain'},
-    {zh:'關節角度受限',en:'Limited joint range of motion'},
-    {zh:'磨牙',en:'Bruxism (teeth grinding)'},
-    {zh:'顳顎關節痛',en:'TMJ pain'},
-    {zh:'假牙',en:'Dental prosthetics / dentures'},
-    {zh:'根管治療',en:'Root canal treatment'},
-    {zh:'扁桃腺手術',en:'Tonsillectomy'},
-    {zh:'任何手術史',en:'Any surgery history'},
-    {zh:'任何創傷（車禍、跌倒）',en:'Any trauma (accident, fall)'},
-    {zh:'曾有骨折',en:'Bone fracture history'},
+    {zh:'æäºç¹å®å§¿å¢æåä½æå¼ç¼ç¼ç',en:'Certain postures/movements trigger pain'},
+    {zh:'éç¯è§åº¦åé',en:'Limited joint range of motion'},
+    {zh:'ç£¨ç',en:'Bruxism (teeth grinding)'},
+    {zh:'é¡³é¡éç¯ç',en:'TMJ pain'},
+    {zh:'åç',en:'Dental prosthetics / dentures'},
+    {zh:'æ ¹ç®¡æ²»ç',en:'Root canal treatment'},
+    {zh:'ææ¡èºæè¡',en:'Tonsillectomy'},
+    {zh:'ä»»ä½æè¡å²',en:'Any surgery history'},
+    {zh:'ä»»ä½åµå·ï¼è»ç¦ãè·åï¼',en:'Any trauma (accident, fall)'},
+    {zh:'æ¾æéª¨æ',en:'Bone fracture history'},
   ],
   f5m: [
-    {zh:'勃起障礙、晨勃減少',en:'Erectile dysfunction / reduced morning erections'},
-    {zh:'早洩',en:'Premature ejaculation'},
-    {zh:'曾有攝護腺或睪丸疾病',en:'Prostate or testicular disease history'},
-    {zh:'精蟲稀少',en:'Low sperm count'},
-    {zh:'不孕症',en:'Infertility'},
-    {zh:'曾有性病',en:'STD history'},
-    {zh:'曾補充過雄性荷爾蒙',en:'Testosterone supplementation history'},
-    {zh:'曾接受類固醇治療',en:'Steroid treatment history'},
-    {zh:'曾過度疲勞（Burned out）',en:'History of burnout / extreme fatigue'},
+    {zh:'åèµ·éç¤ãæ¨åæ¸å°',en:'Erectile dysfunction / reduced morning erections'},
+    {zh:'æ©æ´©',en:'Premature ejaculation'},
+    {zh:'æ¾ææè­·èºæçªä¸¸ç¾ç',en:'Prostate or testicular disease history'},
+    {zh:'ç²¾è²ç¨å°',en:'Low sperm count'},
+    {zh:'ä¸å­ç',en:'Infertility'},
+    {zh:'æ¾ææ§ç',en:'STD history'},
+    {zh:'æ¾è£åééæ§è·ç¾è',en:'Testosterone supplementation history'},
+    {zh:'æ¾æ¥åé¡åºéæ²»ç',en:'Steroid treatment history'},
+    {zh:'æ¾éåº¦ç²åï¼Burned outï¼',en:'History of burnout / extreme fatigue'},
   ],
   f5f: [
-    {zh:'曾有子宮或卵巢疾病',en:'Uterine or ovarian disease history'},
-    {zh:'口服荷爾蒙或曾接受荷爾蒙療法',en:'Oral hormones or hormone therapy history'},
-    {zh:'曾剖腹產',en:'C-section delivery history'},
-    {zh:'曾自然生產',en:'Vaginal delivery history'},
-    {zh:'曾小產或墮胎',en:'Miscarriage or abortion history'},
-    {zh:'不孕症',en:'Infertility'},
-    {zh:'曾有性病',en:'STD history'},
-    {zh:'曾接受類固醇治療',en:'Steroid treatment history'},
-    {zh:'曾過度疲勞（Burned out）',en:'History of burnout / extreme fatigue'},
-    {zh:'陰道萎縮',en:'Vaginal atrophy'},
-    {zh:'性交困難或疼痛',en:'Dyspareunia (painful intercourse)'},
-    {zh:'性慾低落',en:'Low libido'},
-    {zh:'尿失禁',en:'Urinary incontinence'},
-    {zh:'骨盆腔臟器脫垂',en:'Pelvic organ prolapse'},
+    {zh:'æ¾æå­å®®æåµå·¢ç¾ç',en:'Uterine or ovarian disease history'},
+    {zh:'å£æè·ç¾èææ¾æ¥åè·ç¾èçæ³',en:'Oral hormones or hormone therapy history'},
+    {zh:'æ¾åè¹ç¢',en:'C-section delivery history'},
+    {zh:'æ¾èªç¶çç¢',en:'Vaginal delivery history'},
+    {zh:'æ¾å°ç¢æå¢®è',en:'Miscarriage or abortion history'},
+    {zh:'ä¸å­ç',en:'Infertility'},
+    {zh:'æ¾ææ§ç',en:'STD history'},
+    {zh:'æ¾æ¥åé¡åºéæ²»ç',en:'Steroid treatment history'},
+    {zh:'æ¾éåº¦ç²åï¼Burned outï¼',en:'History of burnout / extreme fatigue'},
+    {zh:'é°éèç¸®',en:'Vaginal atrophy'},
+    {zh:'æ§äº¤å°é£æç¼ç',en:'Dyspareunia (painful intercourse)'},
+    {zh:'æ§æ¾ä½è½',en:'Low libido'},
+    {zh:'å°¿å¤±ç¦',en:'Urinary incontinence'},
+    {zh:'éª¨çèèå¨è«å',en:'Pelvic organ prolapse'},
   ],
   f6a: [
-    {zh:'強迫傾向',en:'OCD tendency'},
-    {zh:'完美主義',en:'Perfectionism'},
-    {zh:'個人或家人有高成就',en:'High achievers in family'},
-    {zh:'喜歡按表操課',en:'Likes structured schedules'},
-    {zh:'怕痛',en:'Pain sensitive'},
-    {zh:'好勝心強',en:'Highly competitive'},
-    {zh:'體型偏瘦',en:'Lean body type'},
-    {zh:'恐慌傾向',en:'Panic tendency'},
-    {zh:'意志堅強',en:'Strong willpower / determination'},
-    {zh:'毛髮稀疏',en:'Sparse hair'},
-    {zh:'不愛社交',en:'Antisocial tendency'},
-    {zh:'沈浸在過去（反芻思考）',en:'Dwelling on the past (rumination)'},
-    {zh:'分泌多（唾液、汗水）',en:'Excessive secretions (saliva, sweat)'},
-    {zh:'對BZD安眠藥反應不佳',en:'Poor response to BZD sleeping pills'},
-    {zh:'常做惡夢',en:'Frequent nightmares'},
-    {zh:'曾補充葉酸反應不佳',en:'Poor response to folate supplementation'},
+    {zh:'å¼·è¿«å¾å',en:'OCD tendency'},
+    {zh:'å®ç¾ä¸»ç¾©',en:'Perfectionism'},
+    {zh:'åäººæå®¶äººæé«æå°±',en:'High achievers in family'},
+    {zh:'åæ­¡æè¡¨æèª²',en:'Likes structured schedules'},
+    {zh:'æç',en:'Pain sensitive'},
+    {zh:'å¥½åå¿å¼·',en:'Highly competitive'},
+    {zh:'é«ååç¦',en:'Lean body type'},
+    {zh:'ææå¾å',en:'Panic tendency'},
+    {zh:'æå¿å å¼·',en:'Strong willpower / determination'},
+    {zh:'æ¯é«®ç¨ç',en:'Sparse hair'},
+    {zh:'ä¸æç¤¾äº¤',en:'Antisocial tendency'},
+    {zh:'æ²æµ¸å¨éå»ï¼åè»æèï¼',en:'Dwelling on the past (rumination)'},
+    {zh:'åæ³å¤ï¼å¾æ¶²ãæ±æ°´ï¼',en:'Excessive secretions (saliva, sweat)'},
+    {zh:'å°BZDå®ç è¥åæä¸ä½³',en:'Poor response to BZD sleeping pills'},
+    {zh:'å¸¸åæ¡å¤¢',en:'Frequent nightmares'},
+    {zh:'æ¾è£åèé¸åæä¸ä½³',en:'Poor response to folate supplementation'},
   ],
   f6b: [
-    {zh:'偏執傾向',en:'Paranoia tendency'},
-    {zh:'有藝術或音樂天份',en:'Artistic or musical talent'},
-    {zh:'頭頸疼痛',en:'Head / neck pain'},
-    {zh:'頭腦轉不停（喜歡沉思）',en:'Racing mind / overthinking'},
-    {zh:'對精神科藥物反應不佳',en:'Poor response to psychiatric medications'},
-    {zh:'耐痛',en:'High pain tolerance'},
-    {zh:'有胸毛（男性）',en:'Chest hair (males)'},
-    {zh:'性慾低下',en:'Low libido'},
-    {zh:'喜歡來回踱步',en:'Pacing back and forth'},
-    {zh:'沒動力',en:'Lack of motivation'},
-    {zh:'不寧腿',en:'Restless leg syndrome'},
-    {zh:'講話快',en:'Fast talker'},
-    {zh:'過重傾向',en:'Tendency to be overweight'},
-    {zh:'對SSRI類抗憂鬱劑反應不佳',en:'Poor response to SSRI antidepressants'},
+    {zh:'åå·å¾å',en:'Paranoia tendency'},
+    {zh:'æèè¡æé³æ¨å¤©ä»½',en:'Artistic or musical talent'},
+    {zh:'é ­é ¸ç¼ç',en:'Head / neck pain'},
+    {zh:'é ­è¦è½ä¸åï¼åæ­¡æ²æï¼',en:'Racing mind / overthinking'},
+    {zh:'å°ç²¾ç¥ç§è¥ç©åæä¸ä½³',en:'Poor response to psychiatric medications'},
+    {zh:'èç',en:'High pain tolerance'},
+    {zh:'æè¸æ¯ï¼ç·æ§ï¼',en:'Chest hair (males)'},
+    {zh:'æ§æ¾ä½ä¸',en:'Low libido'},
+    {zh:'åæ­¡ä¾åè¸±æ­¥',en:'Pacing back and forth'},
+    {zh:'æ²åå',en:'Lack of motivation'},
+    {zh:'ä¸å¯§è¿',en:'Restless leg syndrome'},
+    {zh:'è¬è©±å¿«',en:'Fast talker'},
+    {zh:'ééå¾å',en:'Tendency to be overweight'},
+    {zh:'å°SSRIé¡ææé¬±ååæä¸ä½³',en:'Poor response to SSRI antidepressants'},
   ],
   f7a: [
-    {zh:'抽菸',en:'Smoking'},
-    {zh:'喝酒',en:'Alcohol consumption'},
-    {zh:'曾有食物或藥物過敏',en:'Food or drug allergies'},
-    {zh:'味精敏感',en:'MSG sensitive'},
-    {zh:'曾有肝臟或腎臟疾病',en:'Liver / kidney disease history'},
-    {zh:'家中有人抽煙',en:'Smoker in household'},
-    {zh:'接觸化學物質或霾害',en:'Chemical / air pollution exposure'},
-    {zh:'住家或工作附近有化學廠',en:'Chemical plant near home/work'},
-    {zh:'有染髮習慣',en:'Regular hair dyeing'},
-    {zh:'有使用香水習慣',en:'Regular perfume / fragrance use'},
-    {zh:'自體免疫疾病',en:'Autoimmune disease'},
-    {zh:'愛吃蔬菜、水果',en:'Eats lots of vegetables / fruits (potential pesticide exposure)'},
-    {zh:'愛吃米飯、麵食',en:'Eats lots of rice / noodles (potential pesticide exposure)'},
+    {zh:'æ½è¸',en:'Smoking'},
+    {zh:'åé',en:'Alcohol consumption'},
+    {zh:'æ¾æé£ç©æè¥ç©éæ',en:'Food or drug allergies'},
+    {zh:'å³ç²¾ææ',en:'MSG sensitive'},
+    {zh:'æ¾æèèæèèç¾ç',en:'Liver / kidney disease history'},
+    {zh:'å®¶ä¸æäººæ½ç',en:'Smoker in household'},
+    {zh:'æ¥è§¸åå­¸ç©è³ªæé¾å®³',en:'Chemical / air pollution exposure'},
+    {zh:'ä½å®¶æå·¥ä½éè¿æåå­¸å» ',en:'Chemical plant near home/work'},
+    {zh:'ææé«®ç¿æ£',en:'Regular hair dyeing'},
+    {zh:'æä½¿ç¨é¦æ°´ç¿æ£',en:'Regular perfume / fragrance use'},
+    {zh:'èªé«åç«ç¾ç',en:'Autoimmune disease'},
+    {zh:'æåè¬èãæ°´æ',en:'Eats lots of vegetables / fruits (potential pesticide exposure)'},
+    {zh:'æåç±³é£¯ãéºµé£',en:'Eats lots of rice / noodles (potential pesticide exposure)'},
   ],
   f7b: [
-    {zh:'過動',en:'Hyperactivity'},
-    {zh:'焦慮',en:'Anxiety'},
-    {zh:'經常生氣',en:'Frequent anger'},
-    {zh:'皮膚不耐受廉價金屬（飾品過敏）',en:'Skin reacts to cheap metals / jewelry'},
-    {zh:'貝類敏感',en:'Shellfish sensitive'},
-    {zh:'關節痛',en:'Joint pain'},
-    {zh:'帕金森',en:"Parkinson's disease"},
-    {zh:'便秘',en:'Constipation'},
-    {zh:'少流汗',en:'Low sweating'},
-    {zh:'愛吃米飯',en:'Loves rice'},
-    {zh:'愛吃豆腐',en:'Loves tofu'},
-    {zh:'愛吃魚、壽司',en:'Loves fish / sushi'},
-    {zh:'電子產業、常接觸金屬',en:'Electronics industry / frequent metal contact'},
-    {zh:'牙齒有裝過汞齊（銀粉）',en:'Mercury amalgam dental fillings'},
-    {zh:'長期服用中藥',en:'Long-term Chinese herbal medicine use'},
-    {zh:'未使用濾水設備',en:'No water filtration device'},
-    {zh:'痛風',en:'Gout'},
+    {zh:'éå',en:'Hyperactivity'},
+    {zh:'ç¦æ®',en:'Anxiety'},
+    {zh:'ç¶å¸¸çæ°£',en:'Frequent anger'},
+    {zh:'ç®èä¸èåå»å¹éå±¬ï¼é£¾åéæï¼',en:'Skin reacts to cheap metals / jewelry'},
+    {zh:'è²é¡ææ',en:'Shellfish sensitive'},
+    {zh:'éç¯ç',en:'Joint pain'},
+    {zh:'å¸éæ£®',en:"Parkinson's disease"},
+    {zh:'ä¾¿ç§',en:'Constipation'},
+    {zh:'å°æµæ±',en:'Low sweating'},
+    {zh:'æåç±³é£¯',en:'Loves rice'},
+    {zh:'æåè±è',en:'Loves tofu'},
+    {zh:'æåé­ãå£½å¸',en:'Loves fish / sushi'},
+    {zh:'é»å­ç¢æ¥­ãå¸¸æ¥è§¸éå±¬',en:'Electronics industry / frequent metal contact'},
+    {zh:'çé½æè£éæ±é½ï¼éç²ï¼',en:'Mercury amalgam dental fillings'},
+    {zh:'é·ææç¨ä¸­è¥',en:'Long-term Chinese herbal medicine use'},
+    {zh:'æªä½¿ç¨æ¿¾æ°´è¨­å',en:'No water filtration device'},
+    {zh:'çé¢¨',en:'Gout'},
   ],
   f7c: [
-    {zh:'曾有嚴重腸胃道感染',en:'Severe GI infection history'},
-    {zh:'曾有泌尿道感染或發炎',en:'UTI / urinary tract inflammation history'},
-    {zh:'曾有呼吸道感染',en:'Respiratory tract infection history'},
-    {zh:'水痘',en:'Chicken pox history'},
-    {zh:'性病',en:'STD history'},
-    {zh:'鼻竇炎',en:'Sinusitis'},
-    {zh:'中耳炎',en:'Otitis media (ear infection)'},
-    {zh:'扁桃腺炎',en:'Tonsillitis'},
+    {zh:'æ¾æå´éè¸èéææ',en:'Severe GI infection history'},
+    {zh:'æ¾ææ³å°¿éæææç¼ç',en:'UTI / urinary tract inflammation history'},
+    {zh:'æ¾æå¼å¸éææ',en:'Respiratory tract infection history'},
+    {zh:'æ°´ç',en:'Chicken pox history'},
+    {zh:'æ§ç',en:'STD history'},
+    {zh:'é¼»ç«ç',en:'Sinusitis'},
+    {zh:'ä¸­è³ç',en:'Otitis media (ear infection)'},
+    {zh:'ææ¡èºç',en:'Tonsillitis'},
   ],
   f7d: [
-    {zh:'嗜甜',en:'Sugar cravings'},
-    {zh:'口舌有白絲（鵝口瘡）',en:'White coating on tongue (oral thrush)'},
-    {zh:'疲勞',en:'Chronic fatigue'},
-    {zh:'免疫低下',en:'Weak immunity'},
-    {zh:'注意力不集中',en:'Poor concentration'},
-    {zh:'記憶模糊',en:'Memory fog/blur'},
-    {zh:'慢性咳嗽',en:'Chronic cough'},
-    {zh:'鼻涕／鼻竇炎',en:'Runny nose / sinusitis'},
-    {zh:'曾有帶狀皰疹',en:'Shingles (herpes zoster) history'},
-    {zh:'結膜炎',en:'Conjunctivitis'},
-    {zh:'脊椎有震動或電擊感',en:'Spine vibration / electric sensation'},
-    {zh:'假性癲癇',en:'Pseudoseizures'},
-    {zh:'不典型帕金森／失智／多發性硬化症',en:"Atypical Parkinson's / dementia / multiple sclerosis"},
-    {zh:'對光敏感',en:'Light sensitive (photophobia)'},
-    {zh:'關節痛',en:'Joint pain'},
-    {zh:'口乾',en:'Dry mouth'},
-    {zh:'易暈或不穩',en:'Easily dizzy or unsteady'},
-    {zh:'常腹痛',en:'Frequent abdominal pain'},
-    {zh:'常頭痛',en:'Frequent headaches'},
-    {zh:'易怒',en:'Irritability'},
-    {zh:'平和期突然出現憂鬱症狀',en:'Sudden depression during remission periods'},
-    {zh:'無體力',en:'No energy / exhaustion'},
-    {zh:'口腔有金屬味',en:'Metallic taste in mouth'},
-    {zh:'呼吸困難',en:'Breathing difficulty'},
-    {zh:'常打疫苗（如每年流感疫苗）',en:'Frequent vaccinations (e.g. annual flu shots)'},
-    {zh:'家中易生黴菌（壁癌、食物易發黴）',en:'Mold-prone home (wall mold, food molds quickly)'},
+    {zh:'åç',en:'Sugar cravings'},
+    {zh:'å£èæç½çµ²ï¼éµå£ç¡ï¼',en:'White coating on tongue (oral thrush)'},
+    {zh:'ç²å',en:'Chronic fatigue'},
+    {zh:'åç«ä½ä¸',en:'Weak immunity'},
+    {zh:'æ³¨æåä¸éä¸­',en:'Poor concentration'},
+    {zh:'è¨æ¶æ¨¡ç³',en:'Memory fog/blur'},
+    {zh:'æ¢æ§å³å½',en:'Chronic cough'},
+    {zh:'é¼»æ¶ï¼é¼»ç«ç',en:'Runny nose / sinusitis'},
+    {zh:'æ¾æå¸¶çç°ç¹',en:'Shingles (herpes zoster) history'},
+    {zh:'çµèç',en:'Conjunctivitis'},
+    {zh:'èæ¤æéåæé»ææ',en:'Spine vibration / electric sensation'},
+    {zh:'åæ§ç²ç',en:'Pseudoseizures'},
+    {zh:'ä¸å¸åå¸éæ£®ï¼å¤±æºï¼å¤ç¼æ§ç¡¬åç',en:"Atypical Parkinson's / dementia / multiple sclerosis"},
+    {zh:'å°åææ',en:'Light sensitive (photophobia)'},
+    {zh:'éç¯ç',en:'Joint pain'},
+    {zh:'å£ä¹¾',en:'Dry mouth'},
+    {zh:'æææä¸ç©©',en:'Easily dizzy or unsteady'},
+    {zh:'å¸¸è¹ç',en:'Frequent abdominal pain'},
+    {zh:'å¸¸é ­ç',en:'Frequent headaches'},
+    {zh:'ææ',en:'Irritability'},
+    {zh:'å¹³åæçªç¶åºç¾æé¬±çç',en:'Sudden depression during remission periods'},
+    {zh:'ç¡é«å',en:'No energy / exhaustion'},
+    {zh:'å£èæéå±¬å³',en:'Metallic taste in mouth'},
+    {zh:'å¼å¸å°é£',en:'Breathing difficulty'},
+    {zh:'å¸¸æç«èï¼å¦æ¯å¹´æµæç«èï¼',en:'Frequent vaccinations (e.g. annual flu shots)'},
+    {zh:'å®¶ä¸­æçé»´èï¼å£çãé£ç©æç¼é»´ï¼',en:'Mold-prone home (wall mold, food molds quickly)'},
   ],
   f7e: [
-    {zh:'曾被蚊蟲蜱蛇或昆蟲/蜘蛛叮咬',en:'Insect / tick / spider / snake bites history'},
-    {zh:'愛吃生魚片',en:'Raw fish / sashimi lover'},
-    {zh:'曾出國腹瀉（旅遊者腹瀉）',en:"Traveler's diarrhea history"},
-    {zh:'總吃不飽',en:'Always hungry / insatiable appetite'},
-    {zh:'症狀週期性出現',en:'Cyclical/periodic symptom patterns'},
-    {zh:'缺血性貧血',en:'Iron deficiency anemia'},
-    {zh:'常從事戶外活動',en:'Frequent outdoor activities'},
+    {zh:'æ¾è¢«èè²è±èææè²/èèå®å¬',en:'Insect / tick / spider / snake bites history'},
+    {zh:'æåçé­ç',en:'Raw fish / sashimi lover'},
+    {zh:'æ¾åºåè¹çï¼æéèè¹çï¼',en:"Traveler's diarrhea history"},
+    {zh:'ç¸½åä¸é£½',en:'Always hungry / insatiable appetite'},
+    {zh:'ççé±ææ§åºç¾',en:'Cyclical/periodic symptom patterns'},
+    {zh:'ç¼ºè¡æ§è²§è¡',en:'Iron deficiency anemia'},
+    {zh:'å¸¸å¾äºæ¶å¤æ´»å',en:'Frequent outdoor activities'},
   ],
 };
 
@@ -1087,18 +1088,18 @@ function updateSeesaw() {
   const pctAEl = document.getElementById('cnt-f6a-pct');
   const pctBEl = document.getElementById('cnt-f6b-pct');
   if (fill) fill.style.width = pctA + '%';
-  if (pctAEl) pctAEl.textContent = (total > 0 ? pctA + '%' : '—');
-  if (pctBEl) pctBEl.textContent = (total > 0 ? pctB + '%' : '—');
+  if (pctAEl) pctAEl.textContent = (total > 0 ? pctA + '%' : 'â');
+  if (pctBEl) pctBEl.textContent = (total > 0 ? pctB + '%' : 'â');
   // Tilt the SVG plank via JS
   const plank = document.querySelector('.seesaw-svg rect.plank');
   // Update seesaw note
   const note = document.getElementById('seesaw-note');
   if (note && total > 0) {
-    if (pctA > pctB + 15) note.textContent = currentLang === 'zh' ? '⚖️ 傾向：低甲基化' : '⚖️ Tendency: Under-Methylation';
-    else if (pctB > pctA + 15) note.textContent = currentLang === 'zh' ? '⚖️ 傾向：高甲基化' : '⚖️ Tendency: Over-Methylation';
-    else note.textContent = currentLang === 'zh' ? '⚖️ 甲基化狀態平衡或混合' : '⚖️ Balanced or Mixed Methylation';
+    if (pctA > pctB + 15) note.textContent = currentLang === 'zh' ? 'âï¸ å¾åï¼ä½ç²åºå' : 'âï¸ Tendency: Under-Methylation';
+    else if (pctB > pctA + 15) note.textContent = currentLang === 'zh' ? 'âï¸ å¾åï¼é«ç²åºå' : 'âï¸ Tendency: Over-Methylation';
+    else note.textContent = currentLang === 'zh' ? 'âï¸ ç²åºåçæå¹³è¡¡ææ··å' : 'âï¸ Balanced or Mixed Methylation';
   } else if (note) {
-    note.textContent = currentLang === 'zh' ? '勾選下方症狀後，翹翹板會反映您的甲基化傾向。' : 'Check symptoms below to see your methylation tendency.';
+    note.textContent = currentLang === 'zh' ? 'å¾é¸ä¸æ¹ççå¾ï¼ç¿¹ç¿¹æ¿æåæ æ¨çç²åºåå¾åã' : 'Check symptoms below to see your methylation tendency.';
   }
   // Update modality link with top factor
   updateModalityLink();
@@ -1153,8 +1154,8 @@ function showResults() {
     const pct = total > 0 ? Math.round(counts[maxIdx]/total*100) : 0;
     badge.innerHTML = `
       <div class="label">${L.topFactor}</div>
-      <div class="name">Factor ${maxIdx+1}：${L.factorNames[maxIdx]}</div>
-      <div class="pct">${counts[maxIdx]} ${L.items}　${pct}%</div>
+      <div class="name">Factor ${maxIdx+1}ï¼${L.factorNames[maxIdx]}</div>
+      <div class="pct">${counts[maxIdx]} ${L.items}ã${pct}%</div>
     `;
   }
 
@@ -1203,7 +1204,7 @@ function showResults() {
     legend.appendChild(item);
   });
 
-  // ── 圖三: Methylation seesaw in results ───────────────────
+  // ââ åä¸: Methylation seesaw in results âââââââââââââââââââ
   const gridA = document.getElementById('symp-f6a');
   const gridB = document.getElementById('symp-f6b');
   const cntA = gridA ? gridA.querySelectorAll('input[type=checkbox]:checked').length : 0;
@@ -1216,44 +1217,64 @@ function showResults() {
   const rPctB = document.getElementById('results-cnt-f6b-pct');
   const rNote = document.getElementById('results-seesaw-note');
   if (rFill) rFill.style.width = methPctA + '%';
-  if (rPctA) rPctA.textContent = methTotal > 0 ? methPctA + '%' : '—';
-  if (rPctB) rPctB.textContent = methTotal > 0 ? methPctB + '%' : '—';
+  if (rPctA) rPctA.textContent = methTotal > 0 ? methPctA + '%' : 'â';
+  if (rPctB) rPctB.textContent = methTotal > 0 ? methPctB + '%' : 'â';
   if (rNote) {
-    if (methTotal === 0) rNote.textContent = '尚未勾選因子6症狀';
-    else if (methPctA > methPctB + 15) rNote.textContent = '⚖️ 傾向：低甲基化';
-    else if (methPctB > methPctA + 15) rNote.textContent = '⚖️ 傾向：高甲基化';
-    else rNote.textContent = '⚖️ 甲基化狀態平衡或混合';
+    if (methTotal === 0) rNote.textContent = 'å°æªå¾é¸å å­6çç';
+    else if (methPctA > methPctB + 15) rNote.textContent = 'âï¸ å¾åï¼ä½ç²åºå';
+    else if (methPctB > methPctA + 15) rNote.textContent = 'âï¸ å¾åï¼é«ç²åºå';
+    else rNote.textContent = 'âï¸ ç²åºåçæå¹³è¡¡ææ··å';
   }
 
-  // Checked list by factor
+  // Checked list by factor, broken down per sub-group (f6 shown in seesaw)
+  const grpTitles = {
+    f1: null, f2: null,
+    f3a: 'èé¸ä¸è¶³ï¼SIBO å°è¸èå¢éåº¦å¢ç', f3b: 'çµç¹èºä¸èçï¼æ¢æ§éæ',
+    f4a: 'ç¥ç¶æ¯ç´ ãå¡å¯ãéé«', f4b: 'é«å¤å·´èºæèä¸èºç´ ',
+    f4c: 'ä½å¤å·´èºæèä¸èºç´ ', f4d: 'ACE ç«¥å¹´åµå·',
+    f5a: 'JED/TED æ´»ååº¦å¤±è½', f5b: 'SMCD ç©©å®åº¦å¤±è½',
+    f5m: 'ç·æ§çç', f5f: 'å¥³æ§çç',
+    f6a: 'ä½ç²åºå', f6b: 'é«ç²åºå',
+    f7a: 'åå­¸æ¯ç´ æ´é²ï¼çæ´»ç¿æ£ãç°å¢ï¼', f7b: 'ééå±¬',
+    f7c: 'ç´°èãææ', f7d: 'é»´èãçæ¯ãå¿µç è', f7e: 'å¯çè²',
+  };
   const output = document.getElementById('checked-list-output');
   output.innerHTML = '';
+  let anyChecked = false;
   for (let f = 1; f <= 7; f++) {
+    if (f === 6) continue; // çåå¤±è¡¡ already shown in seesaw above
     const grps = factorGroups[f];
-    const checkedSymptoms = [];
+    let factorHasAny = false;
+    let factorHtml = '';
     grps.forEach(grp => {
       const arr = symptoms[grp] || [];
+      const checkedItems = [];
       arr.forEach((sym, idx) => {
         const id = grp + '_' + idx;
-        if (checks[id]) checkedSymptoms.push(currentLang === 'zh' ? sym.zh : sym.en + ' (' + sym.zh + ')');
+        if (checks[id]) checkedItems.push(currentLang === 'zh' ? sym.zh : sym.en + ' (' + sym.zh + ')');
       });
+      if (checkedItems.length === 0) return;
+      factorHasAny = true;
+      const subTitle = grpTitles[grp];
+      if (subTitle) {
+        factorHtml += `<div class="subgrp-title">â¸ ${subTitle}</div>`;
+      }
+      factorHtml += `<div class="symptom-tags">${checkedItems.map(s => `<span class="symptom-tag">${s}</span>`).join('')}</div>`;
     });
-    if (checkedSymptoms.length === 0) continue;
+    if (!factorHasAny) continue;
+    anyChecked = true;
     const group = document.createElement('div');
     group.className = 'factor-group';
     group.innerHTML = `
       <div class="factor-group-header">
         <div class="factor-group-dot" style="background:${factorColors[f-1]}"></div>
-        <div class="factor-group-name">Factor ${f}：${L.factorNames[f-1]}</div>
-        <div class="factor-group-n">（${checkedSymptoms.length} ${L.items}）</div>
+        <div class="factor-group-name">Factor ${f}ï¼${L.factorNames[f-1]}</div>
       </div>
-      <div class="symptom-tags">
-        ${checkedSymptoms.map(s => `<span class="symptom-tag">${s}</span>`).join('')}
-      </div>
+      ${factorHtml}
     `;
     output.appendChild(group);
   }
-  if (output.innerHTML === '') {
+  if (!anyChecked) {
     output.innerHTML = `<p style="color:var(--text-muted);font-size:0.9rem">${L.noSymptoms}</p>`;
   }
 
@@ -1264,11 +1285,11 @@ function showResults() {
   const email = document.getElementById('inp-email').value;
   const complaint = document.getElementById('inp-complaint').value;
   document.getElementById('print-patient-info').innerHTML = `
-    <strong>姓名：</strong>${name || '—'} ｜
-    <strong>出生：</strong>${dob || '—'} ｜
-    <strong>電話：</strong>${phone || '—'} ｜
-    <strong>Email：</strong>${email || '—'}<br>
-    <strong>主訴：</strong>${complaint || '—'}
+    <strong>å§åï¼</strong>${name || 'â'} ï½
+    <strong>åºçï¼</strong>${dob || 'â'} ï½
+    <strong>é»è©±ï¼</strong>${phone || 'â'} ï½
+    <strong>Emailï¼</strong>${email || 'â'}<br>
+    <strong>ä¸»è¨´ï¼</strong>${complaint || 'â'}
   `;
 }
 
@@ -1279,20 +1300,20 @@ function sendEmail() {
   const counts = getFactorCounts();
   const total = counts.reduce((a,b)=>a+b,0);
   const L = LANG[currentLang];
-  const name = document.getElementById('inp-name').value || '未填';
-  const complaint = document.getElementById('inp-complaint').value || '未填';
+  const name = document.getElementById('inp-name').value || 'æªå¡«';
+  const complaint = document.getElementById('inp-complaint').value || 'æªå¡«';
   const emailAddr = document.getElementById('send-email-addr').value
     || document.getElementById('inp-email').value;
 
-  let body = `7大因子症狀問卷結果\n`;
-  body += `患者姓名：${name}\n`;
-  body += `主要困擾：${complaint}\n\n`;
-  body += `=== 万大因子計數 ===\n`;
+  let body = `7å¤§å å­ççåå·çµæ\n`;
+  body += `æ£èå§åï¼${name}\n`;
+  body += `ä¸»è¦å°æ¾ï¼${complaint}\n\n`;
+  body += `=== ä¸å¤§å å­è¨æ¸ ===\n`;
   L.factorNames.forEach((n, i) => {
     const pct = total > 0 ? Math.round(counts[i]/total*100) : 0;
-    body += `Factor ${i+1} ${n}：${counts[i]} 項（${pct}%）\n`;
+    body += `Factor ${i+1} ${n}ï¼${counts[i]} é ï¼${pct}%ï¼\n`;
   });
-  body += `\n=== 勾選症狀清單 ===\n`;
+  body += `\n=== å¾é¸ççæ¸å® ===\n`;
   for (let f = 1; f <= 7; f++) {
     const grps = factorGroups[f];
     const checked = [];
@@ -1302,22 +1323,22 @@ function sendEmail() {
       });
     });
     if (checked.length) {
-      body += `\nFactor ${f} ${L.factorNames[f-1]}：\n`;
-      body += checked.map(s=>'• '+s).join('\n') + '\n';
+      body += `\nFactor ${f} ${L.factorNames[f-1]}ï¼\n`;
+      body += checked.map(s=>'â¢ '+s).join('\n') + '\n';
     }
   }
 
-  const subject = encodeURIComponent(`7大因子症狀問卷 - ${name}`);
+  const subject = encodeURIComponent(`7å¤§å å­ççåå· - ${name}`);
   const bodyEnc = encodeURIComponent(body);
   const to = encodeURIComponent(emailAddr || '');
-  window.location.href = `mailto:${to}?subject=${subject}&body=${bodyEnc}`;
+  window.location.href = `mailto:${to}?subject=${subject}&cc=uc.connecting%40gmail.com&body=${bodyEnc}`;
 }
 
 // ============================================================
 // LANGUAGE SWITCH
 // ============================================================
 function setLang(lang) {
-  currentLang = lang;
+  currentLang = land;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
 
@@ -1346,7 +1367,7 @@ function setLang(lang) {
 
   renderSymptomsLang();
   document.getElementById('send-email-addr').placeholder =
-    lang === 'zh' ? '輸入 Email 地址 / Enter email address' : 'Enter email address';
+    lang === 'zh' ? 'è¼¸å¥ Email å°å / Enter email address' : 'Enter email address';
 }
 
 function scrollToTop() {
