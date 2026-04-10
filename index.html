@@ -195,6 +195,11 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 /* DISCLAIMER */
 .disclaimer { font-size: 0.78rem; color: var(--text-muted); background: #f8f4ed; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
 
+/* REQUIRED FIELDS */
+.form-field label .req { color: #e74c3c; margin-left: 2px; }
+.form-field input.field-error { border-color: #e74c3c !important; background: #fff5f5 !important; }
+.required-error { display: none; background: #fff5f5; border: 1.5px solid #e74c3c; border-radius: 8px; padding: 10px 16px; color: #c0392b; font-size: 0.88rem; font-weight: 600; margin-bottom: 16px; }
+
 /* SUB CHART SECTIONS (圖一/二/三) */
 .sub-chart-title { font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); border-left: 3px solid var(--primary); padding: 6px 12px; border-radius: 0 8px 8px 0; margin: 0 0 10px; }
 .sub-chart-note { font-size: 0.75rem; color: var(--text-muted); margin: -6px 0 10px 4px; }
@@ -225,11 +230,11 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <h2>👤 <span id="lbl-patientinfo">基本資料</span></h2>
     <div class="form-grid">
       <div class="form-field">
-        <label id="lbl-name">姓名 Name</label>
+        <label id="lbl-name">姓名 Name<span class="req">*</span></label>
         <input type="text" id="inp-name" placeholder="王小明">
       </div>
       <div class="form-field">
-        <label id="lbl-dob">出生年月日 Date of Birth</label>
+        <label id="lbl-dob">出生年月日 Date of Birth<span class="req">*</span></label>
         <input type="date" id="inp-dob">
       </div>
       <div class="form-field">
@@ -237,15 +242,18 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
         <input type="text" id="inp-phone" placeholder="0912-345-678">
       </div>
       <div class="form-field">
-        <label id="lbl-email">電子信箱 Email</label>
+        <label id="lbl-email">電子信箱 Email<span class="req">*</span></label>
         <input type="email" id="inp-email" placeholder="example@mail.com">
       </div>
       <div class="form-field" style="grid-column: 1/-1;">
-        <label id="lbl-complaint">最困擾的問題 Main Complaint</label>
+        <label id="lbl-complaint">最困擾的問題 Main Complaint<span class="req">*</span></label>
         <input type="text" id="inp-complaint" placeholder="請描述您最想改善的症狀">
       </div>
     </div>
   </div>
+
+  <!-- REQUIRED FIELD ERROR -->
+  <div class="required-error" id="required-error">⚠️ 請先填寫必填欄位後再查看結果。</div>
 
   <!-- FACTOR 1 -->
   <div class="factor-section" id="f1">
@@ -1104,6 +1112,33 @@ function setGender(g) {
 // RESULTS
 // ============================================================
 function showResults() {
+  // ── Required field validation ──────────────────────────────
+  var reqFields = [
+    { id: 'inp-name',      label: '姓名' },
+    { id: 'inp-dob',       label: '出生年月日' },
+    { id: 'inp-email',     label: '電子信箱' },
+    { id: 'inp-complaint', label: '最困擾的問題' }
+  ];
+  var missing = [];
+  reqFields.forEach(function(f) {
+    var el = document.getElementById(f.id);
+    if (!el || !el.value.trim()) {
+      if (el) el.classList.add('field-error');
+      missing.push(f.label);
+    } else {
+      el.classList.remove('field-error');
+    }
+  });
+  var errBox = document.getElementById('required-error');
+  if (missing.length > 0) {
+    errBox.innerHTML = '⚠️ 請先填寫必填欄位：<strong>' + missing.join('、') + '</strong>（標有 * 號）';
+    errBox.style.display = 'block';
+    errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errBox.style.display = 'none';
+  // ──────────────────────────────────────────────────────────
+
   const counts = getFactorCounts();
   const total = counts.reduce((a,b) => a+b, 0);
   const L = LANG[currentLang];
@@ -1349,8 +1384,11 @@ function scrollToTop() {
 document.addEventListener('DOMContentLoaded', () => {
   renderSymptoms();
   updateCounts();
-  // Open first factor by default
-  document.getElementById('f1').classList.add('open');
+  // Open all 7 factor sections by default
+  ['f1','f2','f3','f4','f5','f6','f7'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('open');
+  });
 });
 
 // ============================================================
