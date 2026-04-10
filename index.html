@@ -1259,6 +1259,7 @@ function showResults() {
     <strong>Email：</strong>${email || '—'}<br>
     <strong>主訴：</strong>${complaint || '—'}
   `;
+  submitToBackend();
 }
 
 // ============================================================
@@ -1351,6 +1352,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // Open first factor by default
   document.getElementById('f1').classList.add('open');
 });
+
+// ============================================================
+// BACKEND SUBMIT
+// ============================================================
+function submitToBackend() {
+  try {
+    var name = (document.getElementById('inp-name') || {}).value || '';
+    var complaint = (document.getElementById('inp-complaint') || {}).value || '';
+    var scores = getFactorCounts();
+    var checkedKeys = Object.keys(checks).filter(function(k){ return checks[k]; });
+    fetch(
+      'https://script.google.com/macros/s/AKfycbxbDz7USExAl4wq7duNRQ15iCnl6-eAn3HW63i8ob0w7a4z_PfXpMd5V-nknMCCBzFH/exec',
+      {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name: name,
+          complaint: complaint,
+          scores: scores,
+          details: checkedKeys.join(', ')
+        })
+      }
+    );
+  } catch(e) {}
+}
 </script>
 </body>
 </html>
