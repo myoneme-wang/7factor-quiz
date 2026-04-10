@@ -200,6 +200,21 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 .form-field input.field-error { border-color: #e74c3c !important; background: #fff5f5 !important; }
 .required-error { display: none; background: #fff5f5; border: 1.5px solid #e74c3c; border-radius: 8px; padding: 10px 16px; color: #c0392b; font-size: 0.88rem; font-weight: 600; margin-bottom: 16px; }
 
+
+/* ACKNOWLEDGMENT SECTION */
+.ack-card { background: var(--card); border-radius: var(--radius); border: 1.5px solid var(--border); padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.ack-card h2 { font-size: 1rem; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.ack-item { background: #fafaf8; border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; transition: border-color 0.2s; }
+.ack-item:last-child { margin-bottom: 0; }
+.ack-item.ack-error { border-color: #e74c3c !important; background: #fff5f5; }
+.ack-label { font-size: 0.88rem; color: var(--text); margin-bottom: 10px; line-height: 1.6; }
+.ack-label a { color: var(--primary); }
+.ack-label .ack-req { color: #e74c3c; margin-left: 2px; }
+.ack-options { display: flex; gap: 10px; flex-wrap: wrap; }
+.ack-option { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1.5px solid var(--border); border-radius: 20px; cursor: pointer; font-size: 0.88rem; color: var(--text-muted); background: white; transition: all 0.2s; user-select: none; }
+.ack-option input[type="radio"] { accent-color: var(--primary); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+.ack-option:has(input:checked) { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); font-weight: 600; }
+
 /* SUB CHART SECTIONS (圖一/二/三) */
 .sub-chart-title { font-size: 0.88rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); border-left: 3px solid var(--primary); padding: 6px 12px; border-radius: 0 8px 8px 0; margin: 0 0 10px; }
 .sub-chart-note { font-size: 0.75rem; color: var(--text-muted); margin: -6px 0 10px 4px; }
@@ -489,6 +504,48 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     </div>
   </div>
 
+  <!-- ACKNOWLEDGMENTS -->
+  <div class="ack-card">
+    <h2>✅ 預約前確認事項</h2>
+
+    <!-- ACK 1: LINE -->
+    <div class="ack-item" id="ack-item-1">
+      <div class="ack-label">
+        📲 請加入我們的 LINE@ 以安排約診事宜<br>
+        <strong>Ultra Clinic 官方 LINE ID：@138pepta</strong><span class="ack-req">*</span>
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack1" value="done"> 已完成</label>
+        <label class="ack-option"><input type="radio" name="ack1" value="todo"> 尚未完成</label>
+      </div>
+    </div>
+
+    <!-- ACK 2: 官網介紹 -->
+    <div class="ack-item" id="ack-item-2">
+      <div class="ack-label">
+        🌐 我已經看過「整合門診」官網完整介紹<span class="ack-req">*</span><br>
+        <a href="https://bit.ly/2X0nTyV" target="_blank" rel="noopener">https://bit.ly/2X0nTyV</a>
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack2" value="done"> 已完成</label>
+        <label class="ack-option"><input type="radio" name="ack2" value="todo"> 尚未完成</label>
+      </div>
+    </div>
+
+    <!-- ACK 3: 計價方式 -->
+    <div class="ack-item" id="ack-item-3">
+      <div class="ack-label">
+        💳 我已了解並同意「整合門診」計價方式<span class="ack-req">*</span><br>
+        掛號費 <strong>3,800 元</strong>。其他打針、功能醫學檢測費用、保健品另計。<br>
+        會在門診結束後告知總金額，並了解我有權討論想做的檢測及想要的保健品。
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack3" value="agree"> 我了解並同意</label>
+        <label class="ack-option"><input type="radio" name="ack3" value="no"> 我不了解（請來電洽詢：02-23222575）</label>
+      </div>
+    </div>
+  </div>
+
   <!-- SUBMIT -->
   <div class="submit-wrap">
     <button class="btn-submit" onclick="showResults()" id="btn-show-results">📊 查看七大因子分析結果</button>
@@ -580,7 +637,7 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
 
     <div class="action-bar">
       <button class="btn btn-primary" onclick="window.print()">🖨️ <span id="lbl-print">列印清單</span></button>
-      <button class="btn btn-green" onclick="sendEmail()">📧 <span id="lbl-email-btn">寄送至 Email</span></button>
+      <button class="btn btn-green" onclick="sendEmail()">📧 <span id="lbl-email-btn">寄送副本至您的 Email</span></button>
       <button class="btn btn-outline" onclick="scrollToTop()">↑ <span id="lbl-back">重新填寫</span></button>
     </div>
     <div class="email-row">
@@ -610,7 +667,7 @@ const LANG = {
     resultsSubtitle: '根據您勾選的症狀，以下是各因子的分佈比例：',
     checklist: '✅ 您勾選的症狀清單',
     print: '列印清單',
-    emailBtn: '寄送至 Email',
+    emailBtn: '寄送副本至您的 Email',
     back: '重新填寫',
     submitBtn: '📊 查看七大因子分析結果',
     topFactor: '最高比例因子',
@@ -1137,6 +1194,30 @@ function showResults() {
     return;
   }
   errBox.style.display = 'none';
+
+  // ── Acknowledgment validation ──────────────────────────────
+  var ackNames = [
+    { id: 'ack-item-1', name: 'ack1', label: '加入 LINE@' },
+    { id: 'ack-item-2', name: 'ack2', label: '看過官網介紹' },
+    { id: 'ack-item-3', name: 'ack3', label: '同意計價方式' }
+  ];
+  var ackMissing = [];
+  ackNames.forEach(function(a) {
+    var item = document.getElementById(a.id);
+    var checked = document.querySelector('input[name="' + a.name + '"]:checked');
+    if (!checked) {
+      if (item) item.classList.add('ack-error');
+      ackMissing.push(a.label);
+    } else {
+      if (item) item.classList.remove('ack-error');
+    }
+  });
+  if (ackMissing.length > 0) {
+    errBox.innerHTML = '⚠️ 請先完成預約前確認事項：<strong>' + ackMissing.join('、') + '</strong>';
+    errBox.style.display = 'block';
+    document.querySelector('.ack-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   // ──────────────────────────────────────────────────────────
 
   const counts = getFactorCounts();
