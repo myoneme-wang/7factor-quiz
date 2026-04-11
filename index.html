@@ -504,47 +504,6 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     </div>
   </div>
 
-  <!-- ACKNOWLEDGMENTS -->
-  <div class="ack-card">
-    <h2>✅ 預約前確認事項</h2>
-
-    <!-- ACK 1: LINE -->
-    <div class="ack-item" id="ack-item-1">
-      <div class="ack-label">
-        📲 請加入我們的 LINE@ 以安排約診事宜<br>
-        <strong>Ultra Clinic 官方 LINE ID：@138pepta</strong><span class="ack-req">*</span>
-      </div>
-      <div class="ack-options">
-        <label class="ack-option"><input type="radio" name="ack1" value="done"> 已完成</label>
-        <label class="ack-option"><input type="radio" name="ack1" value="todo"> 尚未完成</label>
-      </div>
-    </div>
-
-    <!-- ACK 2: 官網介紹 -->
-    <div class="ack-item" id="ack-item-2">
-      <div class="ack-label">
-        🌐 我已經看過「整合門診」官網完整介紹<span class="ack-req">*</span><br>
-        <a href="https://bit.ly/2X0nTyV" target="_blank" rel="noopener">https://bit.ly/2X0nTyV</a>
-      </div>
-      <div class="ack-options">
-        <label class="ack-option"><input type="radio" name="ack2" value="done"> 已完成</label>
-        <label class="ack-option"><input type="radio" name="ack2" value="todo"> 尚未完成</label>
-      </div>
-    </div>
-
-    <!-- ACK 3: 計價方式 -->
-    <div class="ack-item" id="ack-item-3">
-      <div class="ack-label">
-        💳 我已了解並同意「整合門診」計價方式<span class="ack-req">*</span><br>
-        掛號費 <strong>3,800 元</strong>。其他打針、功能醫學檢測費用、保健品另計。<br>
-        會在門診結束後告知總金額，並了解我有權討論想做的檢測及想要的保健品。
-      </div>
-      <div class="ack-options">
-        <label class="ack-option"><input type="radio" name="ack3" value="agree"> 我了解並同意</label>
-        <label class="ack-option"><input type="radio" name="ack3" value="no"> 我不了解（請來電洽詢：02-23222575）</label>
-      </div>
-    </div>
-  </div>
 
   <!-- SUBMIT -->
   <div class="submit-wrap">
@@ -643,7 +602,48 @@ footer { text-align: center; padding: 20px; font-size: 0.8rem; color: var(--text
     <div class="email-row">
       <input type="email" id="send-email-addr" placeholder="輸入 Email 地址 / Enter email address">
       <button class="btn btn-green" onclick="sendEmail()">送出</button>
+    
+  <!-- ACKNOWLEDGMENTS -->
+  <div class="ack-card">
+    <h2>✅ 預約前確認事項</h2>
+
+    <!-- ACK 1: LINE -->
+    <div class="ack-item" id="ack-item-1">
+      <div class="ack-label">
+        📲 請加入我們的 LINE@ 以安排約診事宜<br>
+        <strong>Ultra Clinic 官方 LINE ID：@138pepta</strong><span class="ack-req">*</span>
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack1" value="done"> 已完成</label>
+        <label class="ack-option"><input type="radio" name="ack1" value="todo"> 尚未完成</label>
+      </div>
     </div>
+
+    <!-- ACK 2: 官網介紹 -->
+    <div class="ack-item" id="ack-item-2">
+      <div class="ack-label">
+        🌐 我已經看過「整合門診」官網完整介紹<span class="ack-req">*</span><br>
+        <a href="https://bit.ly/2X0nTyV" target="_blank" rel="noopener">https://bit.ly/2X0nTyV</a>
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack2" value="done"> 已完成</label>
+        <label class="ack-option"><input type="radio" name="ack2" value="todo"> 尚未完成</label>
+      </div>
+    </div>
+
+    <!-- ACK 3: 計價方式 -->
+    <div class="ack-item" id="ack-item-3">
+      <div class="ack-label">
+        💳 我已了解並同意「整合門診」計價方式<span class="ack-req">*</span><br>
+        掛號費 <strong>3,800 元</strong>。其他打針、功能醫學檢測費用、保健品另計。<br>
+        會在門診結束後告知總金額，並了解我有權討論想做的檢測及想要的保健品。
+      </div>
+      <div class="ack-options">
+        <label class="ack-option"><input type="radio" name="ack3" value="agree"> 我了解並同意</label>
+        <label class="ack-option"><input type="radio" name="ack3" value="no"> 我不了解（請來電洽詢：02-23222575）</label>
+      </div>
+    </div>
+  </div></div>
   </div>
 
 </div>
@@ -1194,31 +1194,6 @@ function showResults() {
     return;
   }
   errBox.style.display = 'none';
-
-  // ── Acknowledgment validation ──────────────────────────────
-  var ackNames = [
-    { id: 'ack-item-1', name: 'ack1', label: '加入 LINE@' },
-    { id: 'ack-item-2', name: 'ack2', label: '看過官網介紹' },
-    { id: 'ack-item-3', name: 'ack3', label: '同意計價方式' }
-  ];
-  var ackMissing = [];
-  ackNames.forEach(function(a) {
-    var item = document.getElementById(a.id);
-    var checked = document.querySelector('input[name="' + a.name + '"]:checked');
-    if (!checked) {
-      if (item) item.classList.add('ack-error');
-      ackMissing.push(a.label);
-    } else {
-      if (item) item.classList.remove('ack-error');
-    }
-  });
-  if (ackMissing.length > 0) {
-    errBox.innerHTML = '⚠️ 請先完成預約前確認事項：<strong>' + ackMissing.join('、') + '</strong>';
-    errBox.style.display = 'block';
-    document.querySelector('.ack-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return;
-  }
-  // ──────────────────────────────────────────────────────────
 
   const counts = getFactorCounts();
   const total = counts.reduce((a,b) => a+b, 0);
